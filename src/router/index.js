@@ -23,8 +23,8 @@ const routes = [
     component: () => import('../views/auth/signup.vue')
   },
   {
-    path: '/main',
-    component: () => import('../views/main/index.vue')
+    path: '/Main',
+    component: () => import('../views/main/Main.vue')
   }
 ]
 
