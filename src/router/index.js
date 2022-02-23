@@ -23,8 +23,20 @@ const routes = [
     component: () => import('../views/auth/signup.vue')
   },
   {
-    path: '/Main',
+    path: '/main',
     component: () => import('../views/main/Main.vue')
+  },
+  {
+    path: '/reservation',
+    component: () => import('../views/reservation/Reservation.vue')
+  },
+  {
+    path: '/reservation-Check',
+    component: () => import('../views/reservation/Reservation_check.vue')
+  },
+  {
+    path: '/my-page',
+    component: () => import('../views/my_page/My_page.vue')
   }
 ]
 
