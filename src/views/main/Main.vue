@@ -247,7 +247,7 @@ export default {
     background: #fff;
   }
   .filter {
-    display: -webkit-flex;
+    display: flex;
     flex-flow: row;
     flex-wrap: wrap;
     > div {
@@ -268,7 +268,7 @@ export default {
     > div {
       width: 100%;
       margin: auto;
-      display: -webkit-flex;
+      display: flex;
       flex-direction: row;
       justify-content: flex-start;
       flex-wrap: wrap;
@@ -315,7 +315,7 @@ export default {
   .date_time {
     font-size: 0.7em;
     width: 100%;
-    display: -webkit-flex;
+    display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin: auto;
@@ -331,13 +331,13 @@ export default {
   }
   .sort {
     // margin-top: 15px;
-    display: -webkit-flex;
+    display: flex;
     justify-content: space-between;
     flex-direction: column;
     height: 30px;
     font-size: 0.8em;
     ul {
-      display: -webkit-flex;
+      display: flex;
       justify-content: center;
       line-height: 30px;
       li {
@@ -355,7 +355,7 @@ export default {
       }
     }
     .search_box {
-      display: -webkit-flex;
+      display: flex;
       flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
@@ -390,7 +390,7 @@ export default {
   .contents {
     background: #fff;
     border: 1px solid #e4e4e4;
-    display: -webkit-flex;
+    display: flex;
     margin: auto;
     flex-wrap: wrap;
     flex-flow: column;
@@ -410,16 +410,16 @@ export default {
     }
 
     .contents_box {
-      display: -webkit-flex;
+      display: flex;
       flex-wrap: wrap;
-      flex-flow: row;
-      height: 100px;
-      width: 100vw;
+      // border: 1px solid red;
+      height: 140px;
+      width: 100%;
+      justify-content: space-between;
+
       .c_box_01 {
         order: 1;
-        justify-content: flex-start;
         text-align: left;
-        width: 50%;
         .rank_name {
           font-weight: bold;
           font-size: 1.4em;
@@ -429,18 +429,16 @@ export default {
         }
       }
       .c_box_02 {
-        display: -webkit-flex;
-        flex-wrap: wrap;
-        width: 50%;
+        display: flex;
         flex-flow: column;
-        justify-content: flex-end;
+        justify-content: space-between;
         order: 2;
         text-align: right;
         .car_name {
           padding: 10px 20px;
           display: block;
           color: #fff;
-          font-size: 1em;
+          font-size: 1.2em;
           background: #ff8955;
         }
         .star {
@@ -450,12 +448,13 @@ export default {
         }
       }
       .c_box_03 {
+        position: relative;
         order: 3;
         width: 100%;
         text-align: right;
-        font-size: 1em;
+        align-self: flex-end;
+        font-size: 2em;
         color: #cf5724;
-
         button {
           font-size: 0.6em;
           line-height: 2em;
@@ -463,6 +462,9 @@ export default {
           border: 0;
           color: #fff;
           background: #cf5724;
+        }
+        button:hover {
+          background: #ff8955;
         }
       }
     }
@@ -474,7 +476,6 @@ export default {
     margin: 0 auto;
     left: 0;
     right: 0;
-
     z-index: 10;
     width: 60%;
     min-width: 801px;
@@ -486,7 +487,7 @@ export default {
     background: #fff;
   }
   .filter {
-    display: -webkit-flex;
+    display: flex;
     > div {
       width: 33.3333333333%;
     }
@@ -505,7 +506,7 @@ export default {
     > div {
       width: 100%;
       margin: auto;
-      display: -webkit-flex;
+      display: flex;
       flex-direction: row;
       justify-content: flex-start;
       flex-wrap: wrap;
@@ -556,7 +557,7 @@ export default {
   .date_time {
     font-size: 0.7em;
 
-    display: -webkit-flex;
+    display: flex;
     flex-direction: column;
     .sub {
       float: left;
@@ -570,12 +571,12 @@ export default {
   }
   .sort {
     // margin-top: 15px;
-    display: -webkit-flex;
+    display: flex;
     justify-content: space-between;
     flex-direction: row;
     height: 30px;
     ul {
-      display: -webkit-flex;
+      display: flex;
       justify-content: flex-start;
       line-height: 40px;
       width: 30%;
@@ -597,7 +598,7 @@ export default {
     }
     .search_box {
       width: 33.3333%;
-      display: -webkit-flex;
+      display: flex;
       flex-direction: row;
       justify-content: flex-end;
 
@@ -640,7 +641,7 @@ export default {
   .contents {
     background: #fff;
     border: 1px solid #e4e4e4;
-    display: -webkit-flex;
+    display: flex;
     width: 700px;
     height: 200px;
     margin: auto;
@@ -667,7 +668,7 @@ export default {
     }
 
     .contents_box {
-      display: inline-flex;
+      display: flex;
       flex-wrap: wrap;
       // border: 1px solid red;
       height: 200px;
@@ -686,8 +687,7 @@ export default {
         }
       }
       .c_box_02 {
-        display: -webkit-flex;
-        flex-wrap: wrap;
+        display: flex;
         flex-flow: column;
         justify-content: space-between;
         order: 2;
