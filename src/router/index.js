@@ -25,6 +25,18 @@ const routes = [
   {
     path: '/Main',
     component: () => import('../views/main/Main.vue')
+  },
+  {
+    path: '/Reservation',
+    component: () => import('../views/reservation/Reservation.vue')
+  },
+  {
+    path: '/Reservation_Check',
+    component: () => import('../views/reservation/Reservation_check.vue')
+  },
+  {
+    path: '/My_page',
+    component: () => import('../views/my_page/My_page.vue')
   }
 ]
 
@@ -33,5 +45,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+const makeTitle = title => (title ? `${title} | 제주 넘는 차` : '제주 넘는 차')
 
+router.afterEach((to, from) => {
+  Vue.nextTick(() => {
+    document.title = makeTitle(to.meta.title)
+  })
+})
 export default router

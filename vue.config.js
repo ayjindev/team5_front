@@ -3,8 +3,9 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `
+        sassOptions: `
                 @import "@/assets/css/reset.scss";
+                @import "@/assets/css/scrollbar.scss";
               `
       }
     }

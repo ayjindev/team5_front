@@ -6,15 +6,12 @@
         <router-link to="/sign">회원가입</router-link> |
         <router-link to="/sign">로그인</router-link>
       </div>
-
-      <!-- <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
-      | <router-link to="/main">Main</router-link> -->
     </div>
     <router-view />
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
