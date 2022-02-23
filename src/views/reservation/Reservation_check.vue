@@ -23,22 +23,11 @@
         </div>
       </div>
     </div>
-    <div class="reservation">
-      <label for="">예약자 이름<input id="" type="text" name="eservation_name" /></label>
-      <label for="">운전자 이름<input id="" type="text" name="driver_name" /></label>
-      <label for="">연락처<input id="" type="text" name="phon_ number" /></label>
-      <label for="">운전자 생년월일<input id="" type="text" name="driver_date" /></label>
-    </div>
-    <div class="payment">
-      <h3>무통장 입금</h3>
-      <p><span>우리</span>**** *** **** **</p>
-      <p><span>국민</span>**** *** **** **</p>
-      <p><span>농협</span>**** *** **** **</p>
+    <div>
+      <p>예약이 완료되었습니다</p>
     </div>
     <div>
-      <router-link to="/Reservation-check"
-        ><p><span class="price">168,000</span>원 결제하기</p></router-link
-      >
+      <router-link to="my-page"><p>마이페이지에서 확인하기</p></router-link>
     </div>
   </div>
 </template>

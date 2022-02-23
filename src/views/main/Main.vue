@@ -61,10 +61,12 @@
             <span class="car_name">수입</span>
             <dd class="star">★4.4</dd>
           </div>
-          <div class="price c_box_03">168,000 <button>바로 예약 하기</button></div>
+          <div class="price c_box_03">
+            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
+          </div>
         </div>
       </div>
-     
+    </div>
   </div>
 </template>
 <script>
@@ -144,6 +146,29 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border: 3px solid #000000;
+}
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 10px;
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  height: 50px;
+  width: 50px;
+  background: #ff8955;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
 * {
   color: #5e5e5e;
 }
