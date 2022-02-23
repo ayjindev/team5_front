@@ -24,11 +24,6 @@
       </div>
     </div>
     <div class="reservation">
-      <ul>
-        <li>d</li>
-        <li>d</li>
-        <li>d</li>
-      </ul>
       <label for="">예약자 이름<input id="" type="text" name="eservation_name" /></label>
       <label for="">운전자 이름<input id="" type="text" name="driver_name" /></label>
       <label for="">연락처<input id="" type="text" name="phon_ number" /></label>
