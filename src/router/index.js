@@ -25,6 +25,18 @@ const routes = [
   {
     path: '/Main',
     component: () => import('../views/main/Main.vue')
+  },
+  {
+    path: '/Reservation',
+    component: () => import('../views/reservation/Reservation.vue')
+  },
+  {
+    path: '/Reservation_Check',
+    component: () => import('../views/reservation/Reservation_check.vue')
+  },
+  {
+    path: '/My_page',
+    component: () => import('../views/my_page/My_page.vue')
   }
 ]
 
