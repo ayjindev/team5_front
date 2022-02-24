@@ -18,8 +18,8 @@
         </div>
         <div class="price c_box_03">168,000</div>
         <div class="c_box_04">
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i:s"></datetime>
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i:s"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
         </div>
       </div>
     </div>
@@ -60,7 +60,11 @@ export default {
 
 <style lang="scss" scoped>
 .body {
-  background: #ff8955;
+  background: #eee;
+}
+input {
+  border: 1px solid #e4e4e4;
+  height: 30px;
 }
 .datetime {
   width: 90%;
@@ -151,7 +155,7 @@ export default {
       // border: 1px solid red;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #fff;
 
       a {
         img {
@@ -164,7 +168,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       // border: 1px solid red;
-      height: 140px;
+      height: 220px;
       width: 100%;
       padding-left: 20px;
       justify-content: space-between;
@@ -206,8 +210,8 @@ export default {
       .c_box_03 {
         position: relative;
         order: 3;
-        width: 40%;
-        text-align: left;
+        width: 100%;
+        text-align: center;
         align-self: flex-start;
         font-size: 2em;
         color: #cf5724;
@@ -224,7 +228,7 @@ export default {
         }
       }
       .c_box_04 {
-        width: 60%;
+        width: 100%;
         order: 4;
         text-align: right;
         display: flex;
@@ -267,7 +271,7 @@ export default {
       margin-right: 20px;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #fff;
 
       a {
         img {

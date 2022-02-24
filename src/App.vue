@@ -51,7 +51,7 @@
   width: 50px;
   height: 40px;
   text-indent: -9999px;
-  margin-top: -5px;
+  margin-top: 9px;
 }
 
 @media all and(min-width:810px) {
@@ -74,14 +74,30 @@
     a:hover {
       color: #ff8955;
     }
-  }
-
-  #nav #logo {
-    background: url(./assets/images/logo.png) center no-repeat;
-    background-size: 100%;
-    width: 50px;
-    height: 40px;
-    text-indent: -9999px;
+    #logo {
+      background: url(./assets/images/logo.png) center no-repeat;
+      background-size: 100%;
+      background-position: 0 20px;
+      width: 50px;
+      height: 60px;
+      text-indent: -9999px;
+      margin-top: -10px;
+    }
+    #logo:hover {
+      animation-duration: 1s;
+      animation-name: slidein;
+    }
+    @keyframes slidein {
+      from {
+        background-position: 0 20px;
+      }
+      50% {
+        background-position: 0 10px;
+      }
+      to {
+        background-position: 0 20px;
+      }
+    }
   }
 }
 </style>

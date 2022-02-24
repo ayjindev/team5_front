@@ -152,7 +152,30 @@ BDO[DIR="rtl"] {
 ::-webkit-scrollbar-thumb {
   height: 50px;
   width: 50px;
-  background: #cf5724;
+  background: #ff8955;
   -webkit-border-radius: 8px;
   border-radius: 8px;
 }
+.v-application {
+  font-family: 'Maplestory', sans-serif !important;
+}
+
+@font-face {
+  font-family: 'Maplestory';
+  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryBold.ttf') format('truetype');
+  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryOTFBold.otf')format('opentype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Maplestory';
+  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryLight.ttf') format('truetype');
+  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryOTFLight.otf') format('opentype');
+  font-weight: normal;
+}
+
+
+div{
+  font-family: 'Maplestory';
+  color: #5e5e5e;
+}
+

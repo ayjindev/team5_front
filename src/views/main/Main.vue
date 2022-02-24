@@ -269,11 +269,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-* {
-  color: #5e5e5e;
-}
 .body {
-  background: #ff8955;
+  background: #eee;
 }
 .top {
   position: fixed;
@@ -340,6 +337,9 @@ export default {
   .sort {
     li {
       margin: 0 5px;
+      a {
+        color: #5e5e5e;
+      }
       a:link {
         color: #5e5e5e;
       }
@@ -457,7 +457,7 @@ export default {
       // border: 1px solid red;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #fff;
       a {
         img {
           height: 150px;
@@ -569,6 +569,9 @@ export default {
     height: 30px;
     margin-left: 3%;
     flex-direction: row;
+    a {
+      color: #5e5e5e;
+    }
     ul {
       display: flex;
       justify-content: flex-start;
@@ -623,7 +626,8 @@ export default {
       margin-right: 20px;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #fff;
+
       a {
         img {
           width: 100%;
