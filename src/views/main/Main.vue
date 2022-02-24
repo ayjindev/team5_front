@@ -28,9 +28,6 @@
             </div>
           </div>
         </div>
-        <div class="date_time">
-          <h2 class="sub">날짜/시간</h2>
-        </div>
       </div>
       <div class="sort">
         <ul>
@@ -368,8 +365,7 @@ export default {
     line-height: 30px;
   }
   .contents_list {
-    width: 60%;
-    min-width: 801px;
+    width: 701px;
     margin: auto;
     padding-top: 224px;
     border: 1px solid #eeeeee;
@@ -530,15 +526,15 @@ export default {
 }
 @media all and(min-width:768px) {
   .top {
-    min-width: 801px;
+    width: 701px;
     padding: 20px;
-    width: 60%;
     padding-top: 80px;
   }
   .filter {
     display: flex;
     > div {
-      width: 33.3333333333%;
+      width: 47%;
+      margin-left: 3%;
     }
   }
   .rank,
@@ -571,6 +567,7 @@ export default {
     display: flex;
     justify-content: space-between;
     height: 30px;
+    margin-left: 3%;
     flex-direction: row;
     ul {
       display: flex;
@@ -584,7 +581,7 @@ export default {
       }
     }
     .search_box {
-      width: 33.3333%;
+      width: 45%;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
@@ -605,8 +602,7 @@ export default {
     }
   }
   .contents_list {
-    width: 60%;
-    min-width: 801px;
+    width: 702px;
     margin: auto;
     padding-top: 224px;
     border: 1px solid #eeeeee;
@@ -617,7 +613,7 @@ export default {
     background: #fff;
     border: 1px solid #e4e4e4;
     display: flex;
-    width: 700px;
+    width: 701px;
     height: 200px;
     margin: auto;
     .img_box {

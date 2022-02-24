@@ -11,37 +11,14 @@
         <router-link to="/logout">로그아웃</router-link>
       </div> -->
 
-      <!-- <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
-      | <router-link to="/main">Main</router-link> -->
+      <!-- <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> | |
+      <router-link to="/main">Main</router-link> -->
     </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
-::-webkit-scrollbar {
-  width: 12px;
-  height: 8px;
-  border: 3px solid #ffffff;
-}
-::-webkit-scrollbar-button:start:decrement,
-::-webkit-scrollbar-button:end:increment {
-  display: block;
-  height: 10px;
-  background: #ffffff;
-}
-::-webkit-scrollbar-track {
-  background: #ffffff;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  height: 50px;
-  width: 50px;
-  background: #cf5724;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
