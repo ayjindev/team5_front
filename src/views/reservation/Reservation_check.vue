@@ -25,11 +25,12 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="loop_box">
+      <div class="loop"></div>
       <p>예약이 완료되었습니다</p>
     </div>
-    <div>
-      <router-link to="my-page"><p>마이페이지에서 확인하기</p></router-link>
+    <div class="my_box">
+      <router-link class="my-page" to="my-page"><p>마이페이지에서 확인하기</p></router-link>
     </div>
   </div>
 </template>
@@ -39,11 +40,60 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-.body {
+body {
   background: #ff8955;
+  overflow-x: hidden;
+}
+.loop_box {
+  overflow-x: hidden;
+  width: 100vw;
+  margin-top: 20px;
+  .loop {
+    width: 130px;
+    height: 110px;
+    background: url(../../assets/images/logo.gif) center no-repeat;
+    background-size: contain;
+    animation-duration: 10s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+  }
+  p {
+    font-size: 2em;
+    font-weight: bold;
+    color: #cf5724;
+    line-height: 4em;
+  }
+}
+.my_box {
+  display: block;
+  color: #fff;
+  margin: auto;
+  padding: 20px;
+  background: #cf5724;
+  border: 1px solid #cf5724;
+  font-size: 2em;
+  .my-page,
+  .my-page:hover,
+  .my-page:link,
+  .my-page:active,
+  .my-page:visited {
+    color: #fff;
+  }
 }
 
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: -130px;
+  }
+}
 @media all and(max-width:767px) {
+  .my_box {
+    width: 100%;
+  }
   .contents_list {
     width: 100%;
     margin: auto;
@@ -85,6 +135,7 @@ export default {}
 
       .c_box_01 {
         order: 1;
+        width: 60%;
         text-align: left;
         .rank_name {
           font-weight: bold;
@@ -100,7 +151,9 @@ export default {}
         flex-flow: column;
         justify-content: space-between;
         order: 2;
-        text-align: right;
+        width: 40%;
+        min-width: 70px;
+        text-align: center;
         .car_name {
           padding: 10px 20px;
           display: block;
@@ -148,6 +201,12 @@ export default {}
   }
 }
 @media all and(min-width:768px) {
+  .my_box {
+    width: 700px;
+  }
+  .my_box:hover {
+    background: #ff8955;
+  }
   .contents {
     padding-top: 59px;
     padding-bottom: 200px;

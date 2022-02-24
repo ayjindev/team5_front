@@ -65,7 +65,7 @@ export default {}
     flex-flow: column;
     margin: auto;
     width: 60%;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.8em;
     margin-top: 20px;
   }
@@ -97,17 +97,10 @@ export default {}
 .pay:hover {
   background: #ff8955;
 }
-.Reservation-check:hover {
-  color: #fff;
-}
-.Reservation-check:link {
-  color: #fff;
-}
+.Reservation-check:hover,
+.Reservation-check:link,
+.Reservation-check:active,
 .Reservation-check:visited {
-  color: #fff;
-}
-
-.Reservation-check:active {
   color: #fff;
 }
 @media all and(max-width:767px) {
@@ -166,6 +159,7 @@ export default {}
 
       .c_box_01 {
         order: 1;
+        width: 60%;
         text-align: left;
         .rank_name {
           font-weight: bold;
@@ -181,7 +175,9 @@ export default {}
         flex-flow: column;
         justify-content: space-between;
         order: 2;
-        text-align: right;
+        width: 40%;
+        min-width: 70px;
+        text-align: center;
         .car_name {
           padding: 10px 20px;
           display: block;
