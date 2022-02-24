@@ -211,11 +211,11 @@ export default {
   watch: {
     rankAllSelect(value) {
       if (value === true) {
-        for (let i = 1; i < this.carTypeList.length; i++) {
+        for (let i = 0; i < this.carTypeList.length; i++) {
           this.rankSelect[i].value = true
         }
       } else {
-        for (let i = 1; i < this.carTypeList.length; i++) {
+        for (let i = 0; i < this.carTypeList.length; i++) {
           this.rankSelect[i].value = false
         }
       }

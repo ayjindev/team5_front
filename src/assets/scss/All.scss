@@ -161,19 +161,17 @@ BDO[DIR="rtl"] {
 }
 
 @font-face {
-  font-family: 'Maplestory';
-  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryBold.ttf') format('truetype');
-  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryOTFBold.otf')format('opentype');
-  font-weight: bold;
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
-  font-family: 'Maplestory';
-  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryLight.ttf') format('truetype');
-  src: url('C:\Users\user\Desktop\pj1\team5_front\src\assets\font/MaplestoryOTFLight.otf') format('opentype');
+  font-family: 'MaplestoryOTFLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
   font-weight: normal;
+  font-style: normal;
 }
-
-
 div{
   font-family: 'Maplestory';
   color: #5e5e5e;
