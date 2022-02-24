@@ -172,7 +172,7 @@
           </b-card>
         </b-col>
       </b-row>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button class="btn btn-primary" @click="onSubmit">Sign in</button>
     </div>
   </div>
 </template>
@@ -304,6 +304,23 @@ export default {
           this.userAddr1 = fullRoadAddr
         }
       }).open()
+    },
+    // 콘솔 로그 확인
+    onSubmit() {
+      console.log(
+        'onSubmit',
+        this.userId,
+        this.userPw,
+        this.userPwCheck,
+        this.userPwCheck,
+        this.userName,
+        this.userEmail,
+        this.userPhoneNumber,
+        this.userBirth,
+        this.userZip,
+        this.userAddr1,
+        this.userAddr2
+      )
     }
   }
 }

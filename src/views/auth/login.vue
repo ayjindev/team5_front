@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div style="margin-top: 25vh">
+    <div>
       <b-row align-h="center">
         <b-col cols="4">
-          <b-card title="로그인">
+          <b-card title="로그인" style="margin-top: 25vh">
             <b-form-group label-cols="4" label-cols-lg="3" label="아이디" label-for="input-userid">
               <b-form-input id="input-userid" v-model="userLoginId"></b-form-input>
             </b-form-group>
