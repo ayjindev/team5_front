@@ -9,7 +9,6 @@
               <b-form-input
                 id="userId"
                 v-model="userId"
-                v-bind="validateId"
                 :state="userIdState"
                 aria-describedby="아이디"
                 required
@@ -103,7 +102,6 @@
                 required
                 :state="userEmailState"
                 trim
-                @blur="checkDuplicate"
               ></b-form-input>
 
               <!-- 조건 미충족 시 -->

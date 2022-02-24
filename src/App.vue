@@ -3,8 +3,8 @@
     <div id="nav">
       <router-link to="/main"><h1 id="logo">logo</h1></router-link>
       <div>
-        <router-link to="/sign">회원가입</router-link> |
-        <router-link to="/sign">로그인</router-link>
+        <router-link to="/auth/sign">회원가입</router-link> |
+        <router-link to="/auth/login">로그인</router-link>
       </div>
 
       <!-- <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
