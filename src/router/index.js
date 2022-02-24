@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Main from '../views/main/Main.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: Main
   },
   {
     path: '/about',
@@ -19,12 +18,8 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/sign',
-    component: () => import('../views/auth/signup.vue')
-  },
-  {
     path: '/main',
-    component: () => import('../views/main/Main.vue')
+    component: Main
   },
   {
     path: '/reservation',
@@ -37,6 +32,25 @@ const routes = [
   {
     path: '/my-page',
     component: () => import('../views/my_page/My_page.vue')
+  },
+  {
+    path: '/auth',
+    component: () => import('../views/auth'),
+    children: [
+      {
+        path: '/auth/login',
+        component: () => import('../views/auth/login')
+      },
+      {
+        path: '/auth/sign',
+        component: () => import('../views/auth/signup')
+      }
+    ]
+  },
+  // NotFound 페이지 (항상 맨 밑에)
+  {
+    path: '*',
+    component: () => import('../components/NotFound.vue')
   }
 ]
 
