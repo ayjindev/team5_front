@@ -8,11 +8,7 @@
               <label for="userId">아이디</label>
               <b-form-input
                 id="userId"
-<<<<<<< HEAD
-                v-model="userId"
-=======
                 v-model="user.userId"
->>>>>>> 7f43712e7bb5f912538a8f5ed2b0ba50d2364d51
                 :state="userIdState"
                 aria-describedby="아이디"
                 required
