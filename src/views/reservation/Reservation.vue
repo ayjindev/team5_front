@@ -18,8 +18,8 @@
         </div>
         <div class="price c_box_03">168,000</div>
         <div class="c_box_04">
-          <p><span id="start">2022.02.22</span>부터</p>
-          <p><span id="end">2022.03.03</span>까지</p>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i:s"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i:s"></datetime>
         </div>
       </div>
     </div>
@@ -46,14 +46,26 @@
 </template>
 
 <script>
-export default {}
+import datetime from 'vuejs-datetimepicker'
+
+export default {
+  components: { datetime },
+  methods: {
+    alertVal() {
+      alert(this.dob)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .body {
   background: #ff8955;
 }
-
+.datetime {
+  width: 90%;
+  margin-left: 10%;
+}
 .reservation_box {
   margin-top: 20px;
   display: flex;
