@@ -65,6 +65,7 @@ export default {
 input {
   border: 1px solid #e4e4e4;
   height: 30px;
+  border-radius: 20px;
 }
 .datetime {
   width: 90%;

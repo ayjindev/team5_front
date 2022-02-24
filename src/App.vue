@@ -51,10 +51,9 @@
   width: 50px;
   height: 40px;
   text-indent: -9999px;
-  margin-top: 9px;
 }
 
-@media all and(min-width:810px) {
+@media all and(min-width:768px) {
   #nav {
     position: fixed;
     z-index: 50;
