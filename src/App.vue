@@ -6,15 +6,19 @@
         <router-link to="/auth/sign">회원가입</router-link> |
         <router-link to="/auth/login">로그인</router-link>
       </div>
+      <!-- <div>
+        <router-link to="/my-page">마이 페이지</router-link> |
+        <router-link to="/logout">로그아웃</router-link>
+      </div> -->
 
-      <!-- <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
-      | <router-link to="/main">Main</router-link> -->
+      <!-- <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> | |
+      <router-link to="/main">Main</router-link> -->
     </div>
     <router-view />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
