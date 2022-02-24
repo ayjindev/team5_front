@@ -150,6 +150,48 @@
           </div>
         </div>
       </div>
+      <div class="contents">
+        <div class="img_box">
+          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
+            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
+          </a>
+        </div>
+        <div class="contents_box">
+          <dl class="c_box_01">
+            <dt class="rank_name">볼보 XC60 2세대</dt>
+            <dd class="fuel_name">20~21년식 휘발유</dd>
+            <dd>유모차/카시트 신청 가능</dd>
+          </dl>
+          <div class="c_box_02">
+            <span class="car_name">수입</span>
+            <dd class="star">★4.4</dd>
+          </div>
+          <div class="price c_box_03">
+            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
+          </div>
+        </div>
+      </div>
+      <div class="contents">
+        <div class="img_box">
+          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
+            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
+          </a>
+        </div>
+        <div class="contents_box">
+          <dl class="c_box_01">
+            <dt class="rank_name">볼보 XC60 2세대</dt>
+            <dd class="fuel_name">20~21년식 휘발유</dd>
+            <dd>유모차/카시트 신청 가능</dd>
+          </dl>
+          <div class="c_box_02">
+            <span class="car_name">수입</span>
+            <dd class="star">★4.4</dd>
+          </div>
+          <div class="price c_box_03">
+            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -230,50 +272,117 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  border: 3px solid #000000;
-}
-::-webkit-scrollbar-button:start:decrement,
-::-webkit-scrollbar-button:end:increment {
-  display: block;
-  height: 10px;
-  background: #000000;
-}
-::-webkit-scrollbar-track {
-  background: #000;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  height: 50px;
-  width: 50px;
-  background: #ff8955;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-}
 * {
   color: #5e5e5e;
 }
 .body {
   background: #ff8955;
 }
+.top {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 10;
+  border: 1px solid #eeeeee;
+  background: #fff;
+}
+.rank,
+.fuel {
+  font-size: 0.7em;
+  .sub {
+    color: #cf5724;
+    display: block;
+  }
+  > div {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    input {
+      margin: 0 5px;
+      float: left;
+      -webkit-appearance: none;
+      position: relative;
+      cursor: pointer;
+      outline: none !important;
+      border: 1px solid #eeeeee;
+      border-radius: 2px;
+      background: #fbfbfb;
+    }
+    input[type='checkbox']::before {
+      content: '\2713';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      overflow: hidden;
+      transform: scale(0) translate(-50%, -50%);
+      line-height: 1;
+    }
+    input[type='checkbox']:checked {
+      background-color: #ff8955;
+      border-color: #ffffff4d;
+      color: white;
+    }
+    input[type='checkbox']:checked::before {
+      border-radius: 2px;
+      transform: scale(1) translate(-50%, -50%);
+    }
+  }
+  .date_time {
+    font-size: 0.7em;
+    display: flex;
+    flex-direction: column;
+    button {
+      width: 70px;
+    }
+  }
+  .sort {
+    li {
+      margin: 0 5px;
+      a:link {
+        color: #5e5e5e;
+      }
+      a:visited {
+        color: #5e5e5e;
+      }
+      a:active {
+        color: #5e5e5e;
+      }
+    }
+  }
+}
+.search_box {
+  #search {
+    background: #e4e4e4;
+    border: 1px solid #5e5e5e;
+    border-left: 0;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+  }
+  #reset {
+    line-height: 30px;
+  }
+  .contents_list {
+    width: 60%;
+    min-width: 801px;
+    margin: auto;
+    padding-top: 224px;
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+    border-top: 0;
+  }
+}
 @media all and(max-width:767px) {
   .top {
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    z-index: 10;
     width: 100%;
     padding: 20px;
-    margin: auto;
     padding-top: 60px;
     height: 260px;
-    // box-shadow: 0px 0px 20px #d4d4d4;
-    border: 1px solid #eeeeee;
-    background: #fff;
   }
   .filter {
     display: flex;
@@ -283,56 +392,17 @@ export default {
       width: 50%;
     }
   }
-
   .rank,
   .fuel {
-    font-size: 0.7em;
     .sub {
-      display: block;
       font-size: 1.6em;
       text-align: center;
       line-height: 0.8em;
-      color: #cf5724;
     }
     > div {
-      width: 100%;
-      margin: auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      flex-wrap: wrap;
       input {
-        margin: 0 5px;
-        float: left;
-        -webkit-appearance: none;
-        position: relative;
         width: 12px;
         height: 12px;
-        cursor: pointer;
-        outline: none !important;
-        border: 1px solid #eeeeee;
-        border-radius: 2px;
-        background: #fbfbfb;
-      }
-      input[type='checkbox']::before {
-        content: '\2713';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        overflow: hidden;
-        transform: scale(0) translate(-50%, -50%);
-        line-height: 1;
-      }
-
-      input[type='checkbox']:checked {
-        background-color: #ff8955;
-        border-color: #ffffff4d;
-        color: white;
-      }
-
-      input[type='checkbox']:checked::before {
-        border-radius: 2px;
-        transform: scale(1) translate(-50%, -50%);
       }
     }
     .line_h {
@@ -342,68 +412,31 @@ export default {
     }
   }
   .date_time {
-    font-size: 0.7em;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
+    width: 100%;
     margin: auto;
     .sub {
-      float: left;
-      font-size: 1.6em;
-      text-align: center;
       color: #cf5724;
-    }
-    button {
-      width: 70px;
+      font-size: 1.2em;
+      text-align: center;
     }
   }
   .sort {
-    // margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
     flex-direction: column;
-    height: 30px;
     font-size: 0.8em;
     ul {
       display: flex;
       justify-content: center;
       line-height: 30px;
-      li {
-        margin: 0 5px;
-        a:link {
-          color: #5e5e5e;
-        }
-        a:visited {
-          color: #5e5e5e;
-        }
-
-        a:active {
-          color: #5e5e5e;
-        }
-      }
     }
     .search_box {
       display: flex;
       flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
-
       .stage-search {
         font-size: 0.8em;
         width: 50%;
-      }
-      #search {
-        background: #e4e4e4;
-        border: 1px solid #5e5e5e;
-        border-left: 0;
-        width: 50px;
-        height: 30px;
-        line-height: 30px;
-      }
-
-      #reset {
-        line-height: 30px;
       }
     }
   }
@@ -415,7 +448,6 @@ export default {
     background-color: #ffffff;
     border-top: 0;
   }
-
   .contents {
     background: #fff;
     border: 1px solid #e4e4e4;
@@ -430,14 +462,12 @@ export default {
       order: 0;
       overflow: hidden;
       background: #eeeeee;
-
       a {
         img {
           height: 150px;
         }
       }
     }
-
     .contents_box {
       display: flex;
       flex-wrap: wrap;
@@ -445,7 +475,6 @@ export default {
       height: 140px;
       width: 100%;
       justify-content: space-between;
-
       .c_box_01 {
         order: 1;
         text-align: left;
@@ -501,19 +530,10 @@ export default {
 }
 @media all and(min-width:768px) {
   .top {
-    position: fixed;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    width: 60%;
     min-width: 801px;
     padding: 20px;
-    margin: auto;
+    width: 60%;
     padding-top: 80px;
-    // box-shadow: 0px 0px 20px #d4d4d4;
-    border: 1px solid #eeeeee;
-    background: #fff;
   }
   .filter {
     display: flex;
@@ -521,60 +541,17 @@ export default {
       width: 33.3333333333%;
     }
   }
-
   .rank,
   .fuel {
-    font-size: 0.7em;
     .sub {
-      display: block;
       margin-left: 5px;
       font-size: 1.8em;
       text-align: left;
-      color: #cf5724;
     }
     > div {
-      width: 100%;
-      margin: auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      flex-wrap: wrap;
       input {
-        margin: 0 5px;
-        float: left;
-        -webkit-appearance: none;
-        position: relative;
         width: 16px;
         height: 16px;
-        cursor: pointer;
-        outline: none !important;
-        border: 1px solid #eeeeee;
-        border-radius: 2px;
-        background: #fbfbfb;
-      }
-      input[type='checkbox']::before {
-        content: '\2713';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        overflow: hidden;
-        transform: scale(0) translate(-50%, -50%);
-        line-height: 1;
-      }
-
-      input[type='checkbox']:hover {
-        border-color: #aaaaaa80;
-      }
-
-      input[type='checkbox']:checked {
-        background-color: #ff8955;
-        border-color: #ffffff4d;
-        color: white;
-      }
-
-      input[type='checkbox']:checked::before {
-        border-radius: 2px;
-        transform: scale(1) translate(-50%, -50%);
       }
     }
     .line_h {
@@ -584,44 +561,25 @@ export default {
     }
   }
   .date_time {
-    font-size: 0.7em;
-
-    display: flex;
-    flex-direction: column;
     .sub {
-      float: left;
-      font-size: 1.8em;
+      font-size: 1.2em;
       text-align: left;
       color: #cf5724;
     }
-    button {
-      width: 70px;
-    }
   }
   .sort {
-    // margin-top: 15px;
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
     height: 30px;
+    flex-direction: row;
     ul {
       display: flex;
       justify-content: flex-start;
       line-height: 40px;
       width: 30%;
       li {
-        margin: 0 5px;
-        a:link {
-          color: #5e5e5e;
-        }
-        a:visited {
-          color: #5e5e5e;
-        }
         a:hover {
           color: #cf5724;
-        }
-        a:active {
-          color: #5e5e5e;
         }
       }
     }
@@ -630,27 +588,16 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
-
       .stage-search {
         font-size: 0.8em;
-        width: 50%;
-      }
-      #search {
-        background: #e4e4e4;
-        border: 1px solid #5e5e5e;
-        border-left: 0;
-        width: 50px;
-        height: 30px;
-        line-height: 30px;
+        width: 70%;
+        text-align: left;
       }
       #search:hover {
         background: #ff8955;
         color: #fff;
         border-left: 0;
         border: 1px solid #cf5724;
-      }
-      #reset {
-        line-height: 30px;
       }
       #reset:hover {
         color: #cf5724;
@@ -661,12 +608,11 @@ export default {
     width: 60%;
     min-width: 801px;
     margin: auto;
-    padding-top: 238px;
+    padding-top: 224px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
   }
-
   .contents {
     background: #fff;
     border: 1px solid #e4e4e4;
@@ -682,7 +628,6 @@ export default {
       order: 0;
       overflow: hidden;
       background: #eeeeee;
-
       a {
         img {
           width: 100%;
@@ -695,7 +640,6 @@ export default {
         background-color: #5e5e5e;
       }
     }
-
     .contents_box {
       display: flex;
       flex-wrap: wrap;
@@ -703,7 +647,6 @@ export default {
       height: 200px;
       width: 450px;
       justify-content: space-between;
-
       .c_box_01 {
         order: 1;
         text-align: left;
