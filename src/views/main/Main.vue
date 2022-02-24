@@ -269,9 +269,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-* {
-  color: #5e5e5e;
-}
 .body {
   background: #ff8955;
 }
@@ -340,6 +337,9 @@ export default {
   .sort {
     li {
       margin: 0 5px;
+      a {
+        color: #5e5e5e;
+      }
       a:link {
         color: #5e5e5e;
       }
@@ -569,6 +569,9 @@ export default {
     height: 30px;
     margin-left: 3%;
     flex-direction: row;
+    a {
+      color: #5e5e5e;
+    }
     ul {
       display: flex;
       justify-content: flex-start;

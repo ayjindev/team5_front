@@ -18,8 +18,8 @@
         </div>
         <div class="price c_box_03">168,000</div>
         <div class="c_box_04">
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i:s"></datetime>
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i:s"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
         </div>
       </div>
     </div>
