@@ -42,9 +42,9 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-body {
-  background: #ff8955;
-  overflow-x: hidden;
+.body {
+  background: #eee;
+  height: 100vh;
 }
 .loop_box {
   overflow-x: hidden;
@@ -68,8 +68,11 @@ body {
 }
 .my_box {
   display: block;
+  position: absolute;
+  bottom: 0;
   color: #fff;
   margin: auto;
+
   padding: 20px;
   background: #cf5724;
   border: 1px solid #cf5724;
@@ -120,7 +123,7 @@ body {
       // border: 1px solid red;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #fff;
 
       a {
         img {
@@ -208,6 +211,8 @@ body {
 @media all and(min-width:768px) {
   .my_box {
     width: 700px;
+    left: 50%;
+    margin-left: -350px;
   }
   .my_box:hover {
     background: #ff8955;
@@ -227,7 +232,7 @@ body {
       margin-right: 20px;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #fff;
 
       a {
         img {
