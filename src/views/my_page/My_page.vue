@@ -56,7 +56,7 @@ body {
     }
     dd {
       font-size: 0.8em;
-      line-height: 1.2em;
+      line-height: 1.6em;
     }
   }
 }
