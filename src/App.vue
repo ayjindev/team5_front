@@ -84,7 +84,7 @@
       margin-top: -10px;
     }
     #logo:hover {
-      animation-duration: 2s;
+      animation-duration: 1s;
       animation-name: slidein;
     }
     @keyframes slidein {
