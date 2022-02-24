@@ -270,7 +270,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .body {
-  background: #ff8955;
+  background: #eee;
 }
 .top {
   position: fixed;
@@ -457,7 +457,7 @@ export default {
       // border: 1px solid red;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #757575;
       a {
         img {
           height: 150px;
@@ -626,7 +626,8 @@ export default {
       margin-right: 20px;
       order: 0;
       overflow: hidden;
-      background: #eeeeee;
+      background: #757575;
+
       a {
         img {
           width: 100%;
