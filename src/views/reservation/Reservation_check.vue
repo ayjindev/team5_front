@@ -30,7 +30,9 @@
       <p>예약이 완료되었습니다</p>
     </div>
     <div class="my_box">
-      <router-link class="my-page" to="my-page"><p>마이페이지에서 확인하기</p></router-link>
+      <router-link class="my-page" to="my-page"
+        ><p>마이페이지에서<br />확인하기</p></router-link
+      >
     </div>
   </div>
 </template>
@@ -72,6 +74,9 @@ body {
   background: #cf5724;
   border: 1px solid #cf5724;
   font-size: 2em;
+  .my-page {
+    line-height: 1.4em;
+  }
   .my-page,
   .my-page:hover,
   .my-page:link,
