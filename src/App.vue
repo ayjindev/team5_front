@@ -91,8 +91,11 @@
       from {
         background-position: 0 20px;
       }
-      to {
+      50% {
         background-position: 0 10px;
+      }
+      to {
+        background-position: 0 20px;
       }
     }
   }

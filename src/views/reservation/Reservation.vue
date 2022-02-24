@@ -155,7 +155,7 @@ input {
       // border: 1px solid red;
       order: 0;
       overflow: hidden;
-      background: #757575;
+      background: #fff;
 
       a {
         img {
@@ -271,7 +271,7 @@ input {
       margin-right: 20px;
       order: 0;
       overflow: hidden;
-      background: #757575;
+      background: #fff;
 
       a {
         img {
