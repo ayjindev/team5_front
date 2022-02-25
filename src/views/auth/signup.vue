@@ -278,22 +278,6 @@ export default {
       inputNumber = inputNumber.replace(/[^0-9]/g, '')
 
       let res = ''
-      // if (inputNumber.length < 3) {
-      //   res = inputNumber
-      // } else {
-      //   if (inputNumber.substr(0, 2) == '02') {
-      //     if (inputNumber.length <= 5) {
-      //       //02-123까지만 입력 되어도 - 삽입
-      //       res = inputNumber.substr(0, 2) + '-' + inputNumber.substr(2, 3)
-      //     } else if (inputNumber.length > 5 && inputNumber.length <= 9) {
-      //       //02-123-4567
-      //       res = inputNumber.substr(0, 2) + '-' + inputNumber.substr(2, 3) + '-' + inputNumber.substr(5)
-      //     } else if (inputNumber.length > 9) {
-      //       //02-1234-5678
-      //       res = inputNumber.substr(0, 2) + '-' + inputNumber.substr(2, 4) + '-' + inputNumber.substr(6)
-      //     }
-      //   } else {
-      // 010-1234-5678
       if (inputNumber.length < 8) {
         res = inputNumber
       } else if (inputNumber.length == 8) {
