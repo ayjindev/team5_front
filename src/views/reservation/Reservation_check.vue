@@ -62,7 +62,7 @@ export default {}
   p {
     font-size: 2em;
     font-weight: bold;
-    color: #cf5724;
+    color: $main;
     line-height: 4em;
   }
 }
@@ -74,8 +74,8 @@ export default {}
   margin: auto;
 
   padding: 20px;
-  background: #cf5724;
-  border: 1px solid #cf5724;
+  background: $main;
+  border: 1px solid $main;
   font-size: 2em;
   .my-page {
     line-height: 1.4em;
@@ -167,12 +167,12 @@ export default {}
           display: block;
           color: #fff;
           font-size: 1.2em;
-          background: #ff8955;
+          background: $sub;
         }
         .star {
           font-size: 1em;
           margin: 10px 20px;
-          color: #ff8955;
+          color: $sub;
         }
       }
       .c_box_03 {
@@ -182,17 +182,17 @@ export default {}
         text-align: left;
         align-self: flex-start;
         font-size: 2em;
-        color: #cf5724;
+        color: $main;
         button {
           font-size: 0.6em;
           line-height: 2em;
           padding: 0 20px;
           border: 0;
           color: #fff;
-          background: #cf5724;
+          background: $main;
         }
         button:hover {
-          background: #ff8955;
+          background: $sub;
         }
       }
       .c_box_04 {
@@ -215,7 +215,7 @@ export default {}
     margin-left: -350px;
   }
   .my_box:hover {
-    background: #ff8955;
+    background: $sub;
   }
   .contents {
     padding-top: 59px;
@@ -277,12 +277,12 @@ export default {}
           display: block;
           color: #fff;
           font-size: 1.6em;
-          background: #ff8955;
+          background: $sub;
         }
         .star {
           font-size: 1.4em;
           margin: 10px 20px;
-          color: #ff8955;
+          color: $sub;
         }
       }
       .c_box_03 {
@@ -293,17 +293,17 @@ export default {}
         text-align: left;
         align-self: flex-start;
         font-size: 3em;
-        color: #cf5724;
+        color: $main;
         button {
           font-size: 0.6em;
           line-height: 2em;
           padding: 0 20px;
           border: 0;
           color: #fff;
-          background: #cf5724;
+          background: $main;
         }
         button:hover {
-          background: #ff8955;
+          background: $sub;
         }
       }
       .c_box_04 {

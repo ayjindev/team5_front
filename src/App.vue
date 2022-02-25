@@ -71,7 +71,7 @@
       line-height: 40px;
     }
     a:hover {
-      color: #ff8955;
+      color: $sub;
     }
     #logo {
       background: url(./assets/images/logo.png) center no-repeat;

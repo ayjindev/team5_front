@@ -10,21 +10,26 @@
             </div>
             <div v-for="(data, index) in rankSelect" :key="index" class="line_h">
               <label
-                ><input v-model="data.value" type="checkbox" :name="data" :label="data" @click="test" />{{
+                ><input v-model="data.value" type="checkbox" :name="data" :label="data" @click="rank" />{{
                   data.name
                 }}</label
               >
             </div>
           </div>
         </div>
+
         <div class="fuel">
           <h2 class="sub">연료</h2>
           <div>
             <div class="line_h">
               <label><input v-model="fuelAllSelect" type="checkbox" name="fuel_all" value="" />전체</label>
             </div>
-            <div v-for="(data, index) in ['휘발유', '경유', 'LPG', '전기', '하이브리드']" :key="index" class="line_h">
-              <label><input v-model="fuelSelect" type="checkbox" :name="data" />{{ data }}</label>
+            <div v-for="(data, index) in fuelSelect" :key="index" class="line_h">
+              <label
+                ><input v-model="fuelSelect[index]" type="checkbox" :name="data" :label="data" @click="fuel" />{{
+                  data.name
+                }}</label
+              >
             </div>
           </div>
         </div>
@@ -200,8 +205,9 @@ export default {
       rankAllSelect: true,
       rankSelect: [],
       fuelAllSelect: true,
-      fuelSelect: true,
+      fuelSelect: [],
       carTypeList: ['경형', '소형', '중형', '대형', '수입', '승합RV', 'SUV'],
+      fuelTypeList: ['휘발유', '경유', 'LPG', '전기', '하이브리드'],
       search: null
     }
   },
@@ -211,20 +217,29 @@ export default {
   watch: {
     rankAllSelect(value) {
       if (value === true) {
-        for (let i = 1; i < this.carTypeList.length; i++) {
+        for (let i = 0; i < this.carTypeList.length; i++) {
           this.rankSelect[i].value = true
         }
       } else {
-        for (let i = 1; i < this.carTypeList.length; i++) {
+        for (let i = 0; i < this.carTypeList.length; i++) {
           this.rankSelect[i].value = false
         }
       }
     },
+    rankSelect(value) {
+      if (value === false) {
+        this.fuelAllSelect = false
+      }
+    },
     fuelAllSelect(value) {
       if (value === true) {
-        this.fuelSelect = true
+        for (let i = 0; i < this.fuelTypeList.length; i++) {
+          this.fuelSelect[i] = true
+        }
       } else {
-        this.fuelSelect = false
+        for (let i = 0; i < this.fuelTypeList.length; i++) {
+          this.fuelSelect[i] = true
+        }
       }
     },
     fuelSelect(value) {
@@ -240,6 +255,12 @@ export default {
         name: this.carTypeList[i]
       })
     }
+    for (let i = 0; i < this.fuelTypeList.length; i++) {
+      this.fuelSelect.push({
+        value: true,
+        name: this.fuelTypeList[i]
+      })
+    }
   },
   methods: {
     car() {
@@ -249,21 +270,6 @@ export default {
     fuel() {
       this.fuelAllSelect = !this.fuelAllSelect
       this.fuelSelect = !this.fuelSelect
-    },
-    test() {
-      let result = true
-      console.log('in1')
-      for (let i = 0, length = this.rankSelect.length; i < length; i++) {
-        console.log('in2')
-        if (this.rankSelect[i].value === false) {
-          console.log(this.rankSelect[i].value)
-          result = false
-          break
-        }
-      }
-
-      this.rankAllSelect = result
-      console.log(this.rankAllSelect)
     }
   }
 }
@@ -286,7 +292,7 @@ export default {
 .fuel {
   font-size: 0.7em;
   .sub {
-    color: #cf5724;
+    color: $main;
     display: block;
   }
   > div {
@@ -317,9 +323,9 @@ export default {
       line-height: 1;
     }
     input[type='checkbox']:checked {
-      background-color: #ff8955;
+      background-color: $sub;
       border-color: #ffffff4d;
-      color: white;
+      color: #fff;
     }
     input[type='checkbox']:checked::before {
       border-radius: 2px;
@@ -412,7 +418,7 @@ export default {
     width: 100%;
     margin: auto;
     .sub {
-      color: #cf5724;
+      color: $main;
       font-size: 1.2em;
       text-align: center;
     }
@@ -493,12 +499,12 @@ export default {
           display: block;
           color: #fff;
           font-size: 1.2em;
-          background: #ff8955;
+          background: $sub;
         }
         .star {
           font-size: 1em;
           margin: 10px 20px;
-          color: #ff8955;
+          color: $sub;
         }
       }
       .c_box_03 {
@@ -508,17 +514,17 @@ export default {
         text-align: right;
         align-self: flex-end;
         font-size: 2em;
-        color: #cf5724;
+        color: $main;
         button {
           font-size: 0.6em;
           line-height: 2em;
           padding: 0 20px;
           border: 0;
           color: #fff;
-          background: #cf5724;
+          background: $main;
         }
         button:hover {
-          background: #ff8955;
+          background: $sub;
         }
       }
     }
@@ -560,7 +566,7 @@ export default {
     .sub {
       font-size: 1.2em;
       text-align: left;
-      color: #cf5724;
+      color: $main;
     }
   }
   .sort {
@@ -579,7 +585,7 @@ export default {
       width: 30%;
       li {
         a:hover {
-          color: #cf5724;
+          color: $main;
         }
       }
     }
@@ -594,13 +600,13 @@ export default {
         text-align: left;
       }
       #search:hover {
-        background: #ff8955;
+        background: $sub;
         color: #fff;
         border-left: 0;
-        border: 1px solid #cf5724;
+        border: 1px solid $main;
       }
       #reset:hover {
-        color: #cf5724;
+        color: $main;
       }
     }
   }
@@ -669,12 +675,12 @@ export default {
           display: block;
           color: #fff;
           font-size: 1.6em;
-          background: #ff8955;
+          background: $sub;
         }
         .star {
           font-size: 1.4em;
           margin: 10px 20px;
-          color: #ff8955;
+          color: $sub;
         }
       }
       .c_box_03 {
@@ -685,17 +691,17 @@ export default {
         text-align: right;
         align-self: flex-end;
         font-size: 3em;
-        color: #cf5724;
+        color: $main;
         button {
           font-size: 0.6em;
           line-height: 2em;
           padding: 0 20px;
           border: 0;
           color: #fff;
-          background: #cf5724;
+          background: $main;
         }
         button:hover {
-          background: #ff8955;
+          background: $sub;
         }
       }
     }

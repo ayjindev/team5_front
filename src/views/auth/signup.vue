@@ -387,11 +387,11 @@ export default {
   }
 }
 .btn {
-  background: #cf5724;
+  background: $main;
   border: 0px;
 }
 .btn:hover {
-  background: #ff8955;
+  background: $sub;
 }
 .btn-primary {
   width: 100%;
