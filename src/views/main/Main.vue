@@ -9,7 +9,7 @@
             <div class="line_h">
               <label
                 ><input
-                  v-model="SelectAllranks"
+                  v-model="selectAllranks"
                   type="checkbox"
                   name="rank_all"
                   value=""
@@ -17,32 +17,40 @@
                 />전체</label
               >
             </div>
-            <div v-for="rank in ranks" :key="rank" class="line_h">
+            <div v-for="rank in ranks" :key="rank.id" class="line_h">
               <label
-                ><input v-model="rankIds" type="checkbox" :name="rank" :value="rank.id" @click="selectrank" />{{
+                ><input v-model="rankIds" type="checkbox" :name="rank.name" :value="rank.id" @click="selectrank" />{{
                   rank.name
                 }}</label
               >
             </div>
-            <span>Selected Ids: {{ rankIds }}</span>
+            <!-- <span>Selected Ids: {{ rankIds }}</span> -->
           </div>
         </div>
-
-        <!-- <div class="fuel">
-          <h2 class="sub">연료</h2>
+        <div class="fuel">
+          <h2 class="sub">차량등급</h2>
           <div>
             <div class="line_h">
-              <label><input v-model="fuelAllSelect" type="checkbox" name="fuel_all" value="" />전체</label>
-            </div>
-            <div v-for="(data, index) in fuelSelect" :key="index" class="line_h">
               <label
-                ><input v-model="fuelSelect[index]" type="checkbox" :name="data" :label="data" @click="fuel" />{{
-                  data.name
+                ><input
+                  v-model="selectAllfuels"
+                  type="checkbox"
+                  name="fuel_all"
+                  value=""
+                  @click="selectAllfuel"
+                />전체</label
+              >
+            </div>
+            <div v-for="fuel in fuels" :key="fuel.id" class="line_h">
+              <label
+                ><input v-model="fuelIds" type="checkbox" :name="fuel.name" :value="fuel.id" @click="selectfuel" />{{
+                  fuel.name
                 }}</label
               >
             </div>
+            <!-- <span>Selected Ids: {{ fuelIds }}</span> -->
           </div>
-        </div> -->
+        </div>
       </div>
       <div class="sort">
         <ul>
@@ -209,31 +217,40 @@
 </template>
 <script>
 export default {
-  data: {
-    ranks: [
-      { id: 'Shad', name: 'Shad' },
-      { id: 'Duane', name: 'Duane' },
-      { id: 'Myah', name: 'Myah' },
-      { id: 'Kamron', name: 'Kamron' },
-      { id: 'Brendon', name: 'Brendon' }
-    ],
-    selected: [],
-    SelectAllranks: false,
-    rankIds: [],
-    search: null
+  data() {
+    return {
+      ranks: [
+        { id: 'Shad', name: 'Shad' },
+        { id: 'Duane', name: 'Duane' },
+        { id: 'Myah', name: 'Myah' },
+        { id: 'Kamron', name: 'Kamron' },
+        { id: 'Brendon', name: 'Brendon' }
+      ],
+      fuels: [
+        { id: 'Shad', name: 'Shad' },
+        { id: 'Duane', name: 'Duane' },
+        { id: 'Myah', name: 'Myah' },
+        { id: 'Kamron', name: 'Kamron' },
+        { id: 'Brendon', name: 'Brendon' }
+      ],
+      selected: [],
+      selectAllranks: true,
+      rankIds: [],
+      search: null
+    }
   },
   methods: {
     selectAllrank: function () {
       this.rankIds = []
 
-      if (this.SelectAllranks) {
+      if (this.selectAllranks) {
         for (rank in this.ranks) {
           this.rankIds.push(this.ranks[rank].id.toString())
         }
       }
     },
     selectrank: function () {
-      this.SelectAllranks = false
+      this.selectAllranks = false
     }
   }
 }
