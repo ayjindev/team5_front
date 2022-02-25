@@ -48,7 +48,7 @@ export default {
 
       // // 백엔드 호출 (결과값 수신)(watch에서 감지하게 해주기 위해 setTimeout 사용)
       // setTimeout(() => {
-      //   const insertedResult = 0
+      //   const insertedResult = 1
       //   context.commit('setInsertedResult', insertedResult)
       // }, 300) // state값의 변화를 감지하기 위하여 일부러 지연 시켰다.
 
