@@ -1,6 +1,7 @@
 const { VUE_APP_SERVER } = process.env
 
 module.exports = {
+  runtimeCompiler: true,
   // 개발 서버 설정
   devServer: {
     // 프로시 설정

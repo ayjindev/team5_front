@@ -1,18 +1,32 @@
+<script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
 <template>
-  <div class="body">
+  <div id="app" class="body">
     <div class="top">
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
           <div>
             <div class="line_h">
-              <label><input v-model="rankAllSelect" type="checkbox" name="rank_all" value="" />전체</label>
-            </div>
-            <div v-for="(data, index) in rankSelect" :key="index" class="line_h">
               <label
-                ><input v-model="data.value" type="checkbox" :name="data" :label="data" @click="rank" />{{
-                  data.name
-                }}</label
+                ><input
+                  v-model="SelectAllranks"
+                  type="checkbox"
+                  name="rank_all"
+                  value=""
+                  @click="selectAllrank"
+                />전체</label
+              >
+            </div>
+            <div v-for="rank in ranks" :key="rank" class="line_h">
+              <label
+                ><input
+                  v-model="rankIds"
+                  type="checkbox"
+                  :name="data"
+                  :label="data"
+                  :value="rank.id"
+                  @click="selectrank"
+                />{{ ranks.name }}</label
               >
             </div>
           </div>
@@ -198,78 +212,32 @@
   </div>
 </template>
 <script>
+// import Vue from 'vue'
 export default {
-  components: {},
-  data() {
-    return {
-      rankAllSelect: true,
-      rankSelect: [],
-      fuelAllSelect: true,
-      fuelSelect: [],
-      carTypeList: ['경형', '소형', '중형', '대형', '수입', '승합RV', 'SUV'],
-      fuelTypeList: ['휘발유', '경유', 'LPG', '전기', '하이브리드'],
-      search: null
-    }
-  },
-  // 변수 rankAllSelect 이런식으로 해주는게 좋습니다
-  // rankSelect변수가 리스트가아닌데 어떻게 [i]가 되는거죠
-
-  watch: {
-    rankAllSelect(value) {
-      if (value === true) {
-        for (let i = 0; i < this.carTypeList.length; i++) {
-          this.rankSelect[i].value = true
-        }
-      } else {
-        for (let i = 0; i < this.carTypeList.length; i++) {
-          this.rankSelect[i].value = false
-        }
-      }
-    },
-    rankSelect(value) {
-      if (value === false) {
-        this.fuelAllSelect = false
-      }
-    },
-    fuelAllSelect(value) {
-      if (value === true) {
-        for (let i = 0; i < this.fuelTypeList.length; i++) {
-          this.fuelSelect[i] = true
-        }
-      } else {
-        for (let i = 0; i < this.fuelTypeList.length; i++) {
-          this.fuelSelect[i] = true
-        }
-      }
-    },
-    fuelSelect(value) {
-      if (value === false) {
-        this.fuelAllSelect = false
-      }
-    }
-  },
-  created() {
-    for (let i = 0; i < this.carTypeList.length; i++) {
-      this.rankSelect.push({
-        value: true,
-        name: this.carTypeList[i]
-      })
-    }
-    for (let i = 0; i < this.fuelTypeList.length; i++) {
-      this.fuelSelect.push({
-        value: true,
-        name: this.fuelTypeList[i]
-      })
-    }
+  el: '#app',
+  data: {
+    ranks: [
+      { id: 'Shad', name: 'Shad' },
+      { id: 'Duane', name: 'Duane' },
+      { id: 'Myah', name: 'Myah' },
+      { id: 'Kamron', name: 'Kamron' },
+      { id: 'Brendon', name: 'Brendon' }
+    ],
+    SelectAllranks: false,
+    rankIds: []
   },
   methods: {
-    car() {
-      this.rankAllSelect = !this.rankAllSelect
-      this.rankSelect = !this.rankSelect
+    selectAllrank: function () {
+      this.rankIds = []
+
+      if (this.SelectAllranks) {
+        for (rank in this.ranks) {
+          this.userIds.push(this.ranks[rank].id.toString())
+        }
+      }
     },
-    fuel() {
-      this.fuelAllSelect = !this.fuelAllSelect
-      this.fuelSelect = !this.fuelSelect
+    selectrank: function () {
+      this.SelectAllranks = false
     }
   }
 }
