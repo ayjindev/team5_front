@@ -261,6 +261,7 @@ export default {}
         .rank_name {
           font-weight: bold;
           font-size: 2em;
+          line-height: 2em;
         }
         dd {
           font-size: 1.2em;
