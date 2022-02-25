@@ -30,9 +30,7 @@
       <p>예약이 완료되었습니다</p>
     </div>
     <div class="my_box">
-      <router-link class="my-page" to="my-page"
-        ><p>마이페이지에서<br />확인하기</p></router-link
-      >
+      <router-link class="my-page" to="my-page"><p>마이페이지에서 확인하기</p></router-link>
     </div>
   </div>
 </template>
@@ -76,7 +74,7 @@ export default {}
   padding: 20px;
   background: $main;
   border: 1px solid $main;
-  font-size: 2em;
+  font-size: 1.8em;
   .my-page {
     line-height: 1.4em;
   }

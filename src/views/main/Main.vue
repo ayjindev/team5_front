@@ -220,22 +220,26 @@ export default {
   data() {
     return {
       ranks: [
-        { id: 'Shad', name: 'Shad' },
-        { id: 'Duane', name: 'Duane' },
-        { id: 'Myah', name: 'Myah' },
-        { id: 'Kamron', name: 'Kamron' },
-        { id: 'Brendon', name: 'Brendon' }
+        { id: 'Shad', name: '경형' },
+        { id: 'Duane', name: '소형' },
+        { id: 'Myah', name: '중형' },
+        { id: 'Kamron', name: '대형' },
+        { id: 'Kamron', name: '수입' },
+        { id: 'Kamron', name: '승합RV' },
+        { id: 'Kamron', name: 'SUV' }
       ],
       fuels: [
-        { id: 'Shad', name: 'Shad' },
-        { id: 'Duane', name: 'Duane' },
-        { id: 'Myah', name: 'Myah' },
-        { id: 'Kamron', name: 'Kamron' },
-        { id: 'Brendon', name: 'Brendon' }
+        { id: 'Shad', name: '휘발유' },
+        { id: 'Duane', name: '경유' },
+        { id: 'Myah', name: 'LPG' },
+        { id: 'Kamron', name: '전기' },
+        { id: 'Brendon', name: '하이브리드' }
       ],
       selected: [],
       selectAllranks: true,
+      selectAllfuels: true,
       rankIds: [],
+      fuelsIds: [],
       search: null
     }
   },
@@ -251,6 +255,18 @@ export default {
     },
     selectrank: function () {
       this.selectAllranks = false
+    },
+    selectAllfuel: function () {
+      this.fuelIds = []
+
+      if (this.selectAllfuels) {
+        for (fuel in this.fuels) {
+          this.fuelIds.push(this.fuels[fuel].id.toString())
+        }
+      }
+    },
+    selectfuel: function () {
+      this.selectAllfuels = false
     }
   }
 }
@@ -461,6 +477,7 @@ export default {
       .c_box_01 {
         order: 1;
         text-align: left;
+        margin-left: 20px;
         .rank_name {
           font-weight: bold;
           font-size: 1.4em;
