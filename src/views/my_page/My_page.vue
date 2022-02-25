@@ -74,7 +74,7 @@ body {
     dt {
       width: 100%;
       font-weight: bold;
-      color: #cf5724;
+      color: $main;
       font-size: 1.4em;
       line-height: 1.6em;
     }
@@ -94,7 +94,7 @@ body {
         font-size: 1.2em;
         line-height: 2em;
         margin: 0 10px;
-        color: #cf5724;
+        color: $main;
         font-weight: bold;
       }
     }

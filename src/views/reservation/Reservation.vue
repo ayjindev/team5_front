@@ -65,6 +65,7 @@ export default {
 input {
   border: 1px solid #e4e4e4;
   height: 30px;
+  border-radius: 20px;
 }
 .datetime {
   width: 90%;
@@ -97,7 +98,7 @@ input {
     font-size: 1.2em;
     line-height: 2em;
     margin-right: 10px;
-    color: #cf5724;
+    color: $main;
     font-weight: bold;
   }
 }
@@ -106,12 +107,12 @@ input {
   color: #fff;
   margin: auto;
   padding: 20px;
-  background: #cf5724;
-  border: 1px solid #cf5724;
+  background: $main;
+  border: 1px solid $main;
   font-size: 2em;
 }
 .pay:hover {
-  background: #ff8955;
+  background: $sub;
 }
 .Reservation-check:hover,
 .Reservation-check:link,
@@ -199,12 +200,12 @@ input {
           display: block;
           color: #fff;
           font-size: 1.2em;
-          background: #ff8955;
+          background: $sub;
         }
         .star {
           font-size: 1em;
           margin: 10px 20px;
-          color: #ff8955;
+          color: $sub;
         }
       }
       .c_box_03 {
@@ -214,17 +215,17 @@ input {
         text-align: center;
         align-self: flex-start;
         font-size: 2em;
-        color: #cf5724;
+        color: $main;
         button {
           font-size: 0.6em;
           line-height: 2em;
           padding: 0 20px;
           border: 0;
           color: #fff;
-          background: #cf5724;
+          background: $main;
         }
         button:hover {
-          background: #ff8955;
+          background: $sub;
         }
       }
       .c_box_04 {
@@ -316,12 +317,12 @@ input {
           display: block;
           color: #fff;
           font-size: 1.6em;
-          background: #ff8955;
+          background: $sub;
         }
         .star {
           font-size: 1.4em;
           margin: 10px 20px;
-          color: #ff8955;
+          color: $sub;
         }
       }
       .c_box_03 {
@@ -332,17 +333,17 @@ input {
         text-align: left;
         align-self: flex-start;
         font-size: 3em;
-        color: #cf5724;
+        color: $main;
         button {
           font-size: 0.6em;
           line-height: 2em;
           padding: 0 20px;
           border: 0;
           color: #fff;
-          background: #cf5724;
+          background: $main;
         }
         button:hover {
-          background: #ff8955;
+          background: $sub;
         }
       }
       .c_box_04 {

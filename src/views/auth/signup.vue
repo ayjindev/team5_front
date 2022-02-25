@@ -1,9 +1,9 @@
 <template>
-  <div style="padding-top: 5%">
+  <div id="body" style="padding-top: 5%">
     <div>
-      <b-row align-h="center">
-        <b-col cols="3">
-          <b-card title="회원가입">
+      <b-row id="b-row" align-h="center">
+        <b-col id="b-col" cols="3">
+          <b-card id="b-card" title="회원가입">
             <b-form-group>
               <label for="userId">아이디</label>
               <b-form-input
@@ -18,7 +18,8 @@
 
               <!-- 조건 미충족 시 -->
               <b-form-invalid-feedback id="input-live-feedback">
-                아이디는 영문 대소문자와 숫자 5-12자리로 입력해야 합니다
+                아이디는 영문 대소문자와 <br />
+                숫자 5-12자리로 입력해야 합니다
               </b-form-invalid-feedback>
 
               <!-- 조건 충족 시 -->
@@ -40,7 +41,8 @@
 
               <!-- 조건 미충족 시 -->
               <b-form-invalid-feedback id="input-live-feedback">
-                비밀번호는 영문 대소문자, 숫자, 특수문자 8-20자리로 입력해야 합니다
+                비밀번호는 영문 대소문자, 숫자,<br />
+                특수문자 8-20자리로 입력해야 합니다
               </b-form-invalid-feedback>
 
               <!-- 조건 충족 시 -->
@@ -152,7 +154,7 @@
                     size="sm"
                   ></b-form-input>
                 </b-col>
-                <b-col> <b-button size="sm" @click="showApi">우편번호 찾기</b-button></b-col>
+                <b-col> <b-button id="showApi" size="sm" @click="showApi">우편번호 찾기</b-button></b-col>
                 <b-form-input
                   id="userAddr1"
                   v-model="user.userAddr1"
@@ -170,9 +172,9 @@
               </b-row>
             </b-form-group>
           </b-card>
+          <button class="btn btn-primary" @click="onSubmit">Sign in</button>
         </b-col>
       </b-row>
-      <button class="btn btn-primary" @click="onSubmit">Sign in</button>
     </div>
   </div>
 </template>
@@ -372,3 +374,65 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+#body,
+#b-row {
+  width: 90vw;
+  margin: auto;
+}
+#b-col {
+  width: 30%;
+  margin: auto;
+}
+#b-card {
+  font-size: 1.4em;
+  width: 100%;
+  padding-bottom: 20px;
+  margin: auto;
+  label {
+    font-size: 0.8em;
+    margin: 20px 0 10px;
+  }
+  input {
+    border-radius: 20px;
+    margin: 10px 0;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+  }
+  #input-live-feedback {
+    font-size: 0.6em;
+    line-height: 1.4em;
+  }
+}
+.btn {
+  background: $main;
+  border: 0px;
+}
+.btn:hover {
+  background: $sub;
+}
+.btn-primary {
+  width: 100%;
+  height: 50px;
+}
+#userZip {
+  float: right;
+  position: relative;
+  right: -6px;
+}
+#showApi {
+  border-radius: 20px;
+  padding: 5px 20px;
+}
+@media all and(max-width:767px) {
+  #b-col {
+    width: 100%;
+  }
+  #b-card {
+    margin-top: 30px;
+    font-size: 1.4em;
+    width: 100%;
+  }
+}
+</style>
