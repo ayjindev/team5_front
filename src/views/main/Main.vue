@@ -22,11 +22,11 @@
                 ><input
                   v-model="rankIds"
                   type="checkbox"
-                  :name="data"
-                  :label="data"
+                  :name="rank"
+                  :label="rank"
                   :value="rank.id"
                   @click="selectrank"
-                />{{ ranks.name }}</label
+                />{{ rank.name }}</label
               >
             </div>
           </div>
