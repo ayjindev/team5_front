@@ -17,8 +17,7 @@ module.exports = {
     }
   },
 
-  outputDir: 'static',
-  assetsDir: 'assets',
+  outputDir: '../team5_back/public',
 
   css: {
     sourceMap: true,
