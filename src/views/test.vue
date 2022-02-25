@@ -24,11 +24,13 @@ new Vue({
   el: '#app',
   data: {
     users: [
-      { id: 'Shad', name: 'Shad' },
-      { id: 'Duane', name: 'Duane' },
-      { id: 'Myah', name: 'Myah' },
-      { id: 'Kamron', name: 'Kamron' },
-      { id: 'Brendon', name: 'Brendon' }
+      { id: 'Shad', name: '경차' },
+      { id: 'Duane', name: '소형' },
+      { id: 'Myah', name: '중형' },
+      { id: 'Kamron', name: '대형' },
+      { id: 'Brendon', name: '수입' },
+      { id: 'Brendon', name: '승형RV' },
+      { id: 'Brendon', name: 'SUV' }
     ],
     selected: [],
     allSelected: false,
