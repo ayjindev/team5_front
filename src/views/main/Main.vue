@@ -594,7 +594,7 @@ export default {
   .contents_list {
     width: 702px;
     margin: auto;
-    padding-top: 224px;
+    padding-top: 214px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
@@ -640,6 +640,7 @@ export default {
         .rank_name {
           font-weight: bold;
           font-size: 2em;
+          line-height: 2em;
         }
         dd {
           font-size: 1.2em;
