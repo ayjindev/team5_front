@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
 <template>
-  <div id="app" class="body">
+  <div class="body">
     <div class="top">
       <div class="filter">
         <div class="rank">
@@ -19,20 +19,16 @@
             </div>
             <div v-for="rank in ranks" :key="rank" class="line_h">
               <label
-                ><input
-                  v-model="rankIds"
-                  type="checkbox"
-                  :name="rank"
-                  :label="rank"
-                  :value="rank.id"
-                  @click="selectrank"
-                />{{ rank.name }}</label
+                ><input v-model="rankIds" type="checkbox" :name="rank" :value="rank.id" @click="selectrank" />{{
+                  rank.name
+                }}</label
               >
             </div>
+            <span>Selected Ids: {{ rankIds }}</span>
           </div>
         </div>
 
-        <div class="fuel">
+        <!-- <div class="fuel">
           <h2 class="sub">연료</h2>
           <div>
             <div class="line_h">
@@ -46,7 +42,7 @@
               >
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="sort">
         <ul>
@@ -212,9 +208,7 @@
   </div>
 </template>
 <script>
-// import Vue from 'vue'
 export default {
-  el: '#app',
   data: {
     ranks: [
       { id: 'Shad', name: 'Shad' },
@@ -223,8 +217,10 @@ export default {
       { id: 'Kamron', name: 'Kamron' },
       { id: 'Brendon', name: 'Brendon' }
     ],
+    selected: [],
     SelectAllranks: false,
-    rankIds: []
+    rankIds: [],
+    search: null
   },
   methods: {
     selectAllrank: function () {
@@ -232,7 +228,7 @@ export default {
 
       if (this.SelectAllranks) {
         for (rank in this.ranks) {
-          this.userIds.push(this.ranks[rank].id.toString())
+          this.rankIds.push(this.ranks[rank].id.toString())
         }
       }
     },
