@@ -355,3 +355,66 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+#body,
+#b-row {
+  width: 90vw;
+  margin: auto;
+}
+#b-col {
+  width: 30%;
+  margin: auto;
+}
+#b-card {
+  font-size: 1.4em;
+  width: 100%;
+  padding-bottom: 20px;
+  margin: auto;
+  label {
+    font-size: 0.8em;
+    margin: 20px 0 10px;
+  }
+  input {
+    border-radius: 20px;
+    margin: 10px 0;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+  }
+  #input-live-feedback {
+    font-size: 0.6em;
+    line-height: 1.4em;
+  }
+}
+.btn {
+  background: $main;
+  border: 0px;
+}
+.btn:hover {
+  background: $sub;
+}
+.btn-primary {
+  width: 100%;
+  height: 50px;
+}
+#userZip {
+  float: right;
+  position: relative;
+  right: -6px;
+}
+#showApi {
+  border-radius: 20px;
+  padding: 5px 20px;
+}
+@media all and(max-width:767px) {
+  #b-col {
+    width: 100%;
+  }
+  #b-card {
+    margin-top: 30px;
+    font-size: 1.4em;
+    width: 100%;
+  }
+}
+</style>
