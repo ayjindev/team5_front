@@ -86,174 +86,11 @@
           </div>
         </div>
       </div>
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
-        </div>
-        <div class="contents_box">
-          <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
-            <dd>유모차/카시트 신청 가능</dd>
-          </dl>
-          <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
-          </div>
-          <div class="price c_box_03">
-            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
-          </div>
-        </div>
-      </div>
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
-        </div>
-        <div class="contents_box">
-          <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
-            <dd>유모차/카시트 신청 가능</dd>
-          </dl>
-          <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
-          </div>
-          <div class="price c_box_03">
-            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
-          </div>
-        </div>
-      </div>
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
-        </div>
-        <div class="contents_box">
-          <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
-            <dd>유모차/카시트 신청 가능</dd>
-          </dl>
-          <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
-          </div>
-          <div class="price c_box_03">
-            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
-          </div>
-        </div>
-      </div>
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
-        </div>
-        <div class="contents_box">
-          <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
-            <dd>유모차/카시트 신청 가능</dd>
-          </dl>
-          <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
-          </div>
-          <div class="price c_box_03">
-            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
-          </div>
-        </div>
-      </div>
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
-        </div>
-        <div class="contents_box">
-          <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
-            <dd>유모차/카시트 신청 가능</dd>
-          </dl>
-          <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
-          </div>
-          <div class="price c_box_03">
-            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
-          </div>
-        </div>
-      </div>
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
-        </div>
-        <div class="contents_box">
-          <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
-            <dd>유모차/카시트 신청 가능</dd>
-          </dl>
-          <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
-          </div>
-          <div class="price c_box_03">
-            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      ranks: [
-        { id: 'Shad', name: 'Shad' },
-        { id: 'Duane', name: 'Duane' },
-        { id: 'Myah', name: 'Myah' },
-        { id: 'Kamron', name: 'Kamron' },
-        { id: 'Brendon', name: 'Brendon' }
-      ],
-      fuels: [
-        { id: 'Shad', name: 'Shad' },
-        { id: 'Duane', name: 'Duane' },
-        { id: 'Myah', name: 'Myah' },
-        { id: 'Kamron', name: 'Kamron' },
-        { id: 'Brendon', name: 'Brendon' }
-      ],
-      selected: [],
-      selectAllranks: true,
-      rankIds: [],
-      search: null
-    }
-  },
-  methods: {
-    selectAllrank: function () {
-      this.rankIds = []
-
-      if (this.selectAllranks) {
-        for (rank in this.ranks) {
-          this.rankIds.push(this.ranks[rank].id.toString())
-        }
-      }
-    },
-    selectrank: function () {
-      this.selectAllranks = false
-    }
-  }
-}
+export default {}
 </script>
 <style lang="scss" scoped>
 .body {
@@ -461,6 +298,7 @@ export default {
       .c_box_01 {
         order: 1;
         text-align: left;
+        margin-left: 20px;
         .rank_name {
           font-weight: bold;
           font-size: 1.4em;

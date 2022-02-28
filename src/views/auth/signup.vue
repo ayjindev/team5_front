@@ -223,37 +223,38 @@ export default {
         this.user.userEmail.length > 5 &&
         /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/.test(this.user.userEmail)
       ) // 이메일 형식(영문대소문자/숫자+@+영문대소문자/숫자+.+영문대소문자 3자리)
-    },
-    insertedResult() {
-      return this.$store.getters.UserInsertedResult
     }
+    // insertedResult() {
+    //   return this.$store.getters.UserInsertedResult
+    // }
   },
-  watch: {
-    infoData(value) {
-      console.log('watch.infoData', value)
-    },
-    insertedResult(value) {
-      console.log('watch.insertedResult', value)
-      // 등록 후 처리
+  // watch: {
+  //   // infoData(value) {
+  //   //   console.log('watch.infoData', value)
+  //   // },
+  //   insertedResult(value) {
+  //     console.log('watch.insertedResult', value)
+  //     // 등록 후 처리
 
-      if (value !== null) {
-        if (value > 0) {
-          // 등록이 성공한 경우
+  //     if (value !== null) {
+  //       if (value > 0) {
+  //         // 등록이 성공한 경우
 
-          // 회원가입 완료 시 메인 페이지로 이동
-          this.$router.replace('/main')
-        } else {
-          // 회원가입 실패한 경우 토스트 메세지 출력
-          this.$bvToast.toast('등록이 실패하였습니다.', {
-            title: 'ERROR',
-            variant: 'danger',
-            solid: true
-          })
-          // this.$router.go() // 현재 페이지 새로고침
-        }
-      }
-    }
-  },
+  //         // 회원가입 완료 시 로그인 페이지로 이동
+  //         // this.$router.push('/auth/login') // 히스토리 기록 남음
+  //         this.$router.replace('/auth/login') // 히스토리 기록 안남음
+  //       } else {
+  //         // 회원가입 실패 시 토스트 메세지 출력
+  //         this.$bvToast.toast('등록이 실패하였습니다.', {
+  //           title: 'ERROR',
+  //           variant: 'danger',
+  //           solid: true
+  //         })
+  //         // this.$router.go() // 현재 페이지 새로고침
+  //       }
+  //     }
+  //   }
+  // },
   // created() {
   //   this.user = { ...this.infoData }
   // },
@@ -277,22 +278,6 @@ export default {
       inputNumber = inputNumber.replace(/[^0-9]/g, '')
 
       let res = ''
-      // if (inputNumber.length < 3) {
-      //   res = inputNumber
-      // } else {
-      //   if (inputNumber.substr(0, 2) == '02') {
-      //     if (inputNumber.length <= 5) {
-      //       //02-123까지만 입력 되어도 - 삽입
-      //       res = inputNumber.substr(0, 2) + '-' + inputNumber.substr(2, 3)
-      //     } else if (inputNumber.length > 5 && inputNumber.length <= 9) {
-      //       //02-123-4567
-      //       res = inputNumber.substr(0, 2) + '-' + inputNumber.substr(2, 3) + '-' + inputNumber.substr(5)
-      //     } else if (inputNumber.length > 9) {
-      //       //02-1234-5678
-      //       res = inputNumber.substr(0, 2) + '-' + inputNumber.substr(2, 4) + '-' + inputNumber.substr(6)
-      //     }
-      //   } else {
-      // 010-1234-5678
       if (inputNumber.length < 8) {
         res = inputNumber
       } else if (inputNumber.length == 8) {
@@ -344,13 +329,31 @@ export default {
         }
       }).open()
     },
-    // 콘솔 로그 확인
+    // Sign 버튼 눌렀을 시
     onSubmit() {
-      // console.log('onSubmit', { ...this.user })
+      console.log('onSubmit', { ...this.user })
       // 초기화
       this.$store.dispatch('actUserInit') // null값으로 초기화
       // 등록
       this.$store.dispatch('actUserInsert', this.user)
+
+      // if (value !== null) {
+      //   if (value > 0) {
+      //     // 등록이 성공한 경우
+
+      //     // 회원가입 완료 시 로그인 페이지로 이동
+      //     // this.$router.push('/auth/login') // 히스토리 기록 남음
+      //     this.$router.replace('/auth/login') // 히스토리 기록 안남음
+      //   } else {
+      //     // 회원가입 실패 시 토스트 메세지 출력
+      //     this.$bvToast.toast('등록이 실패하였습니다.', {
+      //       title: 'ERROR',
+      //       variant: 'danger',
+      //       solid: true
+      //     })
+      //     // this.$router.go() // 현재 페이지 새로고침
+      //   }
+      // }
     }
   }
 }
