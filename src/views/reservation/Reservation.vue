@@ -1,23 +1,22 @@
 <template>
   <div class="body">
-    <div class="contents">
+    <div v-for="car in dataRows" :key="car" class="contents">
       <div class="img_box">
-        <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-          <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-        </a>
+        <img :src="car.img" :alt="car.name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name">볼보 XC60 2세대</dt>
-          <dd class="fuel_name">20~21년식 휘발유</dd>
+          <dt class="rank_name" :v-model="car.name">{{ car.name }}</dt>
+          <dd class="fuel_name" :v-model="car.fuel">{{ car.fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_name">수입</span>
-          <dd class="star">★4.4</dd>
+          <span class="car_rank" :v-model="car.rank">{{ car.rank }}</span>
+          <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
         </div>
-        <div class="price c_box_03">168,000</div>
-        <div class="c_box_04">
+        <div class="price c_box_03" :v-model="car.price">
+          {{ car.price.toLocaleString() }}
+          <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
           <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
           <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
         </div>
