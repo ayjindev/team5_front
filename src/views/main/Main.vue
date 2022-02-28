@@ -45,7 +45,7 @@
           </div>
           <div class="price c_box_03" :v-model="car.price">
             {{ car.price.toLocaleString() }}
-            <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
+            <button @click="goRes">바로 예약 하기</button>
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@ export default {
         {
           img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
           name: '아우디 A6 세단 F/L',
-          fuel: '경유,휘발유',
+          fuel: '경유' + ',' + '휘발유',
           rank: '중형',
           star: '3.2',
           price: 112000
@@ -157,12 +157,24 @@ export default {
       return this.cars.filter(v => fuelstrueList.includes(v.fuel))
     },
     dataRows() {
-      const list = this.filterRanks.concat(this.filterFuels)
-      return list
+      const merged = this.filterRanks.concat(this.filterFuels)
+      const unique = merged.filter((item, pos) => merged.indexOf(item) === pos)
+      return unique
     }
   },
 
   methods: {
+    goRes() {
+      this.$router.push({
+        path: '/reservation',
+        img: require(''),
+        name: '',
+        fuel: '',
+        rank: '',
+        star: '',
+        price: ''
+      })
+    },
     priceLow() {
       this.cars.sort(function (a, b) {
         return a.price - b.price
