@@ -8,6 +8,7 @@
               <label for="userId">아이디</label>
               <b-form-input
                 id="userId"
+                ref="userId"
                 v-model="user.userId"
                 :state="userIdState"
                 aria-describedby="아이디"
@@ -17,19 +18,20 @@
               ></b-form-input>
 
               <!-- 조건 미충족 시 -->
-              <b-form-invalid-feedback id="input-live-feedback">
+              <b-form-invalid-feedback v-if="user.userId" id="input-live-feedback">
                 아이디는 영문 대소문자와 <br />
                 숫자 5-12자리로 입력해야 합니다
               </b-form-invalid-feedback>
 
               <!-- 조건 충족 시 -->
-              <b-form-text id="input-live-help"></b-form-text>
+              <b-form-text v-if="user.userId" id="input-live-help"></b-form-text>
             </b-form-group>
 
             <b-form-group>
               <label for="userPw">비밀번호</label>
               <b-form-input
                 id="userPw"
+                ref="userPw"
                 v-model="user.userPw"
                 :state="userPwState"
                 aria-describedby="비밀번호"
@@ -40,19 +42,20 @@
               ></b-form-input>
 
               <!-- 조건 미충족 시 -->
-              <b-form-invalid-feedback id="input-live-feedback">
+              <b-form-invalid-feedback v-if="user.userPw" id="input-live-feedback">
                 비밀번호는 영문 대소문자, 숫자,<br />
                 특수문자 8-20자리로 입력해야 합니다
               </b-form-invalid-feedback>
 
               <!-- 조건 충족 시 -->
-              <b-form-text id="input-live-help"></b-form-text>
+              <b-form-text v-if="user.userPw" id="input-live-help"></b-form-text>
             </b-form-group>
 
             <b-form-group>
               <label for="userPw">비밀번호 재확인</label>
               <b-form-input
                 id="userPwCheck"
+                ref="userPwCheck"
                 v-model="user.userPwCheck"
                 :state="userPwCheckState"
                 aria-describedby="비밀번호 재확인"
@@ -63,18 +66,19 @@
               ></b-form-input>
 
               <!-- 조건 미충족 시 -->
-              <b-form-invalid-feedback id="input-live-feedback">
+              <b-form-invalid-feedback v-if="user.userPwCheck" id="input-live-feedback">
                 비밀번호가 일치하지 않습니다.
               </b-form-invalid-feedback>
 
               <!-- 조건 충족 시 -->
-              <b-form-text id="input-live-help"></b-form-text>
+              <b-form-text v-if="user.userPwCheck" id="input-live-help"></b-form-text>
             </b-form-group>
 
             <b-form-group>
               <label for="userName">이름</label>
               <b-form-input
                 id="userName"
+                ref="userName"
                 v-model="user.userName"
                 :state="userNameState"
                 aria-describedby="이름"
@@ -84,18 +88,19 @@
               ></b-form-input>
 
               <!-- 조건 미충족 시 -->
-              <b-form-invalid-feedback id="input-live-feedback">
+              <b-form-invalid-feedback v-if="user.userName" id="input-live-feedback">
                 이름은 한글 2자리 이상 입력해야 합니다
               </b-form-invalid-feedback>
 
               <!-- 조건 충족 시 -->
-              <b-form-text id="input-live-help"></b-form-text>
+              <b-form-text v-if="user.userName" id="input-live-help"></b-form-text>
             </b-form-group>
 
             <b-form-group>
               <label for="userEmail">이메일</label>
               <b-form-input
                 id="userEmail"
+                ref="userEmail"
                 v-model="user.userEmail"
                 aria-describedby="이메일"
                 type="email"
@@ -107,16 +112,19 @@
               ></b-form-input>
 
               <!-- 조건 미충족 시 -->
-              <b-form-invalid-feedback id="input-live-feedback"> 이메일 형식이 다릅니다 </b-form-invalid-feedback>
+              <b-form-invalid-feedback v-if="user.userEmail" id="input-live-feedback">
+                이메일 형식이 다릅니다
+              </b-form-invalid-feedback>
 
               <!-- 조건 충족 시 -->
-              <b-form-text id="input-live-help"></b-form-text>
+              <b-form-text v-if="user.userEmail" id="input-live-help"></b-form-text>
             </b-form-group>
 
             <b-form-group>
               <label for="userPhoneNumber">핸드폰 번호</label>
               <b-form-input
                 id="userPhoneNumber"
+                ref="userPhoneNumber"
                 v-model="user.userPhoneNumber"
                 aria-describedby="핸드폰 번호"
                 placeholder="000-0000-0000"
@@ -133,6 +141,7 @@
               <label for="userEmail">생년월일</label>
               <b-form-input
                 id="userBirth"
+                ref="userBirth"
                 v-model="user.userBirth"
                 aria-describedby="생년월일"
                 type="date"
@@ -172,7 +181,7 @@
               </b-row>
             </b-form-group>
           </b-card>
-          <button class="btn btn-primary" @click="onSubmit">Sign in</button>
+          <button class="btn btn-primary" @click="onSubmit">회원가입</button>
         </b-col>
       </b-row>
     </div>
@@ -199,9 +208,6 @@ export default {
     }
   },
   computed: {
-    infoData() {
-      return this.$store.getters.User
-    },
     userIdState() {
       return this.user.userId.length > 4 && this.user.userId.length < 13 && /^[a-zA-Z0-9]*$/.test(this.user.userId)
     },
@@ -223,42 +229,94 @@ export default {
         this.user.userEmail.length > 5 &&
         /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/.test(this.user.userEmail)
       ) // 이메일 형식(영문대소문자/숫자+@+영문대소문자/숫자+.+영문대소문자 3자리)
+    },
+    signResult() {
+      return this.$store.getters.UserInsertedResult
     }
-    // insertedResult() {
-    //   return this.$store.getters.UserInsertedResult
-    // }
   },
-  // watch: {
-  //   // infoData(value) {
-  //   //   console.log('watch.infoData', value)
-  //   // },
-  //   insertedResult(value) {
-  //     console.log('watch.insertedResult', value)
-  //     // 등록 후 처리
+  watch: {
+    signResult(value) {
+      // console.log('watch.signResult', value)
 
-  //     if (value !== null) {
-  //       if (value > 0) {
-  //         // 등록이 성공한 경우
-
-  //         // 회원가입 완료 시 로그인 페이지로 이동
-  //         // this.$router.push('/auth/login') // 히스토리 기록 남음
-  //         this.$router.replace('/auth/login') // 히스토리 기록 안남음
-  //       } else {
-  //         // 회원가입 실패 시 토스트 메세지 출력
-  //         this.$bvToast.toast('등록이 실패하였습니다.', {
-  //           title: 'ERROR',
-  //           variant: 'danger',
-  //           solid: true
-  //         })
-  //         // this.$router.go() // 현재 페이지 새로고침
-  //       }
-  //     }
-  //   }
-  // },
+      // 회원가입에 성공한 경우
+      if (value === true) {
+        alert('회원가입 되었습니다')
+        this.$router.replace('/auth/login') // 히스토리 기록 안남음
+      } else if (value === false) {
+        alert('이미 존재하는 회원입니다')
+      }
+    }
+  },
   // created() {
   //   this.user = { ...this.infoData }
   // },
   methods: {
+    // 공란 및 유효성 여부 체크
+    checkInput() {
+      const inputForm = this.user
+
+      if (inputForm.userId == '') {
+        alert('아이디를 입력해 주세요')
+        this.$refs.userId.focus()
+        return false
+      } else if (this.userIdState === false) {
+        this.$refs.userId.focus()
+        return false
+      }
+
+      if (inputForm.userPw == '') {
+        alert('비밀번호를 입력해 주세요')
+        this.$refs.userPw.focus()
+        return false
+      } else if (this.userPwState === false) {
+        this.$refs.userPw.focus()
+        return false
+      }
+
+      if (inputForm.userPwCheck == '') {
+        alert('비밀번호를 확인해 주세요')
+        this.$refs.userPwCheck.focus()
+        return false
+      } else if (this.userPwCheckState === false) {
+        this.$refs.userPwCheck.focus()
+        return false
+      }
+
+      if (inputForm.userName == '') {
+        alert('이름을 입력해 주세요')
+        this.$refs.userName.focus()
+        return false
+      } else if (this.userNameState === false) {
+        this.$refs.userName.focus()
+        return false
+      }
+
+      if (inputForm.userEmail == '') {
+        alert('이메일을 입력해 주세요')
+        this.$refs.userEmail.focus()
+        return false
+      } else if (this.userEmailState === false) {
+        this.$refs.userEmail.focus()
+        return false
+      }
+
+      if (inputForm.userPhoneNumber == '') {
+        alert('전화번호를 입력해 주세요')
+        this.$refs.userPhoneNumber.focus()
+        return false
+      } else if (this.formatNumber === false) {
+        alert('전화번호를 확인해 주세요')
+        this.$refs.userPhoneNumber.focus()
+        return false
+      }
+
+      if (inputForm.userBirth == '') {
+        alert('생년월일을 입력해 주세요')
+        this.$refs.userBirth.focus()
+        return false
+      }
+    },
+
     // 전화번호 글자수 제한
     formatNumber(e) {
       return String(e).substring(0, 13) // 최대 11자리 010-1234-5678
@@ -331,29 +389,12 @@ export default {
     },
     // Sign 버튼 눌렀을 시
     onSubmit() {
-      console.log('onSubmit', { ...this.user })
+      // console.log('onSubmit', { ...this.user })
+      this.checkInput()
       // 초기화
       this.$store.dispatch('actUserInit') // null값으로 초기화
       // 등록
       this.$store.dispatch('actUserInsert', this.user)
-
-      // if (value !== null) {
-      //   if (value > 0) {
-      //     // 등록이 성공한 경우
-
-      //     // 회원가입 완료 시 로그인 페이지로 이동
-      //     // this.$router.push('/auth/login') // 히스토리 기록 남음
-      //     this.$router.replace('/auth/login') // 히스토리 기록 안남음
-      //   } else {
-      //     // 회원가입 실패 시 토스트 메세지 출력
-      //     this.$bvToast.toast('등록이 실패하였습니다.', {
-      //       title: 'ERROR',
-      //       variant: 'danger',
-      //       solid: true
-      //     })
-      //     // this.$router.go() // 현재 페이지 새로고침
-      //   }
-      // }
     }
   }
 }
