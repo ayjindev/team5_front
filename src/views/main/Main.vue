@@ -5,43 +5,81 @@
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
-          <div v-for="(rank, index) in ranks" :key="index">
-            <input v-model="rank.value" type="checkbox" /><label :for="ranks">{{ rank.name }}</label>
+          <div>
+            <div class="line_h">
+              <label
+                ><input
+                  v-model="selectAllranks"
+                  type="checkbox"
+                  name="rank_all"
+                  value=""
+                  @click="selectAllrank"
+                />전체</label
+              >
+            </div>
+            <div v-for="rank in ranks" :key="rank.id" class="line_h">
+              <label
+                ><input v-model="rankIds" type="checkbox" :name="rank.name" :value="rank.id" @click="selectrank" />{{
+                  rank.name
+                }}</label
+              >
+            </div>
+            <!-- <span>Selected Ids: {{ rankIds }}</span> -->
           </div>
         </div>
         <div class="fuel">
-          <h2 class="sub">연료</h2>
-          <div v-for="(fuel, index) in fuels" :key="index">
-            <input v-model="fuel.value" type="checkbox" /><label :for="fuels">{{ fuel.name }}</label>
+          <h2 class="sub">차량등급</h2>
+          <div>
+            <div class="line_h">
+              <label
+                ><input
+                  v-model="selectAllfuels"
+                  type="checkbox"
+                  name="fuel_all"
+                  value=""
+                  @click="selectAllfuel"
+                />전체</label
+              >
+            </div>
+            <div v-for="fuel in fuels" :key="fuel.id" class="line_h">
+              <label
+                ><input v-model="fuelIds" type="checkbox" :name="fuel.name" :value="fuel.id" @click="selectfuel" />{{
+                  fuel.name
+                }}</label
+              >
+            </div>
+            <!-- <span>Selected Ids: {{ fuelIds }}</span> -->
           </div>
         </div>
       </div>
       <div class="sort">
         <ul>
-          <li><button @click="priceLow">낮은 가격순</button></li>
+          <li><a href="">낮은 가격순</a></li>
           /
-          <li><button @click="priceHigh">높은 가격순</button></li>
+          <li><a href="">높은 가격순</a></li>
         </ul>
         <div class="search_box">
-          <input class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
+          <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
           <a id="search" href="">검색</a>
         </div>
       </div>
     </div>
     <div class="contents_list">
-      <div v-for="car in dataRows" :key="car" class="contents">
+      <div class="contents">
         <div class="img_box">
-          <img :src="car.img" :alt="car.name" />
+          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
+            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
+          </a>
         </div>
         <div class="contents_box">
           <dl class="c_box_01">
-            <dt class="rank_name" :v-model="car.name">{{ car.name }}</dt>
-            <dd class="fuel_name" :v-model="car.fuel">{{ car.fuel }}</dd>
+            <dt class="rank_name">볼보 XC60 2세대</dt>
+            <dd class="fuel_name">20~21년식 휘발유</dd>
             <dd>유모차/카시트 신청 가능</dd>
           </dl>
           <div class="c_box_02">
-            <span class="car_rank" :v-model="car.rank">{{ car.rank }}</span>
-            <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
+            <span class="car_name">수입</span>
+            <dd class="star">★4.4</dd>
           </div>
           <div class="price c_box_03" :v-model="car.price">
             {{ car.price.toLocaleString() }}
@@ -52,7 +90,6 @@
     </div>
   </div>
 </template>
-<script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.js"></script>
 <script>
 export default {
   data: function () {
@@ -190,7 +227,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .body {
-  height: 100%;
   background: #eee;
 }
 .top {
@@ -226,7 +262,6 @@ export default {
       outline: none !important;
       border: 1px solid #eeeeee;
       border-radius: 2px;
-      height: 100vh;
       background: #fbfbfb;
     }
     input[type='checkbox']::before {
@@ -259,13 +294,17 @@ export default {
   .sort {
     li {
       margin: 0 5px;
-      button {
+      a {
         color: #5e5e5e;
-        background: none;
-        border: none;
       }
-      button:hover {
-        color: $main;
+      a:link {
+        color: #5e5e5e;
+      }
+      a:visited {
+        color: #5e5e5e;
+      }
+      a:active {
+        color: #5e5e5e;
       }
     }
   }
@@ -376,9 +415,10 @@ export default {
       order: 0;
       overflow: hidden;
       background: #fff;
-
-      img {
-        height: 150px;
+      a {
+        img {
+          height: 150px;
+        }
       }
     }
     .contents_box {
@@ -406,7 +446,7 @@ export default {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_rank {
+        .car_name {
           padding: 10px 20px;
           display: block;
           color: #fff;
@@ -523,9 +563,10 @@ export default {
     }
   }
   .contents_list {
-    width: 700px;
+    width: 702px;
     margin: auto;
-    padding-top: 224px;
+    padding-top: 214px;
+    border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
   }
@@ -544,12 +585,19 @@ export default {
       order: 0;
       overflow: hidden;
       background: #fff;
-    }
 
-    img {
-      width: 100%;
+      a {
+        img {
+          width: 100%;
+        }
+      }
+      > a:hover img {
+        transform: scale(1.5);
+        transition: transform 1s;
+        filter: brightness(70%);
+        background-color: #5e5e5e;
+      }
     }
-
     .contents_box {
       display: flex;
       flex-wrap: wrap;
@@ -575,7 +623,7 @@ export default {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_rank {
+        .car_name {
           padding: 10px 20px;
           display: block;
           color: #fff;
