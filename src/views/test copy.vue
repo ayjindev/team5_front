@@ -2,9 +2,9 @@
   <div>
     <div class="options">
       <h3>Size</h3>
-      <template v-for="(value, index) in name">
+      <template v-for="(value, index) in size">
         <div :key="index">
-          <input :id="value" v-model="checked.name" type="checkbox" :value="value" />
+          <input :id="value" v-model="checked.size" type="checkbox" :value="value" />
           <label> {{ value }}</label>
         </div>
       </template>
@@ -111,8 +111,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.options {
-  padding-top: 200px;
-}
-</style>
+<style lang="scss" scoped></style>

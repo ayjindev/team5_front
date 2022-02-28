@@ -161,22 +161,43 @@ BDO[DIR="rtl"] {
 }
 
 @font-face {
-  font-family: 'MaplestoryOTFBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
-  font-weight: normal;
+  font-family: 'Maplestory';
+  font-weight:normal;
   font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryLight.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryLight.eot?#iefix') format('embedded-opentype'),
+       url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryLight.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryLight.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryLight.ttf') format("truetype");
+  font-display: swap;
 }
 @font-face {
-  font-family: 'MaplestoryOTFLight';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
-  font-weight: normal;
+  font-family: 'Maplestory';
+  font-weight:bold;
   font-style: normal;
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryBold.eot');
+  src: url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryBold.eot?#iefix') format('embedded-opentype'),
+       url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryBold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryBold.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/gh/webfontworld/NexonMaplestory/NexonMaplestoryBold.ttf') format("truetype");
+  font-display: swap;
 }
 
 div{
   font-family: 'Maplestory';
   color: #5e5e5e;
 }
-
+a {
+  color: #5e5e5e;
+}
+a:link {
+  color: #5e5e5e;
+}
+a:visited {
+  color: #5e5e5e;
+}
+a:active {
+  color: #5e5e5e;
+}
 $main:#cf5724;
 $sub:#ff8955;
