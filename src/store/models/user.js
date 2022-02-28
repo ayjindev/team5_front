@@ -13,19 +13,21 @@ const stateInit = {
     userZip: null,
     userAddr1: null,
     userAddr2: null
-  }
+  },
+  SignSucess: null
 }
 
 export default {
   state: {
     // state에 사용할 모델이나 값을 선언 한다.
     User: { ...stateInit.User },
-    InsertedResult: null
+    InsertedResult: stateInit.SignSucess
   },
   getters: {
     // getters을 통해 state값을 호출 한다.
     User: state => state.User,
-    UserInsertedResult: state => state.InsertedResult
+    UserInsertedResult: state => state.InsertedResult,
+    SignSucessResult: state => state.SignSucessResult
   },
   mutations: {
     // mutations는 동기적이어야 함.(비동기 사용 불가)
@@ -34,6 +36,9 @@ export default {
     },
     setInsertedResult(state, data) {
       state.InsertedResult = data
+    },
+    setSignSucessResult(state, data) {
+      state.SignSucessResult = data
     }
   },
   actions: {
@@ -41,7 +46,7 @@ export default {
 
     // 등록
     actUserInsert(context, payload) {
-      console.log('actUserInsert', payload) // 적은 정보가 payload를 통해 넘어옴
+      // console.log('actUserInsert', payload) // 적은 정보가 payload를 통해 넘어옴
 
       // 상태(결과)값 초기화
       context.commit('setInsertedResult', null)
@@ -56,17 +61,42 @@ export default {
       api
         .post('/serverApi/register', payload)
         .then(response => {
-          console.log('회원가입 response', response)
           const insertedResult = response && response.data && response.data.success
           context.commit('setInsertedResult', insertedResult)
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('UserInsert.error', error)
+          console.error('SignSucessResult.error', error)
           context.commit('setInsertedResult', -1)
         })
     },
-    // 초기화
+
+    // 회원가입 성공 여부
+    actSignSucessResult(context, payload) {
+      // 초기화
+      context.commit('setSignSucessResult', payload)
+      /* RestAPI 호출 */
+      api
+        .post('/serverApi/register', payload)
+        .then(response => {
+          const insertedResult = response && response.data && response.data.success
+          console.log('회원가입 성공여부', response)
+          context.commit('setSignSucessResult', insertedResult)
+          console.log('setSignSucessResult', insertedResult)
+        })
+        .catch(error => {
+          // 에러인 경우 처리
+          console.error('UserInsert.error', error)
+          context.commit('setSignSucessResult', -1)
+        })
+    },
+
+    // // 회원가입 성공 여부 초기화
+    // actSignSucessResultInit(context, payload) {
+    //   context.commit('setSignSucessResult', stateInit.SignSucess)
+    // },
+
+    // 회원가입 데이터 초기화
     actUserInit(context, payload) {
       context.commit('setUser', { ...stateInit.User }) // 현재 값만 들어감/setUser에 statInit.User 요소를 풀어서 넣어줌=전부 복붙(null값이 됨)
       // context.commit('setUser', stateInit.User) // 메모리 주소 복사(User가 변경되면 변경된 값이 들어감)
