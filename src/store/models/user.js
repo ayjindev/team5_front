@@ -56,7 +56,8 @@ export default {
       api
         .post('/serverApi/register', payload)
         .then(response => {
-          const insertedResult = response && response.data && response.data.id
+          console.log('회원가입 response', response)
+          const insertedResult = response && response.data && response.data.success
           context.commit('setInsertedResult', insertedResult)
         })
         .catch(error => {
