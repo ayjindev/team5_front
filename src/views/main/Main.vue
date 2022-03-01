@@ -5,92 +5,181 @@
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
-          <div>
-            <div class="line_h">
-              <label
-                ><input
-                  v-model="selectAllranks"
-                  type="checkbox"
-                  name="rank_all"
-                  value=""
-                  @click="selectAllrank"
-                />전체</label
-              >
-            </div>
-            <div v-for="rank in ranks" :key="rank.id" class="line_h">
-              <label
-                ><input v-model="rankIds" type="checkbox" :name="rank.name" :value="rank.id" @click="selectrank" />{{
-                  rank.name
-                }}</label
-              >
-            </div>
-            <!-- <span>Selected Ids: {{ rankIds }}</span> -->
+          <div v-for="(rank, index) in ranks" :key="index">
+            <input v-model="rank.value" type="checkbox" /><label :for="ranks">{{ rank.name }}</label>
           </div>
         </div>
         <div class="fuel">
-          <h2 class="sub">차량등급</h2>
-          <div>
-            <div class="line_h">
-              <label
-                ><input
-                  v-model="selectAllfuels"
-                  type="checkbox"
-                  name="fuel_all"
-                  value=""
-                  @click="selectAllfuel"
-                />전체</label
-              >
-            </div>
-            <div v-for="fuel in fuels" :key="fuel.id" class="line_h">
-              <label
-                ><input v-model="fuelIds" type="checkbox" :name="fuel.name" :value="fuel.id" @click="selectfuel" />{{
-                  fuel.name
-                }}</label
-              >
-            </div>
-            <!-- <span>Selected Ids: {{ fuelIds }}</span> -->
+          <h2 class="sub">연료</h2>
+          <div v-for="(fuel, index) in fuels" :key="index">
+            <input v-model="fuel.value" type="checkbox" /><label :for="fuels">{{ fuel.name }}</label>
           </div>
         </div>
       </div>
       <div class="sort">
         <ul>
-          <li><a href="">낮은 가격순</a></li>
+          <li><button @click="priceLow">낮은 가격순</button></li>
           /
-          <li><a href="">높은 가격순</a></li>
+          <li><button @click="priceHigh">높은 가격순</button></li>
         </ul>
         <div class="search_box">
-          <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
+          <input class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
           <a id="search" href="">검색</a>
         </div>
       </div>
     </div>
     <div class="contents_list">
-      <div class="contents">
+      <div v-for="car in dataRows" :key="car" class="contents">
         <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
+          <img :src="car.img" :alt="car.name" />
         </div>
         <div class="contents_box">
           <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
+            <dt class="rank_name" :v-model="car.name">{{ car.name }}</dt>
+            <dd class="fuel_name" :v-model="car.fuel">{{ car.fuel }}</dd>
             <dd>유모차/카시트 신청 가능</dd>
           </dl>
           <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
+            <span class="car_rank" :v-model="car.rank">{{ car.rank }}</span>
+            <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
           </div>
-          <div class="price c_box_03">
-            168,000 <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
+          <div class="price c_box_03" :v-model="car.price">
+            {{ car.price.toLocaleString() }}
+            <button @click="goRes">바로 예약 하기</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.js"></script>
 <script>
-export default {}
+export default {
+  data: function () {
+    return {
+      ranks: [
+        {
+          name: '경형',
+          value: true
+        },
+        {
+          name: '소형',
+          value: true
+        },
+        {
+          name: '중형',
+          value: true
+        },
+        {
+          name: '대형',
+          value: true
+        },
+        {
+          name: '수입',
+          value: true
+        },
+        {
+          name: '승합RV',
+          value: true
+        },
+        {
+          name: 'SUV',
+          value: true
+        }
+      ],
+      fuels: [
+        {
+          name: '휘발유',
+          value: true
+        },
+        {
+          name: '경유',
+          value: true
+        },
+        {
+          name: 'LPG',
+          value: true
+        },
+        {
+          name: '전기',
+          value: true
+        },
+        {
+          name: '하이브리드',
+          value: true
+        }
+      ],
+      selectAllranks: true,
+      selectranks: [],
+      cars: [
+        {
+          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
+          name: '르노삼성 SM6 F/L',
+          fuel: '휘발유',
+          rank: '중형',
+          star: '3.8',
+          price: 126000
+        },
+        {
+          img: require('@/assets/images/car/볼보_xc60_2세대.png'),
+          name: '볼보 XC60',
+          fuel: '휘발유',
+          rank: 'SUV',
+          star: '3.7',
+          price: 166000
+        },
+        {
+          img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
+          name: '아우디 A6 세단 F/L',
+          fuel: '경유,휘발유',
+          rank: '중형',
+          star: '3.2',
+          price: 112000
+        },
+        {
+          img: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'),
+          name: '아우디 A6 세단 F/L',
+          fuel: '전기',
+          rank: '중형',
+          star: '3.6',
+          price: 172000
+        }
+      ]
+    }
+  },
+  computed: {
+    filterRanks() {
+      const rankstrueList = this.ranks.filter(v => v.value === true)?.map(v => v.name)
+      return this.cars.filter(v => rankstrueList.includes(v.rank))
+    },
+    filterFuels() {
+      const fuelstrueList = this.fuels.filter(v => v.value === true)?.map(v => v.name)
+      return this.cars.filter(v => fuelstrueList.includes(v.fuel))
+    },
+    dataRows() {
+      const list = this.filterRanks.concat(this.filterFuels)
+      return list
+    }
+  },
+  methods: {
+    goRes() {},
+    priceLow() {
+      this.cars.sort(function (a, b) {
+        return a.price - b.price
+      })
+    },
+    priceHigh() {
+      this.cars.sort(function (a, b) {
+        return b.price - a.price
+      })
+    },
+    dataRows() {
+      const merged = this.filterRanks.concat(this.filterFuels)
+      const unique = merged.filter((item, pos) => merged.indexOf(item) === pos)
+      return unique
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .body {

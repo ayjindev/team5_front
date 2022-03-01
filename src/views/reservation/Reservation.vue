@@ -3,7 +3,7 @@
     <div class="contents">
       <div class="img_box">
         <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-          <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
+          <img src="../../assets/images/car/볼보_xc60_2세대.png" alt="볼보 XC60 2세대" />
         </a>
       </div>
       <div class="contents_box">
