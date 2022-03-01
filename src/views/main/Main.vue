@@ -1,4 +1,3 @@
-<script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
 <template>
   <div class="body">
     <div class="top">
