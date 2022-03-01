@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div :key="car" class="contents">
+    <div v-for="car in dataRows" :key="car" class="contents">
       <div class="img_box">
         <img :src="car.img" :alt="car.name" />
       </div>
@@ -16,10 +16,9 @@
         </div>
         <div class="price c_box_03" :v-model="car.price">
           {{ car.price.toLocaleString() }}
-          <div class="c_box_04">
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          </div>
+          <router-link to="/reservation"><button>바로 예약 하기</button></router-link>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
         </div>
       </div>
     </div>
