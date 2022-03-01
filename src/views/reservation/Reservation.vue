@@ -49,6 +49,9 @@ import datetime from 'vuejs-datetimepicker'
 
 export default {
   components: { datetime },
+  data() {
+    return {}
+  },
   methods: {
     alertVal() {
       alert(this.dob)
@@ -273,11 +276,10 @@ input {
       overflow: hidden;
       background: #fff;
 
-      a {
-        img {
-          width: 100%;
-        }
+      img {
+        width: 100%;
       }
+
       > a:hover img {
         transform: scale(1.5);
         transition: transform 1s;

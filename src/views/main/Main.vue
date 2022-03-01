@@ -4,81 +4,43 @@
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
-          <div>
-            <div class="line_h">
-              <label
-                ><input
-                  v-model="selectAllranks"
-                  type="checkbox"
-                  name="rank_all"
-                  value=""
-                  @click="selectAllrank"
-                />전체</label
-              >
-            </div>
-            <div v-for="rank in ranks" :key="rank.id" class="line_h">
-              <label
-                ><input v-model="rankIds" type="checkbox" :name="rank.name" :value="rank.id" @click="selectrank" />{{
-                  rank.name
-                }}</label
-              >
-            </div>
-            <!-- <span>Selected Ids: {{ rankIds }}</span> -->
+          <div v-for="(rank, index) in ranks" :key="index">
+            <input v-model="rank.value" type="checkbox" /><label :for="ranks">{{ rank.name }}</label>
           </div>
         </div>
         <div class="fuel">
-          <h2 class="sub">차량등급</h2>
-          <div>
-            <div class="line_h">
-              <label
-                ><input
-                  v-model="selectAllfuels"
-                  type="checkbox"
-                  name="fuel_all"
-                  value=""
-                  @click="selectAllfuel"
-                />전체</label
-              >
-            </div>
-            <div v-for="fuel in fuels" :key="fuel.id" class="line_h">
-              <label
-                ><input v-model="fuelIds" type="checkbox" :name="fuel.name" :value="fuel.id" @click="selectfuel" />{{
-                  fuel.name
-                }}</label
-              >
-            </div>
-            <!-- <span>Selected Ids: {{ fuelIds }}</span> -->
+          <h2 class="sub">연료</h2>
+          <div v-for="(fuel, index) in fuels" :key="index">
+            <input v-model="fuel.value" type="checkbox" /><label :for="fuels">{{ fuel.name }}</label>
           </div>
         </div>
       </div>
       <div class="sort">
         <ul>
-          <li><a href="">낮은 가격순</a></li>
+          <li><button @click="priceLow">낮은 가격순</button></li>
           /
-          <li><a href="">높은 가격순</a></li>
+          <li><button @click="priceHigh">높은 가격순</button></li>
         </ul>
         <div class="search_box">
-          <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
+          <input class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
           <a id="search" href="">검색</a>
         </div>
       </div>
     </div>
     <div class="contents_list">
-      <div class="contents">
+      <div v-for="car in dataRows" :key="car" class="contents">
         <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-          </a>
+          <img :src="car.img" :alt="car.name" />
         </div>
         <div class="contents_box">
           <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
+            <dt class="rank_name" :v-model="car.name">{{ car.name }}</dt>
+            <dd class="fuel_name" :v-model="car.fuel">{{ car.fuel }}</dd>
             <dd>유모차/카시트 신청 가능</dd>
           </dl>
           <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
+            <span class="car_rank" :v-model="car.rank">{{ car.rank }}</span>
+            <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
           </div>
           <div class="price c_box_03" :v-model="car.price">
             {{ car.price.toLocaleString() }}
@@ -89,6 +51,7 @@
     </div>
   </div>
 </template>
+<script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.js"></script>
 <script>
 export default {
   data: function () {
@@ -198,7 +161,6 @@ export default {
       return unique
     }
   },
-
   methods: {
     goRes() {
       this.$router.push({
@@ -246,12 +208,11 @@ export default {
     display: block;
   }
   > div {
-    width: 100%;
+    width: 80px;
+    float: left;
     margin: auto;
+    margin-top: 4px;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
     input {
       margin: 0 5px;
       float: left;
@@ -414,10 +375,9 @@ export default {
       order: 0;
       overflow: hidden;
       background: #fff;
-      a {
-        img {
-          height: 150px;
-        }
+
+      img {
+        height: 150px;
       }
     }
     .contents_box {
@@ -445,7 +405,7 @@ export default {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
@@ -564,7 +524,7 @@ export default {
   .contents_list {
     width: 702px;
     margin: auto;
-    padding-top: 214px;
+    padding-top: 225px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
@@ -585,16 +545,8 @@ export default {
       overflow: hidden;
       background: #fff;
 
-      a {
-        img {
-          width: 100%;
-        }
-      }
-      > a:hover img {
-        transform: scale(1.5);
-        transition: transform 1s;
-        filter: brightness(70%);
-        background-color: #5e5e5e;
+      img {
+        width: 100%;
       }
     }
     .contents_box {
@@ -622,7 +574,7 @@ export default {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;

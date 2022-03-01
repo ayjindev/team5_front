@@ -36,6 +36,7 @@ export default {
       api
         .post('/serverApi/login', payload)
         .then(response => {
+          console.log('response', response)
           const UserLogin = response
 
           context.commit('setUserLogin', UserLogin)
