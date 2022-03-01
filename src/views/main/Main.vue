@@ -138,7 +138,7 @@ export default {
         },
         {
           img: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'),
-          name: '아우디 A6 세단 F/L',
+          name: '제네시스 GV70',
           fuel: '전기',
           rank: '중형',
           star: '3.6',
@@ -157,12 +157,17 @@ export default {
       return this.cars.filter(v => fuelstrueList.includes(v.fuel))
     },
     dataRows() {
-      const list = this.filterRanks.concat(this.filterFuels)
-      return list
+      const merged = this.filterRanks.concat(this.filterFuels)
+      const unique = merged.filter((item, pos) => merged.indexOf(item) === pos)
+      return unique
     }
   },
   methods: {
-    goRes() {},
+    goRes() {
+      this.$router.push({
+        path: '/reservation'
+      })
+    },
     priceLow() {
       this.cars.sort(function (a, b) {
         return a.price - b.price
@@ -203,12 +208,11 @@ export default {
     display: block;
   }
   > div {
-    width: 100%;
+    width: 80px;
+    float: left;
     margin: auto;
+    margin-top: 4px;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
     input {
       margin: 0 5px;
       float: left;
@@ -371,10 +375,9 @@ export default {
       order: 0;
       overflow: hidden;
       background: #fff;
-      a {
-        img {
-          height: 150px;
-        }
+
+      img {
+        height: 150px;
       }
     }
     .contents_box {
@@ -402,7 +405,7 @@ export default {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
@@ -521,7 +524,7 @@ export default {
   .contents_list {
     width: 702px;
     margin: auto;
-    padding-top: 214px;
+    padding-top: 225px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
@@ -542,16 +545,8 @@ export default {
       overflow: hidden;
       background: #fff;
 
-      a {
-        img {
-          width: 100%;
-        }
-      }
-      > a:hover img {
-        transform: scale(1.5);
-        transition: transform 1s;
-        filter: brightness(70%);
-        background-color: #5e5e5e;
+      img {
+        width: 100%;
       }
     }
     .contents_box {
@@ -579,7 +574,7 @@ export default {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
