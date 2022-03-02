@@ -14,6 +14,7 @@
           <span class="car_rank">{{ $route.cars.rank }}</span>
           <dd class="star">★{{ $route.cars.star }}</dd>
         </div>
+
         <div class="price c_box_03">
           {{ $route.cars.price.toLocaleString() }}
           <div class="c_box_04">

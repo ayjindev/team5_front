@@ -1,4 +1,3 @@
-<script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
 <template>
   <div class="body">
     <div class="top">
@@ -138,14 +137,14 @@ export default {
         {
           img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
           name: '아우디 A6 세단 F/L',
-          fuel: '경유',
+          fuel: '경유' + ',' + '휘발유',
           rank: '중형',
           star: 3.2,
           price: 112000
         },
         {
           img: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'),
-          name: '제네시스 GV70',
+          name: '아우디 A6 세단 F/L',
           fuel: '전기',
           rank: '중형',
           star: 3.6,

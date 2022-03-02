@@ -1,18 +1,11 @@
 <template>
   <div class="body">
-    <div class="contents">
-      <div class="img_box">
-        <img :src="car.img" :alt="car.name" />
-      </div>
-      <div class="contents_box">
-        <dl class="c_box_01">
-          <dt class="rank_name" :v-model="car.name">{{ car.name }}</dt>
-          <dd class="fuel_name" :v-model="car.fuel">{{ car.fuel }}</dd>
-          <dd>유모차/카시트 신청 가능</dd>
-        </dl>
-        <div class="c_box_02">
-          <span class="car_rank" :v-model="car.rank">{{ car.rank }}</span>
-          <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
+    <div class="contents_list">
+      <div class="contents">
+        <div class="img_box">
+          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
+            <img src="../../assets/images/car/볼보_xc60_2세대.png" alt="볼보 XC60 2세대" />
+          </a>
         </div>
         <div class="price c_box_03" :v-model="car.price">
           {{ car.price.toLocaleString() }}
