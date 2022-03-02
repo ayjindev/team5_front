@@ -4,12 +4,14 @@ import router from './router'
 import store from './store'
 import Vuelidate from 'vuelidate'
 import BootstrapVue from 'bootstrap-vue'
+import VueCookies from 'vue-cookies'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
+Vue.use(VueCookies)
 
 new Vue({
   router,
