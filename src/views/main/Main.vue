@@ -5,12 +5,14 @@
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
+          <div><input v-model="allRanks" type="checkbox" /><label :for="allranks">전체</label></div>
           <div v-for="(rank, index) in ranks" :key="index">
             <input v-model="rank.value" type="checkbox" /><label :for="ranks">{{ rank.name }}</label>
           </div>
         </div>
         <div class="fuel">
           <h2 class="sub">연료</h2>
+          <div><input v-model="allFuel" type="checkbox" /><label :for="allFuel">전체</label></div>
           <div v-for="(fuel, index) in fuels" :key="index">
             <input v-model="fuel.value" type="checkbox" /><label :for="fuels">{{ fuel.name }}</label>
           </div>
@@ -18,13 +20,17 @@
       </div>
       <div class="sort">
         <ul>
-          <li><button @click="priceLow">낮은 가격순</button></li>
+          <li><a @click="priceLow">낮은 가격순</a></li>
           /
-          <li><button @click="priceHigh">높은 가격순</button></li>
+          <li><a @click="priceHigh">높은 가격순</a></li>
+        </ul>
+        <ul>
+          <li><a @click="starHigh">평점 높은순</a></li>
+          /
+          <li><a @click="starLow">평점 낮은순</a></li>
         </ul>
         <div class="search_box">
-          <input class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
-          <a id="search" href="">검색</a>
+          <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
         </div>
       </div>
     </div>
@@ -45,7 +51,7 @@
           </div>
           <div class="price c_box_03" :v-model="car.price">
             {{ car.price.toLocaleString() }}
-            <button @click="goRes">바로 예약 하기</button>
+            <button @click="goRes(car)">바로 예약 하기</button>
           </div>
         </div>
       </div>
@@ -109,15 +115,16 @@ export default {
           value: true
         }
       ],
-      selectAllranks: true,
-      selectranks: [],
+      allRanks: true,
+      allFuel: true,
+      search: '',
       cars: [
         {
           img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
           name: '르노삼성 SM6 F/L',
           fuel: '휘발유',
           rank: '중형',
-          star: '3.8',
+          star: 3.8,
           price: 126000
         },
         {
@@ -125,15 +132,15 @@ export default {
           name: '볼보 XC60',
           fuel: '휘발유',
           rank: 'SUV',
-          star: '3.7',
+          star: 3.7,
           price: 166000
         },
         {
           img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
           name: '아우디 A6 세단 F/L',
-          fuel: '경유,휘발유',
+          fuel: '경유',
           rank: '중형',
-          star: '3.2',
+          star: 3.2,
           price: 112000
         },
         {
@@ -141,7 +148,7 @@ export default {
           name: '제네시스 GV70',
           fuel: '전기',
           rank: '중형',
-          star: '3.6',
+          star: 3.6,
           price: 172000
         }
       ]
@@ -159,13 +166,21 @@ export default {
     dataRows() {
       const merged = this.filterRanks.concat(this.filterFuels)
       const unique = merged.filter((item, pos) => merged.indexOf(item) === pos)
-      return unique
+      return unique.filter(cars => {
+        return cars.name.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
   },
   methods: {
-    goRes() {
+    dataRows() {
+      return
+    },
+    goRes(props) {
+      console.log(props)
       this.$router.push({
-        path: '/reservation'
+        // path: '/reservation',
+        name: 'cars',
+        params: props
       })
     },
     priceLow() {
@@ -178,10 +193,15 @@ export default {
         return b.price - a.price
       })
     },
-    dataRows() {
-      const merged = this.filterRanks.concat(this.filterFuels)
-      const unique = merged.filter((item, pos) => merged.indexOf(item) === pos)
-      return unique
+    starLow() {
+      this.cars.sort(function (a, b) {
+        return a.star - b.star
+      })
+    },
+    starHigh() {
+      this.cars.sort(function (a, b) {
+        return b.star - a.star
+      })
     }
   }
 }
@@ -496,6 +516,7 @@ export default {
       width: 30%;
       li {
         a:hover {
+          cursor: pointer;
           color: $main;
         }
       }

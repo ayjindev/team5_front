@@ -1,21 +1,21 @@
 <template>
   <div class="body">
-    <div :key="car" class="contents">
+    <div class="contents">
       <div class="img_box">
-        <img :src="car.img" :alt="car.name" />
+        <img :src="$route.cars.img" :alt="$route.cars.name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name" :v-model="car.name">{{ car.name }}</dt>
-          <dd class="fuel_name" :v-model="car.fuel">{{ car.fuel }}</dd>
+          <dt class="rank_name" :v-model="$route.cars.name">{{ $route.cars.name }}</dt>
+          <dd class="fuel_name" :v-model="$route.cars.fuel">{{ $route.cars.fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_rank" :v-model="car.rank">{{ car.rank }}</span>
-          <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
+          <span class="car_rank">{{ $route.cars.rank }}</span>
+          <dd class="star">★{{ $route.cars.star }}</dd>
         </div>
-        <div class="price c_box_03" :v-model="car.price">
-          {{ car.price.toLocaleString() }}
+        <div class="price c_box_03">
+          {{ $route.cars.price.toLocaleString() }}
           <div class="c_box_04">
             <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
             <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
@@ -49,15 +49,14 @@
 import datetime from 'vuejs-datetimepicker'
 
 export default {
+  name: 'Cars',
   components: { datetime },
+
   data() {
     return {}
   },
-  methods: {
-    alertVal() {
-      alert(this.dob)
-    }
-  }
+  created() {},
+  methods: {}
 }
 </script>
 
@@ -198,7 +197,7 @@ input {
         width: 40%;
         min-width: 70px;
         text-align: center;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
@@ -315,12 +314,13 @@ input {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
           font-size: 1.6em;
           background: $sub;
+          border: 1px solid red;
         }
         .star {
           font-size: 1.4em;
