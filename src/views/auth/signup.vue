@@ -405,6 +405,7 @@ export default {
 }
 #b-col {
   width: 30%;
+  min-width: 460px;
   margin: auto;
 }
 #b-card {

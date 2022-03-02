@@ -4,6 +4,8 @@ import Main from '../views/main/Main.vue'
 
 Vue.use(VueRouter)
 
+import Params from '@/views/reservation/Reservation.vue'
+
 const routes = [
   {
     path: '/',
@@ -15,7 +17,9 @@ const routes = [
   },
   {
     path: '/reservation',
-    component: () => import('../views/reservation/Reservation.vue')
+    component: () => import('../views/reservation/Reservation.vue'),
+    name: 'cars',
+    props: true
   },
   {
     path: '/reservation-Check',
@@ -36,10 +40,6 @@ const routes = [
       {
         path: '/auth/sign',
         component: () => import('../views/auth/signup')
-      },
-      {
-        path: '/test',
-        component: () => import('../views/test.vue')
       }
     ]
   },

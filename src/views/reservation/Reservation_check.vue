@@ -4,23 +4,14 @@
       <div class="contents">
         <div class="img_box">
           <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
+            <img src="../../assets/images/car/볼보_xc60_2세대.png" alt="볼보 XC60 2세대" />
           </a>
         </div>
-        <div class="contents_box">
-          <dl class="c_box_01">
-            <dt class="rank_name">볼보 XC60 2세대</dt>
-            <dd class="fuel_name">20~21년식 휘발유</dd>
-            <dd>유모차/카시트 신청 가능</dd>
-          </dl>
-          <div class="c_box_02">
-            <span class="car_name">수입</span>
-            <dd class="star">★4.4</dd>
-          </div>
-          <div class="price c_box_03">168,000</div>
+        <div class="price c_box_03" :v-model="car.price">
+          {{ car.price.toLocaleString() }}
           <div class="c_box_04">
-            <p><span id="start">2022.02.22</span>부터</p>
-            <p><span id="end">2022.03.03</span>까지</p>
+            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
           </div>
         </div>
       </div>
@@ -38,77 +29,183 @@
 <script>
 export default {}
 </script>
-
 <style lang="scss" scoped>
 .body {
   background: #eee;
-  height: 100vh;
 }
-.loop_box {
-  overflow-x: hidden;
-  width: 100vw;
-  margin-top: 20px;
-  .loop {
-    width: 130px;
-    height: 110px;
-    background: url(../../assets/images/logo.gif) center no-repeat;
-    background-size: contain;
-    animation-duration: 10s;
-    animation-name: slidein;
-    animation-iteration-count: infinite;
-  }
-  p {
-    font-size: 2em;
-    font-weight: bold;
-    color: $main;
-    line-height: 4em;
-  }
-}
-.my_box {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  color: #fff;
+.top {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
   margin: auto;
-
-  padding: 20px;
-  background: $main;
-  border: 1px solid $main;
-  font-size: 1.8em;
-  .my-page {
-    line-height: 1.4em;
+  z-index: 10;
+  border: 1px solid #eeeeee;
+  background: #fff;
+}
+.rank,
+.fuel {
+  font-size: 0.7em;
+  .sub {
+    color: $main;
+    display: block;
   }
-  .my-page,
-  .my-page:hover,
-  .my-page:link,
-  .my-page:active,
-  .my-page:visited {
-    color: #fff;
+  > div {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    input {
+      margin: 0 5px;
+      float: left;
+      -webkit-appearance: none;
+      position: relative;
+      cursor: pointer;
+      outline: none !important;
+      border: 1px solid #eeeeee;
+      border-radius: 2px;
+      background: #fbfbfb;
+    }
+    input[type='checkbox']::before {
+      content: '\2713';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      overflow: hidden;
+      transform: scale(0) translate(-50%, -50%);
+      line-height: 1;
+    }
+    input[type='checkbox']:checked {
+      background-color: $sub;
+      border-color: #ffffff4d;
+      color: #fff;
+    }
+    input[type='checkbox']:checked::before {
+      border-radius: 2px;
+      transform: scale(1) translate(-50%, -50%);
+    }
+  }
+  .date_time {
+    font-size: 0.7em;
+    display: flex;
+    flex-direction: column;
+    button {
+      width: 70px;
+    }
+  }
+  .sort {
+    li {
+      margin: 0 5px;
+      a {
+        color: #5e5e5e;
+      }
+      a:link {
+        color: #5e5e5e;
+      }
+      a:visited {
+        color: #5e5e5e;
+      }
+      a:active {
+        color: #5e5e5e;
+      }
+    }
   }
 }
-
-@keyframes slidein {
-  from {
-    margin-left: 100%;
+.search_box {
+  #search {
+    background: #e4e4e4;
+    border: 1px solid #5e5e5e;
+    border-left: 0;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
   }
-
-  to {
-    margin-left: -130px;
+  #reset {
+    line-height: 30px;
+  }
+  .contents_list {
+    width: 701px;
+    margin: auto;
+    padding-top: 224px;
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+    border-top: 0;
   }
 }
 @media all and(max-width:767px) {
-  .my_box {
+  .top {
     width: 100%;
+    padding: 20px;
+    padding-top: 60px;
+    height: 260px;
+  }
+  .filter {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    > div {
+      width: 50%;
+    }
+  }
+  .rank,
+  .fuel {
+    .sub {
+      font-size: 1.6em;
+      text-align: center;
+      line-height: 0.8em;
+    }
+    > div {
+      input {
+        width: 12px;
+        height: 12px;
+      }
+    }
+    .line_h {
+      margin: 10px 0 5px;
+      line-height: 10px;
+      font-size: 1em;
+    }
+  }
+  .date_time {
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    .sub {
+      color: $main;
+      font-size: 1.2em;
+      text-align: center;
+    }
+  }
+  .sort {
+    flex-direction: column;
+    font-size: 0.8em;
+    ul {
+      display: flex;
+      justify-content: center;
+      line-height: 30px;
+    }
+    .search_box {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      .stage-search {
+        font-size: 0.8em;
+        width: 50%;
+      }
+    }
   }
   .contents_list {
     width: 100%;
     margin: auto;
+    padding-top: 260px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
   }
   .contents {
-    padding-top: 50px;
     background: #fff;
     border: 1px solid #e4e4e4;
     display: flex;
@@ -123,29 +220,23 @@ export default {}
       overflow: hidden;
       background: #fff;
 
-      a {
-        img {
-          height: 150px;
-        }
+      img {
+        height: 150px;
       }
     }
-
     .contents_box {
       display: flex;
       flex-wrap: wrap;
       // border: 1px solid red;
       height: 140px;
       width: 100%;
-      padding-left: 20px;
       justify-content: space-between;
-
       .c_box_01 {
         order: 1;
-        width: 60%;
         text-align: left;
+        margin-left: 20px;
         .rank_name {
           font-weight: bold;
-          line-height: 1.8em;
           font-size: 1.4em;
         }
         dd {
@@ -157,9 +248,7 @@ export default {}
         flex-flow: column;
         justify-content: space-between;
         order: 2;
-        width: 40%;
-        min-width: 70px;
-        text-align: center;
+        text-align: right;
         .car_name {
           padding: 10px 20px;
           display: block;
@@ -176,9 +265,9 @@ export default {}
       .c_box_03 {
         position: relative;
         order: 3;
-        width: 40%;
-        text-align: left;
-        align-self: flex-start;
+        width: 100%;
+        text-align: right;
+        align-self: flex-end;
         font-size: 2em;
         color: $main;
         button {
@@ -193,58 +282,116 @@ export default {}
           background: $sub;
         }
       }
-      .c_box_04 {
-        width: 60%;
-        order: 4;
-        text-align: right;
-        display: flex;
-        flex-flow: column;
-        line-height: 1.4em;
-        font-size: 1em;
-        padding-right: 20px;
-      }
     }
   }
 }
 @media all and(min-width:768px) {
-  .my_box {
-    width: 700px;
-    left: 50%;
-    margin-left: -350px;
+  .top {
+    width: 701px;
+    padding: 20px;
+    padding-top: 80px;
   }
-  .my_box:hover {
-    background: $sub;
+  .filter {
+    display: flex;
+    > div {
+      width: 47%;
+      margin-left: 3%;
+    }
+  }
+  .rank,
+  .fuel {
+    .sub {
+      margin-left: 5px;
+      font-size: 1.8em;
+      text-align: left;
+    }
+    > div {
+      input {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .line_h {
+      margin: 10px 0 5px;
+      line-height: 14px;
+      font-size: 1.2em;
+    }
+  }
+  .date_time {
+    .sub {
+      font-size: 1.2em;
+      text-align: left;
+      color: $main;
+    }
+  }
+  .sort {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    margin-left: 3%;
+    flex-direction: row;
+    a {
+      color: #5e5e5e;
+    }
+    ul {
+      display: flex;
+      justify-content: flex-start;
+      line-height: 40px;
+      width: 30%;
+      li {
+        a:hover {
+          color: $main;
+        }
+      }
+    }
+    .search_box {
+      width: 45%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      .stage-search {
+        font-size: 0.8em;
+        width: 70%;
+        text-align: left;
+      }
+      #search:hover {
+        background: $sub;
+        color: #fff;
+        border-left: 0;
+        border: 1px solid $main;
+      }
+      #reset:hover {
+        color: $main;
+      }
+    }
+  }
+  .contents_list {
+    width: 702px;
+    margin: auto;
+    padding-top: 214px;
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+    border-top: 0;
   }
   .contents {
-    padding-top: 59px;
-    padding-bottom: 200px;
     background: #fff;
     border: 1px solid #e4e4e4;
     display: flex;
-    width: 700px;
+    width: 701px;
     height: 200px;
     margin: auto;
     .img_box {
       width: 250px;
       height: 200px;
+      border: 1px solid red;
       margin-right: 20px;
       order: 0;
-      overflow: hidden;
       background: #fff;
 
-      a {
-        img {
-          width: 100%;
-        }
-      }
-      > a:hover img {
-        transform: scale(1.5);
-        transition: transform 1s;
-        filter: brightness(70%);
-        background-color: #5e5e5e;
+      img {
+        width: 100%;
       }
     }
-
     .contents_box {
       display: flex;
       flex-wrap: wrap;
@@ -252,7 +399,6 @@ export default {}
       height: 200px;
       width: 450px;
       justify-content: space-between;
-
       .c_box_01 {
         order: 1;
         text-align: left;
@@ -288,9 +434,9 @@ export default {}
         position: relative;
         top: -1px;
         order: 3;
-        width: 40%;
-        text-align: left;
-        align-self: flex-start;
+        width: 100%;
+        text-align: right;
+        align-self: flex-end;
         font-size: 3em;
         color: $main;
         button {
@@ -304,16 +450,6 @@ export default {}
         button:hover {
           background: $sub;
         }
-      }
-      .c_box_04 {
-        width: 60%;
-        order: 4;
-        text-align: right;
-        display: flex;
-        flex-flow: column;
-        line-height: 2em;
-        font-size: 1em;
-        padding-right: 20px;
       }
     }
   }
