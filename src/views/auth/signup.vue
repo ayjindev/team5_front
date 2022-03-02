@@ -247,9 +247,6 @@ export default {
       }
     }
   },
-  // created() {
-  //   this.user = { ...this.infoData }
-  // },
   methods: {
     // 공란 및 유효성 여부 체크
     checkInput() {

@@ -2,24 +2,25 @@
   <div class="body">
     <div class="contents">
       <div class="img_box">
-        <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-          <img src="../../assets/images/car/car_volvo_xc60.png" alt="볼보 XC60 2세대" />
-        </a>
+        <img :src="$route.cars.img" :alt="$route.cars.name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name">볼보 XC60 2세대</dt>
-          <dd class="fuel_name">20~21년식 휘발유</dd>
+          <dt class="rank_name" :v-model="$route.cars.name">{{ $route.cars.name }}</dt>
+          <dd class="fuel_name" :v-model="$route.cars.fuel">{{ $route.cars.fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_name">수입</span>
-          <dd class="star">★4.4</dd>
+          <span class="car_rank">{{ $route.cars.rank }}</span>
+          <dd class="star">★{{ $route.cars.star }}</dd>
         </div>
-        <div class="price c_box_03">168,000</div>
-        <div class="c_box_04">
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+
+        <div class="price c_box_03">
+          {{ $route.cars.price.toLocaleString() }}
+          <div class="c_box_04">
+            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          </div>
         </div>
       </div>
     </div>
@@ -49,12 +50,14 @@
 import datetime from 'vuejs-datetimepicker'
 
 export default {
+  name: 'Cars',
   components: { datetime },
-  methods: {
-    alertVal() {
-      alert(this.dob)
-    }
-  }
+
+  data() {
+    return {}
+  },
+  created() {},
+  methods: {}
 }
 </script>
 
@@ -195,7 +198,7 @@ input {
         width: 40%;
         min-width: 70px;
         text-align: center;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
@@ -274,11 +277,10 @@ input {
       overflow: hidden;
       background: #fff;
 
-      a {
-        img {
-          width: 100%;
-        }
+      img {
+        width: 100%;
       }
+
       > a:hover img {
         transform: scale(1.5);
         transition: transform 1s;
@@ -313,12 +315,13 @@ input {
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
           font-size: 1.6em;
           background: $sub;
+          border: 1px solid red;
         }
         .star {
           font-size: 1.4em;
