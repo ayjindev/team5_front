@@ -1,18 +1,25 @@
 <template>
   <div class="body">
-    <div class="contents_list">
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/볼보_xc60_2세대.png" alt="볼보 XC60 2세대" />
-          </a>
+    <div class="contents">
+      <div class="img_box">
+        <img :src="goResCheck.img" :alt="goResCheck.name" />
+      </div>
+      <div class="contents_box">
+        <dl class="c_box_01">
+          <dt class="rank_name">{{ goResCheck.name }}</dt>
+          <dd class="fuel_name">{{ goResCheck.fuel }}</dd>
+          <dd>유모차/카시트 신청 가능</dd>
+        </dl>
+        <div class="c_box_02">
+          <span class="car_rank">{{ goResCheck.rank }}</span>
+          <dd class="star">★{{ goResCheck.star }}</dd>
         </div>
-        <div class="price c_box_03" :v-model="car.price">
-          {{ car.price.toLocaleString() }}
-          <div class="c_box_04">
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          </div>
+        <div class="price c_box_03">
+          {{ goResCheck.price.toLocaleString() }}
+        </div>
+        <div class="c_box_04">
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
         </div>
       </div>
     </div>
@@ -27,7 +34,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'GoResCheck',
+  data() {
+    return {
+      goResCheck: this.$route.params
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .body {
@@ -135,77 +149,27 @@ export default {}
   }
 }
 @media all and(max-width:767px) {
-  .top {
-    width: 100%;
-    padding: 20px;
-    padding-top: 60px;
-    height: 260px;
-  }
-  .filter {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    > div {
-      width: 50%;
-    }
-  }
-  .rank,
-  .fuel {
-    .sub {
-      font-size: 1.6em;
-      text-align: center;
-      line-height: 0.8em;
-    }
-    > div {
-      input {
-        width: 12px;
-        height: 12px;
-      }
-    }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 10px;
-      font-size: 1em;
-    }
-  }
-  .date_time {
-    flex-wrap: wrap;
+  .reservation {
+    background: #fff;
     width: 100%;
     margin: auto;
-    .sub {
-      color: $main;
-      font-size: 1.2em;
-      text-align: center;
+    input {
+      width: 90%;
+      margin: auto;
     }
-  }
-  .sort {
-    flex-direction: column;
-    font-size: 0.8em;
-    ul {
-      display: flex;
-      justify-content: center;
-      line-height: 30px;
-    }
-    .search_box {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      flex-wrap: wrap;
-      .stage-search {
-        font-size: 0.8em;
-        width: 50%;
-      }
+    .pay {
+      width: 100%;
     }
   }
   .contents_list {
     width: 100%;
     margin: auto;
-    padding-top: 260px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
   }
   .contents {
+    padding-top: 50px;
     background: #fff;
     border: 1px solid #e4e4e4;
     display: flex;
@@ -219,24 +183,27 @@ export default {}
       order: 0;
       overflow: hidden;
       background: #fff;
-
-      img {
-        height: 150px;
+      a {
+        img {
+          height: 150px;
+        }
       }
     }
     .contents_box {
       display: flex;
       flex-wrap: wrap;
       // border: 1px solid red;
-      height: 140px;
+      height: 220px;
       width: 100%;
+      padding-left: 20px;
       justify-content: space-between;
       .c_box_01 {
         order: 1;
+        width: 60%;
         text-align: left;
-        margin-left: 20px;
         .rank_name {
           font-weight: bold;
+          line-height: 1.8em;
           font-size: 1.4em;
         }
         dd {
@@ -248,8 +215,10 @@ export default {}
         flex-flow: column;
         justify-content: space-between;
         order: 2;
-        text-align: right;
-        .car_name {
+        width: 40%;
+        min-width: 70px;
+        text-align: center;
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
@@ -266,8 +235,8 @@ export default {}
         position: relative;
         order: 3;
         width: 100%;
-        text-align: right;
-        align-self: flex-end;
+        text-align: center;
+        align-self: flex-start;
         font-size: 2em;
         color: $main;
         button {
@@ -282,112 +251,48 @@ export default {}
           background: $sub;
         }
       }
+      .c_box_04 {
+        width: 100%;
+        order: 4;
+        text-align: right;
+        display: flex;
+        flex-flow: column;
+        line-height: 1.4em;
+        font-size: 1em;
+        padding-right: 50px;
+      }
     }
   }
 }
 @media all and(min-width:768px) {
-  .top {
-    width: 701px;
-    padding: 20px;
-    padding-top: 80px;
-  }
-  .filter {
-    display: flex;
-    > div {
-      width: 47%;
-      margin-left: 3%;
-    }
-  }
-  .rank,
-  .fuel {
-    .sub {
-      margin-left: 5px;
-      font-size: 1.8em;
-      text-align: left;
-    }
-    > div {
-      input {
-        width: 16px;
-        height: 16px;
-      }
-    }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 14px;
-      font-size: 1.2em;
-    }
-  }
-  .date_time {
-    .sub {
-      font-size: 1.2em;
-      text-align: left;
-      color: $main;
-    }
-  }
-  .sort {
-    display: flex;
-    justify-content: space-between;
-    height: 30px;
-    margin-left: 3%;
-    flex-direction: row;
-    a {
-      color: #5e5e5e;
-    }
-    ul {
-      display: flex;
-      justify-content: flex-start;
-      line-height: 40px;
-      width: 30%;
-      li {
-        a:hover {
-          color: $main;
-        }
-      }
-    }
-    .search_box {
-      width: 45%;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      .stage-search {
-        font-size: 0.8em;
-        width: 70%;
-        text-align: left;
-      }
-      #search:hover {
-        background: $sub;
-        color: #fff;
-        border-left: 0;
-        border: 1px solid $main;
-      }
-      #reset:hover {
-        color: $main;
-      }
-    }
-  }
-  .contents_list {
-    width: 702px;
+  .reservation {
+    background: #fff;
+    width: 700px;
     margin: auto;
-    padding-top: 214px;
-    border: 1px solid #eeeeee;
-    background-color: #ffffff;
-    border-top: 0;
+    input {
+      // width: 50%;
+      margin: auto;
+    }
+    .pay {
+      width: 700px;
+    }
   }
   .contents {
+    padding-top: 59px;
+    padding-bottom: 200px;
     background: #fff;
     border: 1px solid #e4e4e4;
     display: flex;
-    width: 701px;
+    width: 700px;
     height: 200px;
     margin: auto;
     .img_box {
       width: 250px;
       height: 200px;
-      border: 1px solid red;
       margin-right: 20px;
       order: 0;
+      overflow: hidden;
       background: #fff;
-
       img {
         width: 100%;
       }
@@ -417,12 +322,13 @@ export default {}
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
           font-size: 1.6em;
           background: $sub;
+          border: 1px solid red;
         }
         .star {
           font-size: 1.4em;
@@ -434,9 +340,9 @@ export default {}
         position: relative;
         top: -1px;
         order: 3;
-        width: 100%;
-        text-align: right;
-        align-self: flex-end;
+        width: 40%;
+        text-align: left;
+        align-self: flex-start;
         font-size: 3em;
         color: $main;
         button {
@@ -450,6 +356,14 @@ export default {}
         button:hover {
           background: $sub;
         }
+      }
+      .c_box_04 {
+        width: 60%;
+        order: 4;
+        text-align: right;
+        display: flex;
+        flex-flow: column;
+        align-self: flex-end;
       }
     }
   }

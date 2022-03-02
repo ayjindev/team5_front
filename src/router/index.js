@@ -16,12 +16,14 @@ const routes = [
   {
     path: '/reservation',
     component: () => import('../views/reservation/Reservation.vue'),
-    name: 'cars',
+    name: 'goRes',
     props: true
   },
   {
     path: '/reservation-Check',
-    component: () => import('../views/reservation/Reservation_check.vue')
+    component: () => import('../views/reservation/Reservation_check.vue'),
+    name: 'goResCheck',
+    props: true
   },
   {
     path: '/my-page',

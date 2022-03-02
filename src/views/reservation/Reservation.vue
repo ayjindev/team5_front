@@ -2,30 +2,30 @@
   <div class="body">
     <div class="contents">
       <div class="img_box">
-        <img :src="$route.cars.img" :alt="$route.cars.name" />
+        <!-- {{ cars }} -->
+        <img :src="goRes.img" :alt="goRes.name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name" :v-model="$route.cars.name">{{ $route.cars.name }}</dt>
-          <dd class="fuel_name" :v-model="$route.cars.fuel">{{ $route.cars.fuel }}</dd>
+          <dt class="rank_name">{{ goRes.name }}</dt>
+          <dd class="fuel_name">{{ goRes.fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_rank">{{ $route.cars.rank }}</span>
-          <dd class="star">★{{ $route.cars.star }}</dd>
+          <span class="car_rank">{{ goRes.rank }}</span>
+          <dd class="star">★{{ goRes.star }}</dd>
         </div>
-
         <div class="price c_box_03">
-          {{ $route.cars.price.toLocaleString() }}
-          <div class="c_box_04">
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          </div>
+          {{ goRes.price.toLocaleString() }}
+        </div>
+        <div class="c_box_04">
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
         </div>
       </div>
     </div>
     <div class="reservation">
-      <div class="reservation_box">
+      <div class="reservation_box" v-bind="res">
         <label for="">예약자 이름<input id="" type="text" name="eservation_name" /></label>
         <label for="">운전자 이름<input id="" type="text" name="driver_name" /></label>
         <label for="">연락처<input id="" type="text" name="phon_ number" /></label>
@@ -38,9 +38,10 @@
         <p><span>농협</span>**** *** **** **</p>
       </div>
       <div class="pay">
-        <router-link class="Reservation-check" to="/Reservation-check"
-          ><p><span class="price">168,000</span>원 결제하기</p></router-link
-        >
+        <button @click="goResCheck(res)">
+          <span class="price">{{ goRes.price.toLocaleString() }}</span
+          >원 결제하기
+        </button>
       </div>
     </div>
   </div>
@@ -48,16 +49,22 @@
 
 <script>
 import datetime from 'vuejs-datetimepicker'
-
 export default {
-  name: 'Cars',
+  name: 'GoRes',
   components: { datetime },
-
   data() {
-    return {}
+    return {
+      goRes: this.$route.params
+    }
   },
-  created() {},
-  methods: {}
+  mounted: {
+    goResCheck(props) {
+      this.$router.push({
+        name: 'goResCheck',
+        params: props
+      })
+    }
+  }
 }
 </script>
 
@@ -89,6 +96,9 @@ input {
     line-height: 1.8em;
     margin-top: 20px;
   }
+  input {
+    text-align: center;
+  }
 }
 .payment {
   padding-bottom: 20px;
@@ -113,6 +123,11 @@ input {
   background: $main;
   border: 1px solid $main;
   font-size: 2em;
+  button {
+    border: 0;
+    background: 0;
+    color: #fff;
+  }
 }
 .pay:hover {
   background: $sub;
@@ -128,12 +143,10 @@ input {
     background: #fff;
     width: 100%;
     margin: auto;
-
     input {
       width: 90%;
       margin: auto;
     }
-
     .pay {
       width: 100%;
     }
@@ -160,14 +173,12 @@ input {
       order: 0;
       overflow: hidden;
       background: #fff;
-
       a {
         img {
           height: 150px;
         }
       }
     }
-
     .contents_box {
       display: flex;
       flex-wrap: wrap;
@@ -176,7 +187,6 @@ input {
       width: 100%;
       padding-left: 20px;
       justify-content: space-between;
-
       .c_box_01 {
         order: 1;
         width: 60%;
@@ -227,9 +237,6 @@ input {
           color: #fff;
           background: $main;
         }
-        button:hover {
-          background: $sub;
-        }
       }
       .c_box_04 {
         width: 100%;
@@ -239,7 +246,7 @@ input {
         flex-flow: column;
         line-height: 1.4em;
         font-size: 1em;
-        padding-right: 20px;
+        padding-right: 50px;
       }
     }
   }
@@ -249,17 +256,14 @@ input {
     background: #fff;
     width: 700px;
     margin: auto;
-
     input {
       // width: 50%;
       margin: auto;
     }
-
     .pay {
       width: 700px;
     }
   }
-
   .contents {
     padding-top: 59px;
     padding-bottom: 200px;
@@ -276,19 +280,10 @@ input {
       order: 0;
       overflow: hidden;
       background: #fff;
-
       img {
         width: 100%;
       }
-
-      > a:hover img {
-        transform: scale(1.5);
-        transition: transform 1s;
-        filter: brightness(70%);
-        background-color: #5e5e5e;
-      }
     }
-
     .contents_box {
       display: flex;
       flex-wrap: wrap;
@@ -296,7 +291,6 @@ input {
       height: 200px;
       width: 450px;
       justify-content: space-between;
-
       .c_box_01 {
         order: 1;
         text-align: left;
@@ -356,9 +350,7 @@ input {
         text-align: right;
         display: flex;
         flex-flow: column;
-        line-height: 2em;
-        font-size: 1em;
-        padding-right: 20px;
+        align-self: flex-end;
       }
     }
   }
