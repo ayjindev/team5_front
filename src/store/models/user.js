@@ -71,31 +71,6 @@ export default {
         })
     },
 
-    // 회원가입 성공 여부
-    actSignSucessResult(context, payload) {
-      // 초기화
-      context.commit('setSignSucessResult', payload)
-      /* RestAPI 호출 */
-      api
-        .post('/serverApi/register', payload)
-        .then(response => {
-          const insertedResult = response && response.data && response.data.success
-          console.log('회원가입 성공여부', response)
-          context.commit('setSignSucessResult', insertedResult)
-          console.log('setSignSucessResult', insertedResult)
-        })
-        .catch(error => {
-          // 에러인 경우 처리
-          console.error('UserInsert.error', error)
-          context.commit('setSignSucessResult', -1)
-        })
-    },
-
-    // // 회원가입 성공 여부 초기화
-    // actSignSucessResultInit(context, payload) {
-    //   context.commit('setSignSucessResult', stateInit.SignSucess)
-    // },
-
     // 회원가입 데이터 초기화
     actUserInit(context, payload) {
       context.commit('setUser', { ...stateInit.User }) // 현재 값만 들어감/setUser에 statInit.User 요소를 풀어서 넣어줌=전부 복붙(null값이 됨)
