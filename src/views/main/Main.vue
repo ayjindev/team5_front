@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
 <template>
   <div class="body">
     <div class="top">
@@ -34,7 +35,7 @@
       </div>
     </div>
     <div class="contents_list">
-      <div v-for="car in dataRows" :key="car" class="contents">
+      <div v-for="car in dataRows" :key="car.index" class="contents">
         <div class="img_box">
           <img :src="car.img" :alt="car.name" />
         </div>
@@ -137,14 +138,14 @@ export default {
         {
           img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
           name: '아우디 A6 세단 F/L',
-          fuel: '경유' + ',' + '휘발유',
+          fuel: '경유',
           rank: '중형',
           star: 3.2,
           price: 112000
         },
         {
           img: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'),
-          name: '아우디 A6 세단 F/L',
+          name: '제네시스 GV70',
           fuel: '전기',
           rank: '중형',
           star: 3.6,
@@ -218,8 +219,7 @@ export default {
     goRes(props) {
       console.log(props)
       this.$router.push({
-        // path: '/reservation',
-        name: 'cars',
+        name: 'goRes',
         params: props
       })
     },
@@ -249,6 +249,8 @@ export default {
 <style lang="scss" scoped>
 .body {
   background: #eee;
+  height: 100%;
+  min-height: 100vh;
 }
 .top {
   position: fixed;
@@ -266,6 +268,7 @@ export default {
   .sub {
     color: $main;
     display: block;
+    margin-bottom: 4px;
   }
   > div {
     width: 80px;
