@@ -28,8 +28,8 @@
       <div class="reservation_box">
         <label>예약자 이름<input v-model="res.eservation_name" type="text" name="eservation_name" /></label>
         <label>운전자 이름<input v-model="res.driver_name" type="text" name="driver_name" /></label>
-        <label>연락처<input v-model="res.phon_number" type="text" name="phon_ number" /></label>
         <label>운전자 생년월일<input v-model="res.driver_date" type="text" name="driver_date" /></label>
+        <label>연락처<input v-model="res.phon_number" type="text" name="phon_ number" /></label>
       </div>
       <div class="payment">
         <h3>무통장 입금</h3>
@@ -43,6 +43,7 @@
           >원 입금 완료
         </button>
       </div>
+      <button @click="hah">hah</button>
     </div>
   </div>
 </template>
@@ -62,15 +63,19 @@ export default {
         driver_name: '',
         phon_number: '',
         driver_date: '',
-        img: '',
-        name: '',
-        fuel: '',
-        rank: '',
-        star: ''
+        name: this.$route.params.name,
+        img: this.$route.params.img,
+        fuel: this.$route.params.fuel,
+        rank: this.$route.params.rank,
+        star: this.$route.params.star,
+        price: this.$route.params.price
       }
     }
   },
   methods: {
+    hah() {
+      console.log(this.goRes)
+    },
     goResCheck(props) {
       console.log(props)
       this.$router.push({

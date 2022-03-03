@@ -15,25 +15,24 @@
           <dd class="star">★{{ goResCheck.star }}</dd>
         </div>
         <div class="price c_box_03">
-          <!-- {{ goResCheck.price.toLocaleString() }} -->
+          {{ goResCheck.price.toLocaleString() }}
         </div>
         <div class="c_box_04">
-          {{ goResCheck.start }} <br />
-          {{ goResCheck.end }}
+          <p>{{ goResCheck.start }}</p>
+          <p>{{ goResCheck.end }}</p>
         </div>
       </div>
     </div>
     <div class="loop_box">
       <div class="loop"></div>
       <p>예약이 완료되었습니다</p>
-
-      {{ goResCheck.eservation_name }} <br />
-      {{ goResCheck.driver_name }}<br />
-      {{ goResCheck.phon_number }}<br />
-      {{ goResCheck.driver_date }}
+      <p>예약자 이름 : {{ goResCheck.eservation_name }}</p>
+      <p>운전자 이름 : {{ goResCheck.driver_name }}</p>
+      <p>운전자 생년월일 : {{ goResCheck.driver_date }}</p>
+      <p>연락처 : {{ goResCheck.phon_number }}</p>
     </div>
     <div class="my_box">
-      <router-link class="my-page" to="my-page"><p>마이페이지에서 확인하기</p></router-link>
+      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지에서 확인하기</p></button>
     </div>
   </div>
 </template>
@@ -44,6 +43,13 @@ export default {
   data() {
     return {
       goResCheck: this.$route.params
+    }
+  },
+  methods: {
+    goMy() {
+      this.$router.push({
+        name: 'goMy'
+      })
     }
   }
 }
@@ -66,6 +72,13 @@ export default {
     animation-duration: 10s;
     animation-name: slidein;
     animation-iteration-count: infinite;
+  }
+  p:first-of-type {
+    font-size: 2em;
+    color: $main;
+  }
+  p {
+    margin-top: 12px;
   }
 }
 @keyframes slidein {
@@ -177,6 +190,27 @@ export default {
     border-top: 0;
   }
 }
+.my_box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  margin: auto;
+  padding: 20px;
+  background: $main;
+  border: 1px solid $main;
+  font-size: 2em;
+  button {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: 0;
+    color: #fff;
+  }
+}
+.my_box:hover {
+  background: $sub;
+}
 @media all and(max-width:767px) {
   .reservation {
     background: #fff;
@@ -263,7 +297,7 @@ export default {
       .c_box_03 {
         position: relative;
         order: 3;
-        width: 100%;
+        width: 40%;
         text-align: center;
         align-self: flex-start;
         font-size: 2em;
@@ -281,7 +315,7 @@ export default {
         }
       }
       .c_box_04 {
-        width: 100%;
+        width: 60%;
         order: 4;
         text-align: right;
         display: flex;
@@ -393,6 +427,7 @@ export default {
         display: flex;
         flex-flow: column;
         align-self: flex-end;
+        padding: 0 10px 20px;
       }
     }
   }

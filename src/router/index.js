@@ -30,6 +30,12 @@ const routes = [
     component: () => import('../views/my_page/My_page.vue')
   },
   {
+    path: '/my-page',
+    component: () => import('../views/my_page/My_page.vue'),
+    name: 'goMy',
+    props: true
+  },
+  {
     path: '/auth',
     component: () => import('../views/auth'),
     children: [
