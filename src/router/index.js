@@ -16,16 +16,24 @@ const routes = [
   {
     path: '/reservation',
     component: () => import('../views/reservation/Reservation.vue'),
-    name: 'cars',
+    name: 'goRes',
     props: true
   },
   {
-    path: '/reservation-Check',
-    component: () => import('../views/reservation/Reservation_check.vue')
+    path: '/reservationcheck',
+    component: () => import('../views/reservation/Reservation_check.vue'),
+    name: 'goResCheck',
+    props: true
   },
   {
     path: '/my-page',
     component: () => import('../views/my_page/My_page.vue')
+  },
+  {
+    path: '/my-page',
+    component: () => import('../views/my_page/My_page.vue'),
+    name: 'goMy',
+    props: true
   },
   {
     path: '/auth',
