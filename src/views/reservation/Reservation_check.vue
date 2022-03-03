@@ -15,17 +15,22 @@
           <dd class="star">★{{ goResCheck.star }}</dd>
         </div>
         <div class="price c_box_03">
-          {{ goResCheck.price.toLocaleString() }}
+          <!-- {{ goResCheck.price.toLocaleString() }} -->
         </div>
         <div class="c_box_04">
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          {{ goResCheck.start }} <br />
+          {{ goResCheck.end }}
         </div>
       </div>
     </div>
     <div class="loop_box">
       <div class="loop"></div>
       <p>예약이 완료되었습니다</p>
+
+      {{ goResCheck.eservation_name }} <br />
+      {{ goResCheck.driver_name }}<br />
+      {{ goResCheck.phon_number }}<br />
+      {{ goResCheck.driver_date }}
     </div>
     <div class="my_box">
       <router-link class="my-page" to="my-page"><p>마이페이지에서 확인하기</p></router-link>
@@ -46,6 +51,30 @@ export default {
 <style lang="scss" scoped>
 .body {
   background: #eee;
+  height: 100%;
+  min-height: 100vh;
+}
+.loop_box {
+  overflow-x: hidden;
+  width: 100vw;
+  margin-top: 20px;
+  .loop {
+    width: 130px;
+    height: 110px;
+    background: url(../../assets/images/logo.gif) center no-repeat;
+    background-size: contain;
+    animation-duration: 10s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+  }
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: -130px;
+  }
 }
 .top {
   position: fixed;

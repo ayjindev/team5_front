@@ -20,7 +20,7 @@ const routes = [
     props: true
   },
   {
-    path: '/reservation-Check',
+    path: '/reservationcheck',
     component: () => import('../views/reservation/Reservation_check.vue'),
     name: 'goResCheck',
     props: true

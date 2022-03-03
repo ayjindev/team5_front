@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body" v-bind="res">
     <div class="contents">
       <div class="img_box">
         <!-- {{ cars }} -->
@@ -7,29 +7,29 @@
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name">{{ goRes.name }}</dt>
-          <dd class="fuel_name">{{ goRes.fuel }}</dd>
+          <dt :v-model="res.name" class="rank_name">{{ goRes.name }}</dt>
+          <dd :v-model="res.fuel" class="fuel_name">{{ goRes.fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_rank">{{ goRes.rank }}</span>
-          <dd class="star">★{{ goRes.star }}</dd>
+          <span :v-model="res.rank" class="car_rank">{{ goRes.rank }}</span>
+          <dd :v-model="res.star" class="star">★{{ goRes.star }}</dd>
         </div>
-        <div class="price c_box_03">
+        <div class="price c_box_03" :v-model="res.price">
           {{ goRes.price.toLocaleString() }}
         </div>
         <div class="c_box_04">
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="res.end" class="datetime" format="YYYY-MM-DD H:i"></datetime>
         </div>
       </div>
     </div>
     <div class="reservation">
-      <div class="reservation_box" v-bind="res">
-        <label for="">예약자 이름<input id="" type="text" name="eservation_name" /></label>
-        <label for="">운전자 이름<input id="" type="text" name="driver_name" /></label>
-        <label for="">연락처<input id="" type="text" name="phon_ number" /></label>
-        <label for="">운전자 생년월일<input id="" type="text" name="driver_date" /></label>
+      <div class="reservation_box">
+        <label>예약자 이름<input v-model="res.eservation_name" type="text" name="eservation_name" /></label>
+        <label>운전자 이름<input v-model="res.driver_name" type="text" name="driver_name" /></label>
+        <label>연락처<input v-model="res.phon_number" type="text" name="phon_ number" /></label>
+        <label>운전자 생년월일<input v-model="res.driver_date" type="text" name="driver_date" /></label>
       </div>
       <div class="payment">
         <h3>무통장 입금</h3>
@@ -40,7 +40,7 @@
       <div class="pay">
         <button @click="goResCheck(res)">
           <span class="price">{{ goRes.price.toLocaleString() }}</span
-          >원 결제하기
+          >원 입금 완료
         </button>
       </div>
     </div>
@@ -54,11 +54,25 @@ export default {
   components: { datetime },
   data() {
     return {
-      goRes: this.$route.params
+      goRes: this.$route.params,
+      res: {
+        start: '',
+        end: '',
+        eservation_name: '',
+        driver_name: '',
+        phon_number: '',
+        driver_date: '',
+        img: '',
+        name: '',
+        fuel: '',
+        rank: '',
+        star: ''
+      }
     }
   },
-  mounted: {
+  methods: {
     goResCheck(props) {
+      console.log(props)
       this.$router.push({
         name: 'goResCheck',
         params: props
@@ -71,6 +85,8 @@ export default {
 <style lang="scss" scoped>
 .body {
   background: #eee;
+  height: 100%;
+  min-height: 100vh;
 }
 input {
   border: 1px solid #e4e4e4;
@@ -124,6 +140,8 @@ input {
   border: 1px solid $main;
   font-size: 2em;
   button {
+    width: 100%;
+    height: 100%;
     border: 0;
     background: 0;
     color: #fff;

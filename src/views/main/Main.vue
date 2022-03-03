@@ -5,16 +5,16 @@
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
-          <div><input v-model="allRanks" type="checkbox" /><label :for="allranks">전체</label></div>
+          <div><input v-model="allRanks" type="checkbox" /><label>전체</label></div>
           <div v-for="(rank, index) in ranks" :key="index">
-            <input v-model="rank.value" type="checkbox" /><label :for="ranks">{{ rank.name }}</label>
+            <input v-model="rank.value" type="checkbox" /><label>{{ rank.name }}</label>
           </div>
         </div>
         <div class="fuel">
           <h2 class="sub">연료</h2>
-          <div><input v-model="allFuel" type="checkbox" /><label :for="allFuel">전체</label></div>
+          <div><input v-model="allFuel" type="checkbox" /><label>전체</label></div>
           <div v-for="(fuel, index) in fuels" :key="index">
-            <input v-model="fuel.value" type="checkbox" /><label :for="fuels">{{ fuel.name }}</label>
+            <input v-model="fuel.value" type="checkbox" /><label>{{ fuel.name }}</label>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="contents_list">
-      <div v-for="car in dataRows" :key="car" class="contents">
+      <div v-for="car in dataRows" :key="car.index" class="contents">
         <div class="img_box">
           <img :src="car.img" :alt="car.name" />
         </div>
@@ -205,6 +205,8 @@ export default {
 <style lang="scss" scoped>
 .body {
   background: #eee;
+  height: 100%;
+  min-height: 100vh;
 }
 .top {
   position: fixed;
