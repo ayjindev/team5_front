@@ -1,37 +1,93 @@
 <template>
   <div class="body">
-    <div class="contents_list">
-      <div class="contents">
-        <div class="img_box">
-          <a target="_blank" href="https://auto.daum.net/newcar/model/mjv000euppt6">
-            <img src="../../assets/images/car/볼보_xc60_2세대.png" alt="볼보 XC60 2세대" />
-          </a>
+    <div class="contents">
+      <div class="img_box">
+        <img :src="goResCheck.img" :alt="goResCheck.name" />
+      </div>
+      <div class="contents_box">
+        <dl class="c_box_01">
+          <dt class="rank_name">{{ goResCheck.name }}</dt>
+          <dd class="fuel_name">{{ goResCheck.fuel }}</dd>
+          <dd>유모차/카시트 신청 가능</dd>
+        </dl>
+        <div class="c_box_02">
+          <span class="car_rank">{{ goResCheck.rank }}</span>
+          <dd class="star">★{{ goResCheck.star }}</dd>
         </div>
-        <div class="price c_box_03" :v-model="car.price">
-          {{ car.price.toLocaleString() }}
-          <div class="c_box_04">
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-            <datetime v-model="dob" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          </div>
+        <div class="price c_box_03">
+          {{ goResCheck.price.toLocaleString() }}
+        </div>
+        <div class="c_box_04">
+          <p>{{ goResCheck.start }}</p>
+          <p>{{ goResCheck.end }}</p>
         </div>
       </div>
     </div>
     <div class="loop_box">
       <div class="loop"></div>
       <p>예약이 완료되었습니다</p>
+      <p>예약자 이름 : {{ goResCheck.eservation_name }}</p>
+      <p>운전자 이름 : {{ goResCheck.driver_name }}</p>
+      <p>운전자 생년월일 : {{ goResCheck.driver_date }}</p>
+      <p>연락처 : {{ goResCheck.phon_number }}</p>
     </div>
     <div class="my_box">
-      <router-link class="my-page" to="my-page"><p>마이페이지에서 확인하기</p></router-link>
+      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지에서 확인하기</p></button>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'GoResCheck',
+  data() {
+    return {
+      goResCheck: this.$route.params
+    }
+  },
+  methods: {
+    goMy() {
+      this.$router.push({
+        name: 'goMy'
+      })
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .body {
   background: #eee;
+  height: 100%;
+  min-height: 100vh;
+}
+.loop_box {
+  overflow: hidden;
+  width: 100vw;
+  margin-top: 20px;
+  .loop {
+    width: 130px;
+    height: 110px;
+    background: url(../../assets/images/logo.gif) center no-repeat;
+    background-size: contain;
+    animation-duration: 10s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+  }
+  p:first-of-type {
+    font-size: 2em;
+    color: $main;
+  }
+  p {
+    margin-top: 12px;
+  }
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: -130px;
+  }
 }
 .top {
   position: fixed;
@@ -134,67 +190,37 @@ export default {}
     border-top: 0;
   }
 }
-@media all and(max-width:767px) {
-  .top {
+.my_box {
+  width: 100%;
+  color: #fff;
+  margin: auto;
+  padding: 20px;
+  background: $main;
+  border: 1px solid $main;
+  margin-top: 20px;
+  font-size: 2em;
+  button {
     width: 100%;
-    padding: 20px;
-    padding-top: 60px;
-    height: 260px;
+    height: 100%;
+    border: 0;
+    background: 0;
+    color: #fff;
   }
-  .filter {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    > div {
-      width: 50%;
-    }
-  }
-  .rank,
-  .fuel {
-    .sub {
-      font-size: 1.6em;
-      text-align: center;
-      line-height: 0.8em;
-    }
-    > div {
-      input {
-        width: 12px;
-        height: 12px;
-      }
-    }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 10px;
-      font-size: 1em;
-    }
-  }
-  .date_time {
-    flex-wrap: wrap;
+}
+.my_box:hover {
+  background: $sub;
+}
+@media all and(max-width:767px) {
+  .reservation {
+    background: #fff;
     width: 100%;
     margin: auto;
-    .sub {
-      color: $main;
-      font-size: 1.2em;
-      text-align: center;
+    input {
+      width: 90%;
+      margin: auto;
     }
-  }
-  .sort {
-    flex-direction: column;
-    font-size: 0.8em;
-    ul {
-      display: flex;
-      justify-content: center;
-      line-height: 30px;
-    }
-    .search_box {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      flex-wrap: wrap;
-      .stage-search {
-        font-size: 0.8em;
-        width: 50%;
-      }
+    .pay {
+      width: 100%;
     }
   }
   .contents_list {
@@ -219,16 +245,16 @@ export default {}
       order: 0;
       overflow: hidden;
       background: #fff;
-
       img {
         height: 150px;
+        width: auto;
       }
     }
     .contents_box {
       display: flex;
       flex-wrap: wrap;
       // border: 1px solid red;
-      height: 140px;
+      height: 220px;
       width: 100%;
       justify-content: space-between;
       .c_box_01 {
@@ -248,8 +274,10 @@ export default {}
         flex-flow: column;
         justify-content: space-between;
         order: 2;
-        text-align: right;
-        .car_name {
+        width: 40%;
+        min-width: 70px;
+        text-align: center;
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
@@ -265,9 +293,9 @@ export default {}
       .c_box_03 {
         position: relative;
         order: 3;
-        width: 100%;
-        text-align: right;
-        align-self: flex-end;
+        width: 40%;
+        text-align: center;
+        align-self: flex-start;
         font-size: 2em;
         color: $main;
         button {
@@ -282,96 +310,31 @@ export default {}
           background: $sub;
         }
       }
+      .c_box_04 {
+        width: 60%;
+        order: 4;
+        text-align: right;
+        display: flex;
+        flex-flow: column;
+        line-height: 1.4em;
+        font-size: 1em;
+        padding-right: 50px;
+      }
     }
   }
 }
 @media all and(min-width:768px) {
-  .top {
-    width: 701px;
-    padding: 20px;
-    padding-top: 80px;
-  }
-  .filter {
-    display: flex;
-    > div {
-      width: 47%;
-      margin-left: 3%;
-    }
-  }
-  .rank,
-  .fuel {
-    .sub {
-      margin-left: 5px;
-      font-size: 1.8em;
-      text-align: left;
-    }
-    > div {
-      input {
-        width: 16px;
-        height: 16px;
-      }
-    }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 14px;
-      font-size: 1.2em;
-    }
-  }
-  .date_time {
-    .sub {
-      font-size: 1.2em;
-      text-align: left;
-      color: $main;
-    }
-  }
-  .sort {
-    display: flex;
-    justify-content: space-between;
-    height: 30px;
-    margin-left: 3%;
-    flex-direction: row;
-    a {
-      color: #5e5e5e;
-    }
-    ul {
-      display: flex;
-      justify-content: flex-start;
-      line-height: 40px;
-      width: 30%;
-      li {
-        a:hover {
-          color: $main;
-        }
-      }
-    }
-    .search_box {
-      width: 45%;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      .stage-search {
-        font-size: 0.8em;
-        width: 70%;
-        text-align: left;
-      }
-      #search:hover {
-        background: $sub;
-        color: #fff;
-        border-left: 0;
-        border: 1px solid $main;
-      }
-      #reset:hover {
-        color: $main;
-      }
-    }
-  }
-  .contents_list {
-    width: 702px;
+  .reservation {
+    background: #fff;
+    width: 700px;
     margin: auto;
-    padding-top: 214px;
-    border: 1px solid #eeeeee;
-    background-color: #ffffff;
-    border-top: 0;
+    input {
+      // width: 50%;
+      margin: auto;
+    }
+    .pay {
+      width: 700px;
+    }
   }
   .contents {
     background: #fff;
@@ -417,12 +380,13 @@ export default {}
         justify-content: space-between;
         order: 2;
         text-align: right;
-        .car_name {
+        .car_rank {
           padding: 10px 20px;
           display: block;
           color: #fff;
           font-size: 1.6em;
           background: $sub;
+          border: 1px solid red;
         }
         .star {
           font-size: 1.4em;
@@ -451,7 +415,20 @@ export default {}
           background: $sub;
         }
       }
+      .c_box_04 {
+        width: 60%;
+        order: 4;
+        text-align: right;
+        display: flex;
+        flex-flow: column;
+        align-self: flex-end;
+        padding: 0 10px 20px;
+      }
     }
+  }
+  .my_box {
+    position: absolute;
+    bottom: 0;
   }
 }
 </style>

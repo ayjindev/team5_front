@@ -4,16 +4,16 @@
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
-          <div><input v-model="allRanks" type="checkbox" /><label :for="allranks">전체</label></div>
+          <div><input v-model="allRanks" type="checkbox" @click="selectAllRanks()" /><label>전체</label></div>
           <div v-for="(rank, index) in ranks" :key="index">
-            <input v-model="rank.value" type="checkbox" /><label :for="ranks">{{ rank.name }}</label>
+            <input v-model="rank.value" type="checkbox" name="ranks" /><label>{{ rank.name }}</label>
           </div>
         </div>
         <div class="fuel">
           <h2 class="sub">연료</h2>
-          <div><input v-model="allFuel" type="checkbox" /><label :for="allFuel">전체</label></div>
+          <div><input v-model="allFuels" type="checkbox" @click="selectAllFuels()" /><label>전체</label></div>
           <div v-for="(fuel, index) in fuels" :key="index">
-            <input v-model="fuel.value" type="checkbox" /><label :for="fuels">{{ fuel.name }}</label>
+            <input v-model="fuel.value" type="checkbox" name="fuels" /><label>{{ fuel.name }}</label>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="contents_list">
-      <div v-for="car in dataRows" :key="car" class="contents">
+      <div v-for="car in dataRows" :key="car.index" class="contents">
         <div class="img_box">
           <img :src="car.img" :alt="car.name" />
         </div>
@@ -115,7 +115,7 @@ export default {
         }
       ],
       allRanks: true,
-      allFuel: true,
+      allFuels: true,
       search: '',
       cars: [
         {
@@ -137,14 +137,14 @@ export default {
         {
           img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
           name: '아우디 A6 세단 F/L',
-          fuel: '경유' + ',' + '휘발유',
+          fuel: '경유',
           rank: '중형',
           star: 3.2,
           price: 112000
         },
         {
           img: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'),
-          name: '아우디 A6 세단 F/L',
+          name: '제네시스 GV70',
           fuel: '전기',
           rank: '중형',
           star: 3.6,
@@ -154,6 +154,28 @@ export default {
     }
   },
   computed: {
+    allRanksCheck() {
+      const result = this.ranks.reduce((count, data) => (data['value'] === true ? count + 1 : count), 0)
+      // console.log(result)
+      if (result >= 7) {
+        // console.log('전체 체크 true')
+        return (this.allRanks = true)
+      } else if (result < 7) {
+        // console.log('전체 체크 해제')
+        return (this.allRanks = false)
+      }
+    },
+    allFuelsCheck() {
+      const result = this.fuels.reduce((count, data) => (data['value'] === true ? count + 1 : count), 0)
+      // console.log(result)
+      if (result >= 5) {
+        // console.log('연료 전체 체크 true')
+        return (this.allFuels = true)
+      } else if (result < 5) {
+        // console.log('연료 전체 체크 false')
+        return (this.allFuels = false)
+      }
+    },
     filterRanks() {
       const rankstrueList = this.ranks.filter(v => v.value === true)?.map(v => v.name)
       return this.cars.filter(v => rankstrueList.includes(v.rank))
@@ -170,15 +192,33 @@ export default {
       })
     }
   },
+  watch: {
+    allRanksCheck() {},
+    allFuelsCheck() {}
+  },
   methods: {
+    selectAllFuels() {
+      if (this.allFuels === true) {
+        return this.fuels.forEach(element => (element.value = false))
+      } else {
+        return this.fuels.forEach(element => (element.value = true))
+      }
+    },
+    selectAllRanks() {
+      // console.log('allRanks 실행')
+      if (this.allRanks === true) {
+        return this.ranks.forEach(element => (element.value = false))
+      } else {
+        return this.ranks.forEach(element => (element.value = true))
+      }
+    },
     dataRows() {
       return
     },
     goRes(props) {
       console.log(props)
       this.$router.push({
-        // path: '/reservation',
-        name: 'cars',
+        name: 'goRes',
         params: props
       })
     },
@@ -208,6 +248,8 @@ export default {
 <style lang="scss" scoped>
 .body {
   background: #eee;
+  height: 100%;
+  min-height: 100vh;
 }
 .top {
   position: fixed;
@@ -225,6 +267,7 @@ export default {
   .sub {
     color: $main;
     display: block;
+    margin-bottom: 4px;
   }
   > div {
     width: 80px;
