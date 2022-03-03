@@ -1,17 +1,34 @@
 <template>
-  <div>
+  <div id="body" style="padding-top: 5%">
     <div>
-      <b-row align-h="center">
-        <b-col cols="4">
-          <b-card title="로그인" style="margin-top: 25vh">
-            <b-form-group label-cols="4" label-cols-lg="3" label="아이디" label-for="loginId">
-              <b-form-input id="loginId" ref="loginId" v-model="userLogin.loginId"></b-form-input>
+      <b-row id="b-row" align-h="center">
+        <b-col id="b-col" cols="3">
+          <b-card id="b-card" title="로그인" style="margin-top: 25vh">
+            <b-form-group>
+              <label id="idlabel" for="loginId">아이디</label>
+              <b-form-input
+                id="loginId"
+                ref="loginId"
+                v-model="userLogin.loginId"
+                required
+                size="sm"
+                trim
+              ></b-form-input>
             </b-form-group>
-            <b-form-group label-cols="4" label-cols-lg="3" label="비밀번호" label-for="loginPw">
-              <b-form-input id="loginPw" ref="loginPw" v-model="userLogin.loginPw" type="password"></b-form-input>
+            <b-form-group>
+              <label id="pwlabel" for="loginPw">비밀번호</label>
+              <b-form-input
+                id="loginPw"
+                ref="loginPw"
+                v-model="userLogin.loginPw"
+                type="password"
+                required
+                size="sm"
+                trim
+              ></b-form-input>
             </b-form-group>
-            <b-form-group label-cols="4" label-cols-lg="3" label="">
-              <b-button variant="primary" @click="onSubmit">로그인</b-button>
+            <b-form-group label-cols="3" label-cols-lg="3" label="">
+              <b-button id="loginBtn" variant="primary" @click="onSubmit">로그인</b-button>
             </b-form-group>
           </b-card>
         </b-col>
@@ -105,4 +122,69 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+#body,
+#b-row {
+  width: 90vw;
+  overflow-x: hidden;
+  margin: auto;
+}
+#b-col {
+  width: 30%;
+  min-width: 460px;
+  margin: auto;
+}
+#b-card {
+  font-size: 1.4rem;
+  width: 100%;
+  padding-bottom: 20px;
+  margin: auto;
+}
+#idlabel,
+#pwlabel {
+  font-size: 0.8em;
+  margin: 20px 0 10px;
+}
+
+#loginId,
+#loginPw {
+  border-radius: 20px;
+  margin: 10px 0;
+  text-align: center;
+  width: 70%;
+  margin: auto;
+}
+#input-live-feedback {
+  font-size: 0.6em;
+  line-height: 1.4em;
+}
+.btn {
+  background: $main;
+  border: 0px;
+}
+.btn:hover {
+  background: $sub;
+}
+.btn-primary {
+  width: 100%;
+  height: 50px;
+}
+
+@media all and(max-width:767px) {
+  #b-col,
+  #body,
+  #b-row {
+    width: 100%;
+  }
+  #b-card {
+    margin-top: 30px;
+    font-size: 1.4em;
+    width: 100%;
+  }
+  #loginBtn {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+  }
+}
+</style>

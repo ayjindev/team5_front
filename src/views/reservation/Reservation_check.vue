@@ -389,7 +389,6 @@ export default {
           color: #fff;
           font-size: 1.6em;
           background: $sub;
-          border: 1px solid red;
         }
         .star {
           font-size: 1.4em;
