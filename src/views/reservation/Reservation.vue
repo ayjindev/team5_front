@@ -43,7 +43,6 @@
           >원 입금 완료
         </button>
       </div>
-      <button @click="hah">hah</button>
     </div>
   </div>
 </template>
@@ -73,9 +72,6 @@ export default {
     }
   },
   methods: {
-    hah() {
-      console.log(this.goRes)
-    },
     goResCheck(props) {
       console.log(props)
       this.$router.push({
@@ -190,16 +186,15 @@ input {
     flex-wrap: wrap;
     flex-flow: column;
     .img_box {
-      width: 100%;
-      // height: 200px;
+      height: 150px;
       // border: 1px solid red;
       order: 0;
       overflow: hidden;
       background: #fff;
-      a {
-        img {
-          height: 150px;
-        }
+
+      img {
+        height: 150px;
+        width: auto;
       }
     }
     .contents_box {
