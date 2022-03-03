@@ -5,10 +5,10 @@
         <b-col cols="4">
           <b-card title="로그인" style="margin-top: 25vh">
             <b-form-group label-cols="4" label-cols-lg="3" label="아이디" label-for="loginId">
-              <b-form-input id="loginId" ref="loginId" v-model="userLogin.loginId"></b-form-input>
+              <b-form-input id="loginId" ref="loginId" v-model="userLogin.loginId" trim></b-form-input>
             </b-form-group>
             <b-form-group label-cols="4" label-cols-lg="3" label="비밀번호" label-for="loginPw">
-              <b-form-input id="loginPw" ref="loginPw" v-model="userLogin.loginPw" type="password"></b-form-input>
+              <b-form-input id="loginPw" ref="loginPw" v-model="userLogin.loginPw" trim type="password"></b-form-input>
             </b-form-group>
             <b-form-group label-cols="4" label-cols-lg="3" label="">
               <b-button variant="primary" @click="onSubmit">로그인</b-button>
@@ -37,39 +37,33 @@ export default {
     tokenUser() {
       return this.$store.getters.TokenUser
     },
-    isLoginSuccess() {
-      return this.$store.getters.IsLoginSuccess
-    },
     error() {
       return this.$store.getters.Error
     }
   },
   watch: {
-    isLoginSuccess(value) {
-      console.log('watch.isLoginSuccess', value)
-      if (value === true) {
-        console.log('if.watch.tokenUser', value)
+    tokenUser(value) {
+      console.log('watch.tokenUser', value)
+      if (value && value.id && value.id !== null) {
         // 로그인이 완료된 상황
         this.$router.replace('/main') // 메인 페이지 이동
-      } else if (value === false) {
+      }
+    },
+    error(errValue) {
+      if (errValue !== null) {
+        // 메세지 출력
         alert('아이디, 비밀번호를 확인해 주세요')
       }
     }
-    // error(errValue) {
-    //   if (errValue !== null) {
-    //     // 메세지 출력
-    //     alert('아이디, 비밀번호를 확인해 주세요')
-    //     return false
-    //   }
-    // }
   },
   created() {
     // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
-    // const token = document.cookie('token')
-    const token = this.$cookies.get('auth')
+    // const token = document.cookie('auth')
+    const token = VueCookies.get('auth')
     console.log('쿠키 토큰 존재', token)
     if (token) {
       const decodedToken = jwtDecode(token)
+      console.log('decodedToken.exp', decodedToken.exp)
       const today = new Date()
       const expDate = new Date(decodedToken.exp * 1000)
 
@@ -78,13 +72,13 @@ export default {
         this.$router.replace('/main') // 메인 페이지로 이동
       } else {
         // 토큰이 만료된 경우
-        this.$cookies.remove('auth') // 토큰 삭제
+        VueCookies.remove('auth') // 토큰 삭제
       }
     }
   },
   methods: {
     // 공란 비허용
-    checkInput() {
+    nullCheckInput() {
       if (this.userLogin.loginId == null || this.userLogin.loginId == '') {
         alert('아이디를 입력해 주세요')
         this.$refs.loginId.focus()
@@ -97,7 +91,7 @@ export default {
     },
 
     onSubmit() {
-      this.checkInput()
+      this.nullCheckInput() // 아무것도 입력하지 않은 상태 체크
 
       this.$store.dispatch('actauthLogin', { ...this.userLogin })
     }
