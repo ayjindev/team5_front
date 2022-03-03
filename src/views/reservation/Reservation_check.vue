@@ -61,7 +61,7 @@ export default {
   min-height: 100vh;
 }
 .loop_box {
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100vw;
   margin-top: 20px;
   .loop {
@@ -191,14 +191,13 @@ export default {
   }
 }
 .my_box {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   color: #fff;
   margin: auto;
   padding: 20px;
   background: $main;
   border: 1px solid $main;
+  margin-top: 20px;
   font-size: 2em;
   button {
     width: 100%;
@@ -246,10 +245,9 @@ export default {
       order: 0;
       overflow: hidden;
       background: #fff;
-      a {
-        img {
-          height: 150px;
-        }
+      img {
+        height: 150px;
+        width: auto;
       }
     }
     .contents_box {
@@ -430,6 +428,10 @@ export default {
         padding: 0 10px 20px;
       }
     }
+  }
+  .my_box {
+    position: absolute;
+    bottom: 0;
   }
 }
 </style>
