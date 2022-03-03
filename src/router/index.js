@@ -14,6 +14,10 @@ const routes = [
     component: Main
   },
   {
+    path: '/go',
+    component: () => import('../views/main/go.vue')
+  },
+  {
     path: '/reservation',
     component: () => import('../views/reservation/Reservation.vue'),
     name: 'goRes',
