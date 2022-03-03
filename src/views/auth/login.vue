@@ -3,7 +3,7 @@
     <div>
       <b-row id="b-row" align-h="center">
         <b-col id="b-col" cols="3">
-          <b-card id="b-card" title="로그인" style="margin-top: 25vh">
+          <b-card id="b-card" title="로그인" style="margin-top: 20vh">
             <b-form-group>
               <label id="idlabel" for="loginId">아이디</label>
               <b-form-input
@@ -136,6 +136,7 @@ export default {
 }
 #b-card {
   font-size: 1.4rem;
+  padding-top: 20px;
   width: 100%;
   padding-bottom: 20px;
   margin: auto;
@@ -161,6 +162,7 @@ export default {
 .btn {
   background: $main;
   border: 0px;
+  margin-top: 20px;
 }
 .btn:hover {
   background: $sub;
