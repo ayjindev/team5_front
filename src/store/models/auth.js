@@ -6,22 +6,19 @@ const stateInit = {
     id: null,
     iat: null,
     exp: null
-  },
-  IsLoginSuccess: null
+  }
 }
 
 export default {
   state: {
     // state에 사용할 모델이나 값을 선언 한다.
     TokenUser: { ...stateInit.TokenUser },
-    Error: null,
-    IsLoginSuccess: { ...stateInit.IsLoginSuccess }
+    Error: null
   },
   getters: {
     // getters을 통해 state값을 호출 한다.
     TokenUser: state => state.TokenUser,
-    Error: state => state.Error,
-    IsLoginSuccess: state => state.IsLoginSuccess
+    Error: state => state.Error
   },
   mutations: {
     // 동기적
@@ -38,9 +35,6 @@ export default {
     setLogout(state) {
       state.Error = null
       state.TokenUser = { ...stateInit.TokenUser }
-    },
-    setIsLoginSuccess(state, data) {
-      state.IsLoginSuccess = data
     }
   },
   actions: {

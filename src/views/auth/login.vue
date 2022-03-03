@@ -58,21 +58,18 @@ export default {
   },
   created() {
     // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
-    // const token = document.cookie('auth')
-    const token = VueCookies.get('auth')
-    console.log('쿠키 토큰 존재', token)
+    const token = window.localStorage.getItem('accessToken')
     if (token) {
       const decodedToken = jwtDecode(token)
-      console.log('decodedToken.exp', decodedToken.exp)
       const today = new Date()
       const expDate = new Date(decodedToken.exp * 1000)
 
       if (expDate && expDate >= today) {
         // 토큰이 유효한 경우
-        this.$router.replace('/main') // 메인 페이지로 이동
+        this.$router.push('/main') // 메인 페이지 이동
       } else {
         // 토큰이 만료된 경우
-        VueCookies.remove('auth') // 토큰 삭제
+        window.localStorage.removeItem('accessToken') // 토큰 삭제
       }
     }
   },
