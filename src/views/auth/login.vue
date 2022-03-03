@@ -22,7 +22,6 @@
 
 <script>
 import jwtDecode from 'jwt-decode'
-import VueCookies from 'vue-cookies'
 
 export default {
   data() {
