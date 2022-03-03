@@ -13,11 +13,13 @@ export default {
   state: {
     // state에 사용할 모델이나 값을 선언 한다.
     TokenUser: { ...stateInit.TokenUser },
+    Loading: null,
     Error: null
   },
   getters: {
     // getters을 통해 state값을 호출 한다.
     TokenUser: state => state.TokenUser,
+    TokenLoading: state => state.Loading,
     Error: state => state.Error
   },
   mutations: {
@@ -25,7 +27,12 @@ export default {
     setTokenUser(state, data) {
       state.TokenUser = data
     },
+    setTokenLoading(state, data) {
+      state.TokenLoading = data
+      state.Error = null
+    },
     setError(state, data) {
+      state.Loading = false
       state.Error = data
       state.TokenUser = { ...stateInit.TokenUser }
     },
@@ -33,6 +40,7 @@ export default {
       state.Error = null
     },
     setLogout(state) {
+      state.Loading = false
       state.Error = null
       state.TokenUser = { ...stateInit.TokenUser }
     }
@@ -46,6 +54,7 @@ export default {
 
       // 상태(결과)값 초기화
       context.commit('clearError')
+      context.commit('setLoading', true)
 
       /* RestAPI 호출 */
       api
@@ -56,13 +65,31 @@ export default {
           const decodedToken = jwtDecode(token)
           console.log('token', decodedToken)
 
+          // 정상인 경우 처리
+          context.commit('setLoading', false)
           context.commit('setTokenUser', decodedToken)
         })
+        // 에러인 경우 처리
         .catch(error => {
-          // 에러인 경우 처리
+          context.commit('setLoading', false)
           context.commit('setError', error)
         })
     },
+
+    async authLogout(context) {
+      // 로그아웃 처리
+
+      // 상태값 초기화
+      context.commit('clearError')
+      context.commit('setLoading', true)
+
+      /* 테스트 데이터 세팅 */
+      setTimeout(() => {
+        context.commit('setLogout') // 로그아웃 처리
+        window.localStorage.removeItem('accessToken') // 토큰 삭제
+      }, 1000) // 처리 시간 1초
+    },
+
     authTokenUser(context, payload) {
       // 토큰 사용자 설정
       const decodedToken = jwtDecode(payload)
