@@ -73,29 +73,6 @@ export default {
       // 토큰 사용자 설정
       const decodedToken = jwtDecode(payload)
       context.commit('setTokenUser', decodedToken)
-    },
-
-    // 로그인 성공 여부 체크
-    actIsLoginSuccess(context, payload) {
-      console.log('actIsLoginSuccess', payload) // 정보가 payload를 통해 넘어옴
-
-      // 상태(결과)값 초기화
-      context.commit('setIsLoginSuccess', null)
-
-      /* RestAPI 호출 */
-      api
-        .post('/serverApi/login', payload)
-        .then(response => {
-          console.log('actIsLoginSuccess', response)
-          const isLoginResult = response && response.data && response.data.success
-
-          context.commit('setIsLoginSuccess', isLoginResult)
-        })
-        .catch(error => {
-          // 에러인 경우 처리
-          console.error('loginSucessResult.error', error)
-          context.commit('setIsLoginSuccess', -1)
-        })
     }
   }
 }
