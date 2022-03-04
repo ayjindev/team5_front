@@ -26,10 +26,10 @@
     </div>
     <div class="reservation">
       <div class="reservation_box">
-        <label>예약자 이름<input v-model="res.eservation_name" type="text" name="eservation_name" /></label>
-        <label>운전자 이름<input v-model="res.driver_name" type="text" name="driver_name" /></label>
-        <label>운전자 생년월일<input v-model="res.driver_date" type="text" name="driver_date" /></label>
-        <label>연락처<input v-model="res.phon_number" type="text" name="phon_ number" /></label>
+        <label>예약자 이름<input v-model="res.clientName" type="text" name="clientName" /></label>
+        <label>운전자 이름<input v-model="res.driverName" type="text" name="driverName" /></label>
+        <label>운전자 생년월일<input v-model="res.driverBirth" type="text" name="driverBirth" /></label>
+        <label>연락처<input v-model="res.phoneNumber" type="text" name="phoneNumber" /></label>
       </div>
       <div class="payment">
         <h3>무통장 입금</h3>
@@ -58,10 +58,10 @@ export default {
       res: {
         start: '',
         end: '',
-        eservation_name: '',
-        driver_name: '',
-        phon_number: '',
-        driver_date: '',
+        clientName: '',
+        driverName: '',
+        phoneNumber: '',
+        driverBirth: '',
         name: this.$route.params.name,
         img: this.$route.params.img,
         fuel: this.$route.params.fuel,
@@ -71,13 +71,103 @@ export default {
       }
     }
   },
+  computed: {
+    // 이름 유효성 검사
+    clientNameState() {
+      return this.user.clientName.length > 1 && /^[가-힣]*$/.test(this.user.clientName) // 한글 2자리 이상
+    },
+    driverNameState() {
+      return this.user.driverName.length > 1 && /^[가-힣]*$/.test(this.user.driverName) // 한글 2자리 이상
+    }
+  },
   methods: {
     goResCheck(props) {
       console.log(props)
-      this.$router.push({
-        name: 'goResCheck',
-        params: props
-      })
+      if (this.checkInput() === false) {
+        // 유효성/공란 체크
+        return false
+      } else {
+        this.$router.push({
+          name: 'goResCheck',
+          params: props
+        })
+      }
+    },
+
+    // 공란 및 유효성 여부 체크
+    checkInput() {
+      const inputForm = this.res
+      // console.log(inputForm)
+      if (inputForm.clientName == '') {
+        alert('예약자 성함을 입력해 주세요')
+        this.$refs.clientName.focus()
+        return false
+      } else if (this.clientNameState === false) {
+        this.$refs.clientName.focus()
+        return false
+      }
+
+      if (inputForm.driverName == '') {
+        alert('운전자 성함을 입력해 주세요')
+        this.$refs.driverName.focus()
+        return false
+      } else if (this.driverNameState === false) {
+        this.$refs.driverName.focus()
+        return false
+      }
+
+      if (inputForm.phoneNumber == '') {
+        alert('전화번호를 입력해 주세요')
+        this.$refs.phoneNumber.focus()
+        return false
+      } else if (this.formatNumber === false) {
+        alert('전화번호를 확인해 주세요')
+        this.$refs.phoneNumber.focus()
+        return false
+      }
+
+      if (inputForm.driverBirth == '') {
+        alert('생년월일을 입력해 주세요')
+        this.$refs.driverBirth.focus()
+        return false
+      } else {
+        return true
+      }
+    },
+
+    // 전화번호 글자수 제한
+    formatNumber(e) {
+      return String(e).substring(0, 13) // 최대 11자리 010-1234-5678
+    },
+
+    // 전화번호 숫자만 입력 시 파이프(-) 자동 입력
+    getPhoneMask(val) {
+      let res = this.getMask(val)
+      this.user.userPhoneNumber = res
+
+      // // 서버 전송 값에는 '-'를 제외하고 숫자만 저장
+      // this.$store.getters.User.userPhoneNumber = this.user.userPhoneNumber.replace(/[^0-9]/g, '')
+    },
+
+    getMask(inputNumber) {
+      if (!inputNumber) return inputNumber
+      inputNumber = inputNumber.replace(/[^0-9]/g, '')
+
+      let res = ''
+      if (inputNumber.length < 8) {
+        res = inputNumber
+      } else if (inputNumber.length == 8) {
+        res = inputNumber.substr(0, 4) + '-' + inputNumber.substr(4)
+      } else if (inputNumber.length == 9) {
+        res = inputNumber.substr(0, 3) + '-' + inputNumber.substr(3, 3) + '-' + inputNumber.substr(6)
+      } else if (inputNumber.length == 10) {
+        res = inputNumber.substr(0, 3) + '-' + inputNumber.substr(3, 3) + '-' + inputNumber.substr(6)
+      } else if (inputNumber.length > 10) {
+        res = inputNumber.substr(0, 3) + '-' + inputNumber.substr(3, 4) + '-' + inputNumber.substr(7)
+      }
+      //   }
+      // }
+      return res
     }
   }
 }
