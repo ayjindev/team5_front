@@ -32,7 +32,7 @@
       <p>연락처 : {{ goResCheck.phon_number }}</p>
     </div>
     <div class="my_box">
-      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지 확인하기</p></button>
+      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지에서 확인하기</p></button>
     </div>
   </div>
 </template>
@@ -227,12 +227,12 @@ export default {
   .contents_list {
     width: 100%;
     margin: auto;
-    padding-top: 260px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
   }
   .contents {
+    padding-top: 50px;
     background: #fff;
     border: 1px solid #e4e4e4;
     display: flex;
@@ -257,13 +257,15 @@ export default {
       // border: 1px solid red;
       height: 220px;
       width: 100%;
+      padding-left: 20px;
       justify-content: space-between;
       .c_box_01 {
         order: 1;
+        width: 60%;
         text-align: left;
-        margin-left: 20px;
         .rank_name {
           font-weight: bold;
+          line-height: 1.8em;
           font-size: 1.4em;
         }
         dd {
@@ -338,20 +340,21 @@ export default {
     }
   }
   .contents {
+    padding-top: 59px;
+    padding-bottom: 200px;
     background: #fff;
     border: 1px solid #e4e4e4;
     display: flex;
-    width: 701px;
+    width: 700px;
     height: 200px;
     margin: auto;
     .img_box {
       width: 250px;
       height: 200px;
-      border: 1px solid red;
       margin-right: 20px;
       order: 0;
+      overflow: hidden;
       background: #fff;
-
       img {
         width: 100%;
       }
@@ -398,9 +401,9 @@ export default {
         position: relative;
         top: -1px;
         order: 3;
-        width: 100%;
-        text-align: right;
-        align-self: flex-end;
+        width: 40%;
+        text-align: left;
+        align-self: flex-start;
         font-size: 3em;
         color: $main;
         button {
