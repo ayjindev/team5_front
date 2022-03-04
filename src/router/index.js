@@ -9,7 +9,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: Go
+    component: Go,
+    meta: { noLogin: true }
   },
   {
     path: '/main',
