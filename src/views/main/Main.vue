@@ -413,7 +413,7 @@ export default {
       line-height: 3em;
     }
     .search_box {
-      padding-top: 20px;
+      padding-top: 5px;
       width: 100%;
       display: flex;
       flex-direction: row;

@@ -29,8 +29,8 @@
         </g>
       </svg>
     </div>
-    <div class="car"></div>
-    <div class="text"><router-link to="/main">예약하러 가기!</router-link></div>
+    <router-link to="/main"><div class="car"></div></router-link>
+    <!-- <div class="text">예약하러 가기!</div> -->
     <div class="sun"></div>
   </div>
 </template>
@@ -57,19 +57,19 @@ body::-webkit-scrollbar {
   display: none;
   width: 0 !important;
 }
-.text {
-  z-index: 100;
-  position: fixed;
-  top: 200px;
-  right: 35%;
-  font-size: 1.6em;
-  line-height: 200px;
-  color: #5e5e5e;
-  width: 200px;
-  height: 200px;
-  background: url('../../assets/images/go/text.png') center no-repeat;
-  background-size: contain;
-}
+// .text {
+//   z-index: 100;
+//   position: fixed;
+//   top: 200px;
+//   right: 35%;
+//   font-size: 1.6em;
+//   line-height: 200px;
+//   color: #5e5e5e;
+//   width: 200px;
+//   height: 200px;
+//   background: url('../../assets/images/go/text.png') center no-repeat;
+//   background-size: contain;
+// }
 p {
   position: fixed;
   font-weight: bold;
@@ -220,6 +220,11 @@ p {
   background-size: contain;
   width: 200px;
   height: 200px;
+  transition-duration: 1s;
+}
+.car:hover {
+  width: 230px;
+  height: 230px;
 }
 
 @media all and(max-width:767px) {
