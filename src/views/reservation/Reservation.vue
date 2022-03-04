@@ -349,7 +349,7 @@ input {
       .c_box_04 {
         width: 100%;
         order: 4;
-        text-align: right;
+        text-align: center;
         display: flex;
         flex-flow: column;
         line-height: 1.4em;
@@ -455,7 +455,7 @@ input {
       .c_box_04 {
         width: 60%;
         order: 4;
-        text-align: right;
+        text-align: center;
         display: flex;
         flex-flow: column;
         align-self: flex-end;
