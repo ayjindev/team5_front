@@ -22,16 +22,23 @@
 export default {
   computed: {
     isLoggedin() {
-      // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
       let login = false
-      const token = window.localStorage.getItem('accessToken')
-      if (token) {
-        // 로컬스토리지에 토큰 존재 여부 확인
+      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id !== null) {
         login = true
       }
-      // 토큰이 존재하지 않는 경우
       return login
     }
+    // isLoggedin() {
+    //   // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
+    //   let login = false
+    //   const token = window.localStorage.getItem('accessToken')
+    //   if (token) {
+    //     // 로컬스토리지에 토큰 존재 여부 확인
+    //     login = true
+    //   }
+    //   // 토큰이 존재하지 않는 경우
+    //   return login
+    // }
   },
   methods: {
     onClick(path) {

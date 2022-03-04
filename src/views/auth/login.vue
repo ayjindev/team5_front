@@ -28,7 +28,7 @@
               ></b-form-input>
             </b-form-group>
             <b-form-group label-cols="3" label-cols-lg="3" label="">
-              <b-button id="loginBtn" variant="primary" @click="onSubmit">로그인</b-button>
+              <b-button id="loginBtn" variant="primary" @click="onSubmit" @keyup.enter="onSubmit">로그인</b-button>
             </b-form-group>
           </b-card>
         </b-col>
