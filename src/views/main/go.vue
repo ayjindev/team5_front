@@ -30,16 +30,14 @@
       </svg>
     </div>
     <div class="car"></div>
+    <div class="text"><router-link to="/main">예약하러 가기!</router-link></div>
     <div class="sun"></div>
   </div>
 </template>
 
 <script>
-export default {
-  methods: {}
-}
+export default {}
 </script>
-
 <style lang="scss" scoped>
 .body,
 .moun,
@@ -59,6 +57,19 @@ body::-webkit-scrollbar {
   display: none;
   width: 0 !important;
 }
+.text {
+  z-index: 100;
+  position: fixed;
+  top: 200px;
+  right: 35%;
+  font-size: 1.6em;
+  line-height: 200px;
+  color: #5e5e5e;
+  width: 200px;
+  height: 200px;
+  background: url('../../assets/images/go/text.png') center no-repeat;
+  background-size: contain;
+}
 p {
   position: fixed;
   font-weight: bold;
@@ -76,12 +87,12 @@ p {
 }
 
 .back {
-  z-index: 5;
+  position: fixed;
+  z-index: 50;
   width: 100vw;
   height: 100vh;
   background-size: cover;
   background: linear-gradient(to bottom, #f0faff, #a2e1ff);
-  opacity: 40%;
 }
 
 .forest {
@@ -93,7 +104,7 @@ p {
   .far,
   .mid,
   .near {
-    z-index: 10;
+    z-index: 60;
     animation: move-forever 12s linear infinite;
     position: absolute;
     width: 900vw;
@@ -130,7 +141,7 @@ p {
 }
 
 .moun {
-  z-index: 10;
+  z-index: 60;
   height: 300px;
   position: absolute;
   bottom: 200px;
@@ -139,7 +150,7 @@ p {
   opacity: 80%;
 }
 .sun {
-  z-index: 8;
+  z-index: 68;
   width: 70px;
   height: 70px;
   position: absolute;
@@ -150,7 +161,7 @@ p {
 }
 
 .road {
-  z-index: 15;
+  z-index: 65;
   width: 100%;
   height: 200px;
   background-color: #fffcd3;
@@ -160,7 +171,7 @@ p {
 }
 
 .ocean {
-  z-index: 20;
+  z-index: 70;
   position: absolute;
   margin: 0;
   max-height: 100vh;
@@ -200,7 +211,7 @@ p {
   }
 }
 .car {
-  z-index: 50;
+  z-index: 90;
   left: 50%;
   margin-left: -100px;
   bottom: 170px;
@@ -209,5 +220,29 @@ p {
   background-size: contain;
   width: 200px;
   height: 200px;
+}
+
+@media all and(max-width:767px) {
+  p {
+    position: fixed;
+    font-weight: bold;
+    color: $sub;
+    // text-shadow: 2px 2px 2px gray;
+    left: 30%;
+    top: 30%;
+    z-index: 90;
+    margin: auto;
+    font-size: 2em;
+  }
+  .sun {
+    width: 70px;
+    height: 70px;
+    top: 130px;
+    left: 50%;
+    margin-left: -35px;
+  }
+  .mid {
+    display: none;
+  }
 }
 </style>

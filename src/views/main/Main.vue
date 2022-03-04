@@ -12,7 +12,7 @@
         <div class="fuel">
           <h2 class="sub">연료</h2>
           <div><input v-model="allFuels" type="checkbox" @click="selectAllFuels()" /><label>전체</label></div>
-          <div v-for="(fuel, index) in fuels" :key="index">
+          <div v-for="(fuel, index) in fuels" :key="index" class="no">
             <input v-model="fuel.value" type="checkbox" name="fuels" /><label>{{ fuel.name }}</label>
           </div>
         </div>
@@ -269,11 +269,15 @@ export default {
     display: block;
     margin-bottom: 4px;
   }
+  .no:nth-of-type(2n) {
+    border: 0;
+  }
   > div {
     width: 76px;
     float: left;
     margin: auto;
-    margin-top: 4px;
+    line-height: 2em;
+    border-right: 1px solid #e4e4e4;
     display: flex;
     input {
       margin: 0 5px;
@@ -372,7 +376,7 @@ export default {
     .sub {
       font-size: 1.6em;
       text-align: center;
-      line-height: 0.8em;
+      line-height: 1.8em;
     }
     > div {
       input {
@@ -399,12 +403,18 @@ export default {
   .sort {
     flex-direction: column;
     font-size: 0.8em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     ul {
       display: flex;
+      width: 50%;
       justify-content: center;
-      line-height: 30px;
+      line-height: 3em;
     }
     .search_box {
+      padding-top: 20px;
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
