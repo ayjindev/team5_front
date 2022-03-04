@@ -46,11 +46,12 @@ export default {
 .ocean,
 .back {
   width: 100vw;
+  min-width: 100vw;
 }
 .multiply {
   z-index: 90;
   position: fixed;
-  top: 0;
+  top: 100;
   left: 0;
   width: 100vw;
   height: 100vh;
