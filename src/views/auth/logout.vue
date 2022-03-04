@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="text-center" style="padding-top: 200px">
-      <b-spinner variant="secondary" style="width: 3rem; height: 3rem; padding-top: 50px"></b-spinner>
+    <div id="img_preload">
+      <div class="loder"></div>
     </div>
   </div>
 </template>
@@ -27,4 +27,31 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#img_preload {
+  height: 100vh;
+}
+.loder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  background: #fff;
+  border: 3px solid $sub;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  animation: loding 1s linear infinite;
+  -webkit-animation: loding 1s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes loding {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+</style>

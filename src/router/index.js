@@ -3,13 +3,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/main/Main.vue'
 import store from '../store'
-
+import Go from '../views/main/go.vue'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    component: Main
+    component: Go
   },
   {
     path: '/main',
@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '/go',
-    component: () => import('../views/main/go.vue'),
+    component: Go,
     meta: { noLogin: true }
   },
   {
