@@ -270,7 +270,7 @@ export default {
     margin-bottom: 4px;
   }
   > div {
-    width: 80px;
+    width: 76px;
     float: left;
     margin: auto;
     margin-top: 4px;
@@ -587,7 +587,7 @@ export default {
   .contents_list {
     width: 702px;
     margin: auto;
-    padding-top: 225px;
+    padding-top: 196px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;

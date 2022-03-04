@@ -402,6 +402,7 @@ export default {
 #b-row {
   width: 90vw;
   margin: auto;
+  overflow-x: hidden;
 }
 #b-col {
   width: 30%;
@@ -409,7 +410,7 @@ export default {
   margin: auto;
 }
 #b-card {
-  font-size: 1.4em;
+  font-size: 1.4rem;
   width: 100%;
   padding-bottom: 20px;
   margin: auto;
