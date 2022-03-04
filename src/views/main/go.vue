@@ -50,9 +50,14 @@ export default {
   width: 100vw;
   overflow: hidden;
   min-width: 100vw;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
-.forest::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
+
+.forest ::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
 }
 p {
   position: fixed;
@@ -68,12 +73,8 @@ p {
 .body {
   width: 100vw;
   height: 90vh;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }
-.body:-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera*/
-}
+
 .back {
   z-index: 5;
   width: 100vw;
@@ -84,15 +85,16 @@ p {
 }
 
 .forest {
+  position: absolute;
   left: 0;
-  height: 100px;
+  top: 0%;
+  height: 100vh;
   width: 100vw;
-  left: 0;
   .far,
   .mid,
   .near {
     z-index: 10;
-
+    animation: move-forever 12s linear infinite;
     position: absolute;
     width: 900vw;
     background-repeat: repeat-x;
@@ -112,7 +114,7 @@ p {
     animation-duration: 45s;
   }
   .near {
-    background: url('../../assets/images/go/forest1.svg') center repeat-x;
+    background: url('../../assets/images/go/forest3.svg') center repeat-x;
     height: 60px;
     bottom: 240px;
     animation-duration: 30s;
@@ -134,6 +136,7 @@ p {
   bottom: 200px;
   background: url(../../assets/images/go/moun.png) center no-repeat;
   background-size: contain;
+  opacity: 80%;
 }
 .sun {
   z-index: 8;
