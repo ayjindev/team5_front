@@ -249,5 +249,8 @@ p {
   .mid {
     display: none;
   }
+  .far {
+    height: 80px;
+  }
 }
 </style>
