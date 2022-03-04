@@ -62,6 +62,7 @@ export default {
         .post('/serverApi/register', payload)
         .then(response => {
           const insertedResult = response && response.data && response.data.success
+          // console.log('insertedResult', insertedResult)
           context.commit('setInsertedResult', insertedResult)
         })
         .catch(error => {
@@ -70,7 +71,6 @@ export default {
           context.commit('setInsertedResult', -1)
         })
     },
-
     // 회원가입 데이터 초기화
     actUserInit(context, payload) {
       context.commit('setUser', { ...stateInit.User }) // 현재 값만 들어감/setUser에 statInit.User 요소를 풀어서 넣어줌=전부 복붙(null값이 됨)

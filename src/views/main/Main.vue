@@ -1,20 +1,19 @@
-<script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
 <template>
   <div class="body">
     <div class="top">
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
-          <div><input v-model="allRanks" type="checkbox" /><label>전체</label></div>
+          <div><input v-model="allRanks" type="checkbox" @click="selectAllRanks()" /><label>전체</label></div>
           <div v-for="(rank, index) in ranks" :key="index">
-            <input v-model="rank.value" type="checkbox" /><label>{{ rank.name }}</label>
+            <input v-model="rank.value" type="checkbox" name="ranks" /><label>{{ rank.name }}</label>
           </div>
         </div>
         <div class="fuel">
           <h2 class="sub">연료</h2>
-          <div><input v-model="allFuel" type="checkbox" /><label>전체</label></div>
+          <div><input v-model="allFuels" type="checkbox" @click="selectAllFuels()" /><label>전체</label></div>
           <div v-for="(fuel, index) in fuels" :key="index">
-            <input v-model="fuel.value" type="checkbox" /><label>{{ fuel.name }}</label>
+            <input v-model="fuel.value" type="checkbox" name="fuels" /><label>{{ fuel.name }}</label>
           </div>
         </div>
       </div>
@@ -116,7 +115,7 @@ export default {
         }
       ],
       allRanks: true,
-      allFuel: true,
+      allFuels: true,
       search: '',
       cars: [
         {
@@ -155,6 +154,28 @@ export default {
     }
   },
   computed: {
+    allRanksCheck() {
+      const result = this.ranks.reduce((count, data) => (data['value'] === true ? count + 1 : count), 0)
+      // console.log(result)
+      if (result >= 7) {
+        // console.log('전체 체크 true')
+        return (this.allRanks = true)
+      } else if (result < 7) {
+        // console.log('전체 체크 해제')
+        return (this.allRanks = false)
+      }
+    },
+    allFuelsCheck() {
+      const result = this.fuels.reduce((count, data) => (data['value'] === true ? count + 1 : count), 0)
+      // console.log(result)
+      if (result >= 5) {
+        // console.log('연료 전체 체크 true')
+        return (this.allFuels = true)
+      } else if (result < 5) {
+        // console.log('연료 전체 체크 false')
+        return (this.allFuels = false)
+      }
+    },
     filterRanks() {
       const rankstrueList = this.ranks.filter(v => v.value === true)?.map(v => v.name)
       return this.cars.filter(v => rankstrueList.includes(v.rank))
@@ -171,7 +192,29 @@ export default {
       })
     }
   },
+  watch: {
+    allRanksCheck() {},
+    allFuelsCheck() {}
+  },
   methods: {
+    selectAllFuels() {
+      if (this.allFuels === true) {
+        return this.fuels.forEach(element => (element.value = false))
+      } else {
+        return this.fuels.forEach(element => (element.value = true))
+      }
+    },
+    selectAllRanks() {
+      // console.log('allRanks 실행')
+      if (this.allRanks === true) {
+        return this.ranks.forEach(element => (element.value = false))
+      } else {
+        return this.ranks.forEach(element => (element.value = true))
+      }
+    },
+    dataRows() {
+      return
+    },
     goRes(props) {
       console.log(props)
       this.$router.push({

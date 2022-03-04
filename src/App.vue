@@ -2,14 +2,14 @@
   <div id="app">
     <div id="nav">
       <router-link to="/main"><h1 id="logo">logo</h1></router-link>
-      <div>
+      <div v-if="!isLoggedin">
         <router-link to="/auth/sign">회원가입</router-link> |
         <router-link to="/auth/login">로그인</router-link>
       </div>
-      <!-- <div>
+      <div v-if="isLoggedin">
         <router-link to="/my-page">마이 페이지</router-link> |
-        <router-link to="/logout">로그아웃</router-link>
-      </div> -->
+        <router-link to="/auth/logout">로그아웃</router-link>
+      </div>
 
       <!-- <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> | |
       <router-link to="/main">Main</router-link> -->
@@ -17,6 +17,29 @@
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    isLoggedin() {
+      // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
+      let login = false
+      const token = window.localStorage.getItem('accessToken')
+      if (token) {
+        // 로컬스토리지에 토큰 존재 여부 확인
+        login = true
+      }
+      // 토큰이 존재하지 않는 경우
+      return login
+    }
+  },
+  methods: {
+    onClick(path) {
+      this.$router.push(path)
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
