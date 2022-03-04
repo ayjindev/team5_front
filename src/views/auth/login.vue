@@ -13,6 +13,7 @@
                 required
                 size="sm"
                 trim
+                @keyup.enter="onSubmit"
               ></b-form-input>
             </b-form-group>
             <b-form-group>
@@ -25,6 +26,7 @@
                 required
                 size="sm"
                 trim
+                @keyup.enter="onSubmit"
               ></b-form-input>
             </b-form-group>
             <b-form-group label-cols="3" label-cols-lg="3" label="">
