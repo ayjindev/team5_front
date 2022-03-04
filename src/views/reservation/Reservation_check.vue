@@ -32,7 +32,7 @@
       <p>연락처 : {{ goResCheck.phon_number }}</p>
     </div>
     <div class="my_box">
-      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지에서 확인하기</p></button>
+      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지 확인하기</p></button>
     </div>
   </div>
 </template>
