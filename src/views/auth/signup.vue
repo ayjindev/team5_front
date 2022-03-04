@@ -251,7 +251,7 @@ export default {
     // 공란 및 유효성 여부 체크
     checkInput() {
       const inputForm = this.user
-      // console.log(inputForm)
+
       if (inputForm.userId == '') {
         alert('아이디를 입력해 주세요')
         this.$refs.userId.focus()
@@ -311,8 +311,6 @@ export default {
         alert('생년월일을 입력해 주세요')
         this.$refs.userBirth.focus()
         return false
-      } else {
-        return true
       }
     },
 
@@ -389,14 +387,11 @@ export default {
     // Sign 버튼 눌렀을 시
     onSubmit() {
       // console.log('onSubmit', { ...this.user })
-      if (this.checkInput() === false) {
-        return false
-      } else {
-        // 초기화
-        this.$store.dispatch('actUserInit') // null값으로 초기화
-        // 등록
-        this.$store.dispatch('actUserInsert', this.user)
-      }
+      this.checkInput()
+      // 초기화
+      this.$store.dispatch('actUserInit') // null값으로 초기화
+      // 등록
+      this.$store.dispatch('actUserInsert', this.user)
     }
   }
 }
