@@ -59,7 +59,7 @@ export default {
   },
   watch: {
     tokenUser(value) {
-      console.log('watch.tokenUser', value)
+      // console.log('watch.tokenUser', value)
       if (value && value.id && value.id !== null) {
         // 로그인이 완료된 상황
         this.$router.replace('/main') // 메인 페이지 이동
@@ -100,13 +100,20 @@ export default {
         alert('비밀번호를 입력해 주세요')
         this.$refs.loginPw.focus()
         return false
+      } else {
+        return true
       }
     },
 
     onSubmit() {
-      this.nullCheckInput() // 아무것도 입력하지 않은 상태 체크
-
-      this.$store.dispatch('actauthLogin', { ...this.userLogin })
+      if (this.nullCheckInput() === false) {
+        // 공란 비허용 체크
+        return false
+        // console.log(this.nullCheckInput())
+      } else {
+        // console.log('onSubmit true')
+        this.$store.dispatch('actauthLogin', { ...this.userLogin })
+      }
     }
   }
 }
