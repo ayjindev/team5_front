@@ -18,7 +18,8 @@ const routes = [
   },
   {
     path: '/go',
-    component: () => import('../views/main/go.vue')
+    component: () => import('../views/main/go.vue'),
+    meta: { noLogin: true }
   },
   {
     path: '/reservation',
