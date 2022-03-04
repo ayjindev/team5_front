@@ -16,7 +16,7 @@
           <dd :v-model="res.star" class="star">★{{ goRes.star }}</dd>
         </div>
         <div class="price c_box_03" :v-model="res.price">
-          {{ goRes.price.toLocaleString() }}
+          {{ goRes.price }}
         </div>
         <div class="c_box_04">
           <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime>
@@ -26,10 +26,75 @@
     </div>
     <div class="reservation">
       <div class="reservation_box">
-        <label>예약자 이름<input v-model="res.clientName" type="text" name="clientName" /></label>
-        <label>운전자 이름<input v-model="res.driverName" type="text" name="driverName" /></label>
-        <label>운전자 생년월일<input v-model="res.driverBirth" type="text" name="driverBirth" /></label>
-        <label>연락처<input v-model="res.phoneNumber" type="text" name="phoneNumber" /></label>
+        <b-form-group>
+          <label for="clientName">예약자 이름</label>
+          <b-form-input
+            ref="clientName"
+            v-model="res.clientName"
+            name="clientName"
+            aria-describedby=" 예약자 이름"
+            :state="clientNameState"
+            required
+            trim
+            size="sm"
+          ></b-form-input>
+
+          <!-- 조건 미충족 시 -->
+          <b-form-invalid-feedback v-if="res.clientName" id="input-live-feedback">
+            이름은 한글 2자리 이상 입력해야 합니다
+          </b-form-invalid-feedback>
+
+          <!-- 조건 충족 시 -->
+          <b-form-text v-if="res.clientName" id="input-live-help"></b-form-text>
+        </b-form-group>
+
+        <b-form-group>
+          <label for="driverName">운전자 이름</label>
+          <b-form-input
+            ref="driverName"
+            v-model="res.driverName"
+            name="driverName"
+            aria-describedby="운전자 이름"
+            :state="driverNameState"
+            required
+            trim
+            size="sm"
+          ></b-form-input>
+
+          <!-- 조건 미충족 시 -->
+          <b-form-invalid-feedback v-if="res.driverName" id="input-live-feedback">
+            이름은 한글 2자리 이상 입력해야 합니다
+          </b-form-invalid-feedback>
+
+          <!-- 조건 충족 시 -->
+          <b-form-text v-if="res.driverName" id="input-live-help"></b-form-text>
+        </b-form-group>
+
+        <b-form-group>
+          <label for="driverBirth">운전자 생년월일</label>
+          <b-form-input
+            ref="driverBirth"
+            v-model="res.driverBirth"
+            name="driverBirth"
+            type="date"
+            size="sm"
+            required
+            trim
+          ></b-form-input>
+          <label for="phoneNumber">핸드폰 번호</label>
+          <b-form-input
+            ref="phoneNumber"
+            v-model="res.phoneNumber"
+            name="phoneNumber"
+            required
+            trim
+            placeholder="000-0000-0000"
+            type="text"
+            size="sm"
+            aria-describedby="핸드폰 번호"
+            @keyup="getPhoneMask(res.phoneNumber)"
+          ></b-form-input>
+        </b-form-group>
       </div>
       <div class="payment">
         <h3>무통장 입금</h3>
@@ -39,7 +104,7 @@
       </div>
       <div class="pay">
         <button @click="goResCheck(res)">
-          <span class="price">{{ goRes.price.toLocaleString() }}</span
+          <span class="price">{{ goRes.price }}</span
           >원 입금 완료
         </button>
       </div>
@@ -74,10 +139,10 @@ export default {
   computed: {
     // 이름 유효성 검사
     clientNameState() {
-      return this.user.clientName.length > 1 && /^[가-힣]*$/.test(this.user.clientName) // 한글 2자리 이상
+      return this.res.clientName.length > 1 && /^[가-힣]*$/.test(this.res.clientName) // 한글 2자리 이상
     },
     driverNameState() {
-      return this.user.driverName.length > 1 && /^[가-힣]*$/.test(this.user.driverName) // 한글 2자리 이상
+      return this.res.driverName.length > 1 && /^[가-힣]*$/.test(this.res.driverName) // 한글 2자리 이상
     }
   },
   methods: {
@@ -143,7 +208,7 @@ export default {
     // 전화번호 숫자만 입력 시 파이프(-) 자동 입력
     getPhoneMask(val) {
       let res = this.getMask(val)
-      this.user.userPhoneNumber = res
+      this.res.phoneNumber = res
 
       // // 서버 전송 값에는 '-'를 제외하고 숫자만 저장
       // this.$store.getters.User.userPhoneNumber = this.user.userPhoneNumber.replace(/[^0-9]/g, '')
