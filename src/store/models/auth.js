@@ -50,7 +50,7 @@ export default {
 
     // 로그인 처리
     actauthLogin(context, payload) {
-      console.log('actTokenUser', payload) // 정보가 payload를 통해 넘어옴
+      // console.log('actTokenUser', payload) // 정보가 payload를 통해 넘어옴
 
       // 상태(결과)값 초기화
       context.commit('clearError')
@@ -60,10 +60,10 @@ export default {
       api
         .post('/serverApi/login', payload)
         .then(response => {
-          console.log('actTokenUserAPI', response)
+          // console.log('actTokenUserAPI', response)
           const token = response && response.data && response.data.accessToken
           const decodedToken = jwtDecode(token)
-          console.log('token', decodedToken)
+          // console.log('token', decodedToken)
 
           // 정상인 경우 처리
           context.commit('setLoading', false)

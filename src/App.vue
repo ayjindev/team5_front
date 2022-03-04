@@ -7,7 +7,7 @@
         <router-link to="/auth/login">로그인</router-link>
       </div>
       <div v-if="isLoggedin">
-        <router-link to="/my-page">{{ tokenUserId }}님 마이 페이지</router-link> |
+        <router-link to="/my-page">마이 페이지</router-link> |
         <router-link to="/auth/logout">로그아웃</router-link>
       </div>
 
@@ -22,14 +22,15 @@
 export default {
   computed: {
     isLoggedin() {
+      // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
       let login = false
-      if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id !== null) {
+      const token = window.localStorage.getItem('accessToken')
+      if (token) {
+        // 로컬스토리지에 토큰 존재 여부 확인
         login = true
       }
+      // 토큰이 존재하지 않는 경우
       return login
-    },
-    tokenUserId() {
-      return this.$store.getters.TokenUser && this.$store.getters.TokenUser.id
     }
   },
   methods: {

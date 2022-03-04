@@ -62,6 +62,7 @@ export default {
         .post('/serverApi/register', payload)
         .then(response => {
           const insertedResult = response && response.data && response.data.success
+          // console.log('insertedResult', insertedResult)
           context.commit('setInsertedResult', insertedResult)
         })
         .catch(error => {
