@@ -75,10 +75,11 @@ p {
   font-weight: bold;
   color: $sub;
   // text-shadow: 2px 2px 2px gray;
-  left: 45%;
+  left: 50%;
   top: 20%;
   z-index: 90;
   margin: auto;
+  margin-left: -90px;
   font-size: 2em;
 }
 .body {
@@ -104,7 +105,7 @@ p {
   .far,
   .mid,
   .near {
-    z-index: 60;
+    z-index: 58;
     animation: move-forever 12s linear infinite;
     position: absolute;
     width: 900vw;
@@ -141,7 +142,7 @@ p {
 }
 
 .moun {
-  z-index: 60;
+  z-index: 57;
   height: 300px;
   position: absolute;
   bottom: 200px;
@@ -155,7 +156,7 @@ p {
   height: 70px;
   position: absolute;
   top: 130px;
-  right: 400px;
+  right: 20%;
   background: rgb(255, 222, 74);
   border-radius: 50px;
 }
