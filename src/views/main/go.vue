@@ -127,14 +127,14 @@ p {
     animation-duration: 60s;
   }
   .mid {
-    background: url('../../assets/images/go/forest2.svg') center repeat-x;
+    background: url('../../assets/images/go/forest2.svg') top repeat-x;
     bottom: 242px;
-    height: 80px;
+    height: 70px;
     animation-duration: 45s;
   }
   .near {
     background: url('../../assets/images/go/forest3.svg') center repeat-x;
-    height: 60px;
+    height: 50px;
     bottom: 240px;
     animation-duration: 30s;
   }
@@ -152,7 +152,7 @@ p {
   z-index: 58;
   height: 300px;
   position: fixed;
-  bottom: 200px;
+  bottom: 198px;
   background: url(../../assets/images/go/moun.png) center no-repeat;
   background-size: contain;
 }
@@ -254,7 +254,7 @@ p {
     margin-left: -35px;
   }
   .mid {
-    display: none;
+    // display: none;
   }
   .far {
     height: 80px;
