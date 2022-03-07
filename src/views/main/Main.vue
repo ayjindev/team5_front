@@ -173,7 +173,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('actCarList', this.searchParams) // 자동차 리스트 불러오기
+    this.$store.dispatch('actCarList') // 자동차 리스트 불러오기
   },
   watch: {
     allRanksCheck() {},
