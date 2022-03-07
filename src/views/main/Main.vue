@@ -537,6 +537,7 @@ export default {
       margin-left: 5px;
       font-size: 1.8em;
       text-align: left;
+      margin-bottom: 10px;
     }
     > div {
       input {
