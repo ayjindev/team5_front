@@ -48,6 +48,10 @@ export default {
     }
   },
   computed: {
+    tokenPost() {
+      const token = window.localStorage.getItem('accessToken')
+      return token
+    },
     myUserInfo() {
       return this.$store.getters.myUser
     }
