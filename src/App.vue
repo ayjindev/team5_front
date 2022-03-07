@@ -21,6 +21,13 @@
 <script>
 export default {
   computed: {
+    // isLoggedin() {
+    //   let login = false
+    //   if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+    //     login = true
+    //   }
+    //   return login
+    // }
     isLoggedin() {
       // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
       let login = false
