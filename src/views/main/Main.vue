@@ -56,7 +56,12 @@
       </div>
     </div> -->
     <b-input-group style="width: 100px">
-      <b-form-input placeholder="검색하세요" size="sm" @keyup.ctrl.enter="searchCarList"></b-form-input>
+      <b-form-input
+        v-model="searchParams"
+        placeholder="검색하세요"
+        size="sm"
+        @keyup.ctrl.enter="searchCarList"
+      ></b-form-input>
       <b-input-group-append>
         <b-button variant="primary" size="sm" @click="searchCarList">검색</b-button>
       </b-input-group-append>
@@ -191,8 +196,8 @@ export default {
   methods: {
     searchCarList() {
       // 검색 기능 설정
-      this.$store.dispatch('actCarList', this.searchParams)
       console.log('검색기능', this.searchParams)
+      this.$store.dispatch('actCarList', this.searchParams)
     },
     selectAllFuels() {
       if (this.allFuels === true) {
