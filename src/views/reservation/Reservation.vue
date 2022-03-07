@@ -315,7 +315,7 @@ input {
 @media all and(max-width:767px) {
   .reservation {
     background: #fff;
-    width: 100%;
+
     margin: auto;
     input {
       width: 70%;
