@@ -29,11 +29,11 @@
           <li><a @click="starLow">평점 낮은순</a></li>
         </ul>
         <div class="search_box">
-          <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
+          <input class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
         </div>
       </div>
     </div>
-    <div class="contents_list">
+    <!-- <div class="contents_list">
       <div v-for="car in dataRows" :key="car.index" class="contents">
         <div class="img_box">
           <img :src="car.img" :alt="car.name" />
@@ -54,7 +54,13 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <b-input-group style="width: 100px">
+      <b-form-input placeholder="검색하세요" size="sm" @keyup.ctrl.enter="searchCarList"></b-form-input>
+      <b-input-group-append>
+        <b-button variant="primary" size="sm" @click="searchCarList">검색</b-button>
+      </b-input-group-append>
+    </b-input-group>
   </div>
 </template>
 <script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.js"></script>
@@ -62,6 +68,9 @@
 export default {
   data: function () {
     return {
+      searchParams: {
+        name: ''
+      },
       ranks: [
         {
           name: '경형',
@@ -119,41 +128,21 @@ export default {
       search: '',
       cars: [
         {
-          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
-          name: '르노삼성 SM6 F/L',
-          fuel: '휘발유',
-          rank: '중형',
-          star: 3.8,
-          price: 126000
-        },
-        {
-          img: require('@/assets/images/car/볼보_xc60_2세대.png'),
-          name: '볼보 XC60',
-          fuel: '휘발유',
-          rank: 'SUV',
-          star: 3.7,
-          price: 166000
-        },
-        {
-          img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
-          name: '아우디 A6 세단 F/L',
-          fuel: '경유',
-          rank: '중형',
-          star: 3.2,
-          price: 112000
-        },
-        {
-          img: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'),
-          name: '제네시스 GV70',
-          fuel: '전기',
-          rank: '중형',
-          star: 3.6,
-          price: 172000
+          key: img,
+          key: name,
+          key: fuel,
+          key: rank,
+          key: star,
+          key: price
         }
       ]
     }
   },
   computed: {
+    carList() {
+      // 자동차 리스트 불러오기
+      return this.$store.getters.CarList
+    },
     allRanksCheck() {
       const result = this.ranks.reduce((count, data) => (data['value'] === true ? count + 1 : count), 0)
       // console.log(result)
@@ -192,11 +181,19 @@ export default {
       })
     }
   },
+  created() {
+    this.searchCarList() // 자동차 리스트 불러오기
+  },
   watch: {
     allRanksCheck() {},
     allFuelsCheck() {}
   },
   methods: {
+    searchCarList() {
+      // 검색 기능 설정
+      this.$store.dispatch('actCarList', this.searchParams)
+      console.log('검색기능', this.searchParams)
+    },
     selectAllFuels() {
       if (this.allFuels === true) {
         return this.fuels.forEach(element => (element.value = false))
