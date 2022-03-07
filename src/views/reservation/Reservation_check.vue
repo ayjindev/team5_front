@@ -26,13 +26,13 @@
     <div class="loop_box">
       <div class="loop"></div>
       <p>예약이 완료되었습니다</p>
-      <p>예약자 이름 : {{ goResCheck.eservation_name }}</p>
-      <p>운전자 이름 : {{ goResCheck.driver_name }}</p>
-      <p>운전자 생년월일 : {{ goResCheck.driver_date }}</p>
-      <p>연락처 : {{ goResCheck.phon_number }}</p>
+      <p>예약자 이름 : {{ goResCheck.clientName }}</p>
+      <p>운전자 이름 : {{ goResCheck.driverName }}</p>
+      <p>운전자 생년월일 : {{ goResCheck.driverBirth }}</p>
+      <p>연락처 : {{ goResCheck.phoneNumber }}</p>
     </div>
     <div class="my_box">
-      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지에서 확인하기</p></button>
+      <button class="my-page" to="my-page" @click="goMy"><p>마이페이지 확인하기</p></button>
     </div>
   </div>
 </template>
