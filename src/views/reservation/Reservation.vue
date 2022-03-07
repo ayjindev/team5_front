@@ -318,7 +318,7 @@ input {
     width: 100%;
     margin: auto;
     input {
-      width: 90%;
+      width: 70%;
       margin: auto;
     }
     .pay {
@@ -430,7 +430,7 @@ input {
     width: 700px;
     margin: auto;
     input {
-      // width: 50%;
+      width: 50%;
       margin: auto;
     }
     .pay {
