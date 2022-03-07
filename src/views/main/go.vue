@@ -141,13 +141,12 @@ p {
 }
 
 .moun {
-  z-index: 60;
+  z-index: 58;
   height: 300px;
-  position: absolute;
+  position: fixed;
   bottom: 200px;
   background: url(../../assets/images/go/moun.png) center no-repeat;
   background-size: contain;
-  opacity: 80%;
 }
 .sun {
   z-index: 68;
