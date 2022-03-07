@@ -44,9 +44,9 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .get('/serverApi/main', { params: payload })
+        .get('/serverApi/main')
         .then(response => {
-          const carList = response && response.data && response.data.rows
+          const carList = response && response.data
           context.commit('setCarList', carList)
         })
         .catch(error => {

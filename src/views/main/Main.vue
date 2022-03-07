@@ -29,7 +29,7 @@
           <li><a @click="starLow">평점 낮은순</a></li>
         </ul>
         <div class="search_box">
-          <input class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
+          <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
         </div>
       </div>
     </div>
@@ -55,17 +55,6 @@
         </div>
       </div>
     </div> -->
-    <b-input-group style="width: 100px">
-      <b-form-input
-        v-model="searchParams"
-        placeholder="검색하세요"
-        size="sm"
-        @keyup.ctrl.enter="searchCarList"
-      ></b-form-input>
-      <b-input-group-append>
-        <b-button variant="primary" size="sm" @click="searchCarList">검색</b-button>
-      </b-input-group-append>
-    </b-input-group>
   </div>
 </template>
 <script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.js"></script>
@@ -73,9 +62,6 @@
 export default {
   data: function () {
     return {
-      searchParams: {
-        name: ''
-      },
       ranks: [
         {
           name: '경형',
@@ -187,18 +173,18 @@ export default {
     }
   },
   created() {
-    this.searchCarList() // 자동차 리스트 불러오기
+    this.$store.dispatch('actCarList', this.searchParams) // 자동차 리스트 불러오기
   },
   watch: {
     allRanksCheck() {},
     allFuelsCheck() {}
   },
   methods: {
-    searchCarList() {
-      // 검색 기능 설정
-      console.log('검색기능', this.searchParams)
-      this.$store.dispatch('actCarList', this.searchParams)
-    },
+    // searchCarList() {
+    //   // 검색 기능 설정
+    //   console.log('검색기능', this.searchParams)
+    //   this.$store.dispatch('actCarList', this.searchParams)
+    // },
     selectAllFuels() {
       if (this.allFuels === true) {
         return this.fuels.forEach(element => (element.value = false))
