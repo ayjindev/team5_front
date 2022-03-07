@@ -269,6 +269,7 @@ export default {
           font-size: 1.4em;
         }
         dd {
+          line-height: 1.2em;
           font-size: 1em;
         }
       }
@@ -375,6 +376,7 @@ export default {
           line-height: 2em;
         }
         dd {
+          line-height: 1.6em;
           font-size: 1.2em;
         }
       }

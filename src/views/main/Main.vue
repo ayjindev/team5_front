@@ -471,6 +471,7 @@ export default {
         }
         dd {
           font-size: 1em;
+          line-height: 1.4em;
         }
       }
       .c_box_02 {
@@ -646,6 +647,7 @@ export default {
         }
         dd {
           font-size: 1.2em;
+          line-height: 1.6em;
         }
       }
       .c_box_02 {
