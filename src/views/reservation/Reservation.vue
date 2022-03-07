@@ -7,20 +7,20 @@
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt :v-model="res.name" class="rank_name">{{ goRes.name }}</dt>
-          <dd :v-model="res.fuel" class="fuel_name">{{ goRes.fuel }}</dd>
+          <dt class="rank_name">{{ goRes.name }}</dt>
+          <dd class="fuel_name">{{ goRes.fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span :v-model="res.rank" class="car_rank">{{ goRes.rank }}</span>
-          <dd :v-model="res.star" class="star">★{{ goRes.star }}</dd>
+          <span class="car_rank">{{ goRes.rank }}</span>
+          <dd class="star">★{{ goRes.star }}</dd>
         </div>
         <div class="price c_box_03" :v-model="res.price">
           {{ goRes.price.toLocaleString() }}
         </div>
         <div class="c_box_04">
-          <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
-          <datetime v-model="res.end" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>반납일</span>
+          <datetime class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
+          <datetime class="datetime" format="YYYY-MM-DD H:i"></datetime><span>반납일</span>
         </div>
       </div>
     </div>
@@ -370,6 +370,7 @@ input {
           font-size: 1.4em;
         }
         dd {
+          line-height: 1.4em;
           font-size: 1em;
         }
       }
@@ -392,20 +393,23 @@ input {
           font-size: 1em;
           margin: 10px 20px;
           color: $sub;
+          position: relative;
+          top: -20px;
         }
       }
       .c_box_03 {
-        position: relative;
-        order: 3;
-        width: 40%;
-        text-align: center;
-        align-self: flex-start;
-        font-size: 2em;
-        margin-top: 50px;
-        color: $main;
+        // position: relative;
+        // order: 3;
+        // width: 40%;
+        // text-align: center;
+        // align-self: flex-start;
+        // font-size: 2em;
+        // margin-top: 25px;
+        // color: $main;
+        display: none;
       }
       .c_box_04 {
-        width: 60%;
+        width: 100%;
         order: 4;
         text-align: center;
         display: flex;
@@ -471,6 +475,7 @@ input {
           line-height: 2em;
         }
         dd {
+          line-height: 1.6em;
           font-size: 1.2em;
         }
       }
