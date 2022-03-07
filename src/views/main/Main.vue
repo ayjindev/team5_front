@@ -269,15 +269,13 @@ export default {
     display: block;
     margin-bottom: 4px;
   }
-  .no:nth-of-type(2n) {
-    border: 0;
-  }
+
   > div {
     width: 76px;
     float: left;
     margin: auto;
     line-height: 2em;
-    border-right: 1px solid #e4e4e4;
+
     display: flex;
     input {
       margin: 0 5px;
@@ -371,6 +369,9 @@ export default {
       width: 50%;
     }
   }
+  .no:nth-of-type(2n) {
+    border: 0;
+  }
   .rank,
   .fuel {
     .sub {
@@ -379,6 +380,7 @@ export default {
       line-height: 1.8em;
     }
     > div {
+      border-right: 1px solid #e4e4e4;
       input {
         width: 12px;
         height: 12px;
@@ -514,6 +516,9 @@ export default {
   }
 }
 @media all and(min-width:768px) {
+  .no {
+    border: 0;
+  }
   .top {
     width: 701px;
     padding: 20px;
@@ -597,7 +602,7 @@ export default {
   .contents_list {
     width: 702px;
     margin: auto;
-    padding-top: 196px;
+    padding-top: 210px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
@@ -609,6 +614,7 @@ export default {
     width: 701px;
     height: 200px;
     margin: auto;
+
     .img_box {
       width: 250px;
       height: 200px;
