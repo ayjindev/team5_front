@@ -16,11 +16,11 @@
           <dd :v-model="res.star" class="star">★{{ goRes.star }}</dd>
         </div>
         <div class="price c_box_03" :v-model="res.price">
-          {{ goRes.price }}
+          {{ goRes.price.toLocaleString() }}
         </div>
         <div class="c_box_04">
-          <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime>
-          <datetime v-model="res.end" class="datetime" format="YYYY-MM-DD H:i"></datetime>
+          <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
+          <datetime v-model="res.end" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>반납일</span>
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@
       </div>
       <div class="pay">
         <button @click="goResCheck(res)">
-          <span class="price">{{ goRes.price }}</span
+          <span class="price">{{ goRes.price.toLocaleString() }}</span
           >원 입금 완료
         </button>
       </div>
@@ -397,29 +397,27 @@ input {
       .c_box_03 {
         position: relative;
         order: 3;
-        width: 100%;
+        width: 40%;
         text-align: center;
         align-self: flex-start;
         font-size: 2em;
+        margin-top: 50px;
         color: $main;
-        button {
-          font-size: 0.6em;
-          line-height: 2em;
-          padding: 0 20px;
-          border: 0;
-          color: #fff;
-          background: $main;
-        }
       }
       .c_box_04 {
-        width: 100%;
+        width: 60%;
         order: 4;
         text-align: center;
         display: flex;
         flex-flow: column;
-        line-height: 1.4em;
+        line-height: 1em;
         font-size: 1em;
         padding-right: 50px;
+        span {
+          position: relative;
+          right: -100px;
+          top: -24px;
+        }
       }
     }
   }
@@ -504,18 +502,8 @@ input {
         text-align: left;
         align-self: flex-start;
         font-size: 3em;
+        margin-top: 20px;
         color: $main;
-        button {
-          font-size: 0.6em;
-          line-height: 2em;
-          padding: 0 20px;
-          border: 0;
-          color: #fff;
-          background: $main;
-        }
-        button:hover {
-          background: $sub;
-        }
       }
       .c_box_04 {
         width: 60%;
@@ -524,6 +512,11 @@ input {
         display: flex;
         flex-flow: column;
         align-self: flex-end;
+        span {
+          position: relative;
+          right: -100px;
+          top: -24px;
+        }
       }
     }
   }
