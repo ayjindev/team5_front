@@ -29,14 +29,21 @@
         </g>
       </svg>
     </div>
-    <router-link to="/main"><div class="car"></div></router-link>
+    <div class="car" @click="goToMain"></div>
     <!-- <div class="text">예약하러 가기!</div> -->
     <div class="sun"></div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    goToMain() {
+      this.$router.push('/main') // 메인 페이지 이동
+      this.$router.go() // 새로고침
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .body,
