@@ -148,9 +148,6 @@ export default {
     font-size: 0.7em;
     display: flex;
     flex-direction: column;
-    button {
-      width: 70px;
-    }
   }
   .sort {
     li {
@@ -241,7 +238,7 @@ export default {
     flex-flow: column;
     .img_box {
       width: 100%;
-      // height: 200px;
+      height: 120px;
       // border: 1px solid red;
       order: 0;
       overflow: hidden;
@@ -255,12 +252,13 @@ export default {
       display: flex;
       flex-wrap: wrap;
       // border: 1px solid red;
-      height: 220px;
+      height: 160px;
       width: 100%;
-      padding-left: 20px;
+      padding: 0 0 0 20px;
       justify-content: space-between;
       .c_box_01 {
         order: 1;
+        height: 100px;
         width: 60%;
         text-align: left;
         .rank_name {
@@ -268,9 +266,12 @@ export default {
           line-height: 1.8em;
           font-size: 1.4em;
         }
-        dd {
-          line-height: 1.2em;
-          font-size: 1em;
+        dl {
+          margin-left: 30px;
+          dd {
+            line-height: 1.2em;
+            font-size: 1em;
+          }
         }
       }
       .c_box_02 {
@@ -279,6 +280,7 @@ export default {
         justify-content: space-between;
         order: 2;
         width: 40%;
+        height: 100px;
         min-width: 70px;
         text-align: center;
         .car_rank {
@@ -290,8 +292,9 @@ export default {
         }
         .star {
           font-size: 1em;
-          margin: 10px 20px;
           color: $sub;
+          text-align: right;
+          padding-right: 30px;
         }
       }
       .c_box_03 {
@@ -301,18 +304,8 @@ export default {
         text-align: center;
         align-self: flex-start;
         font-size: 2em;
+        height: 60px;
         color: $main;
-        button {
-          font-size: 0.6em;
-          line-height: 2em;
-          padding: 0 20px;
-          border: 0;
-          color: #fff;
-          background: $main;
-        }
-        button:hover {
-          background: $sub;
-        }
       }
       .c_box_04 {
         width: 60%;
@@ -321,8 +314,9 @@ export default {
         display: flex;
         flex-flow: column;
         line-height: 1.4em;
+        height: 60px;
         font-size: 1em;
-        padding-right: 50px;
+        padding-right: 30px;
       }
     }
   }
@@ -332,6 +326,7 @@ export default {
     background: #fff;
     width: 700px;
     margin: auto;
+    overflow-x: hidden;
     input {
       // width: 50%;
       margin: auto;
@@ -408,14 +403,7 @@ export default {
         align-self: flex-start;
         font-size: 3em;
         color: $main;
-        button {
-          font-size: 0.6em;
-          line-height: 2em;
-          padding: 0 20px;
-          border: 0;
-          color: #fff;
-          background: $main;
-        }
+
         button:hover {
           background: $sub;
         }
@@ -427,7 +415,13 @@ export default {
         display: flex;
         flex-flow: column;
         align-self: flex-end;
-        padding: 0 10px 20px;
+        font-size: 1em;
+        line-height: 1.4em;
+        margin-top: -20px;
+
+        p {
+          margin-right: 15px;
+        }
       }
     }
   }

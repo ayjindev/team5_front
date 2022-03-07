@@ -19,14 +19,14 @@
       </div>
       <div class="sort">
         <ul>
-          <li><a @click="priceLow">낮은 가격순</a></li>
+          <li><a @click="priceLow">낮은 가격순 </a></li>
           /
-          <li><a @click="priceHigh">높은 가격순</a></li>
+          <li><a @click="priceHigh"> 높은 가격순</a></li>
         </ul>
         <ul>
-          <li><a @click="starHigh">평점 높은순</a></li>
+          <li><a @click="starHigh">평점 높은순 </a></li>
           /
-          <li><a @click="starLow">평점 낮은순</a></li>
+          <li><a @click="starLow"> 평점 낮은순</a></li>
         </ul>
         <div class="search_box">
           <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
@@ -295,14 +295,7 @@ export default {
       transform: scale(1) translate(-50%, -50%);
     }
   }
-  .date_time {
-    font-size: 0.7em;
-    display: flex;
-    flex-direction: column;
-    button {
-      width: 70px;
-    }
-  }
+
   .sort {
     li {
       margin: 0 5px;
@@ -347,7 +340,7 @@ export default {
     width: 100%;
     padding: 20px;
     padding-top: 60px;
-    height: 260px;
+    height: 280px;
   }
   .filter {
     display: flex;
@@ -369,27 +362,16 @@ export default {
     }
     > div {
       border-right: 1px solid #e4e4e4;
+      font-size: 1.1em;
+      line-height: 12px;
       input {
+        margin-bottom: 10px;
         width: 12px;
         height: 12px;
       }
     }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 10px;
-      font-size: 1em;
-    }
   }
-  .date_time {
-    flex-wrap: wrap;
-    width: 100%;
-    margin: auto;
-    .sub {
-      color: $main;
-      font-size: 1.2em;
-      text-align: center;
-    }
-  }
+
   .sort {
     flex-direction: column;
     font-size: 0.8em;
@@ -401,6 +383,11 @@ export default {
       width: 50%;
       justify-content: center;
       line-height: 3em;
+      li {
+        a {
+          padding: 0 10px;
+        }
+      }
     }
     .search_box {
       padding-top: 5px;
@@ -410,8 +397,9 @@ export default {
       justify-content: center;
       flex-wrap: wrap;
       .stage-search {
-        font-size: 0.8em;
-        width: 50%;
+        width: 70%;
+        font-size: 1em;
+        line-height: 1.4em;
       }
     }
   }
@@ -529,24 +517,16 @@ export default {
       margin-bottom: 10px;
     }
     > div {
+      font-size: 1em;
+      line-height: 16px;
       input {
         width: 16px;
         height: 16px;
+        margin-bottom: 8px;
       }
     }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 14px;
-      font-size: 1.2em;
-    }
   }
-  .date_time {
-    .sub {
-      font-size: 1.2em;
-      text-align: left;
-      color: $main;
-    }
-  }
+
   .sort {
     display: flex;
     justify-content: space-between;
@@ -555,6 +535,7 @@ export default {
     flex-direction: row;
     a {
       color: #5e5e5e;
+      padding: 0 7px;
     }
     ul {
       display: flex;
@@ -574,7 +555,8 @@ export default {
       flex-direction: row;
       justify-content: flex-end;
       .stage-search {
-        font-size: 0.8em;
+        font-size: 1em;
+        line-height: 1.4em;
         width: 70%;
         text-align: left;
       }
@@ -592,7 +574,7 @@ export default {
   .contents_list {
     width: 702px;
     margin: auto;
-    padding-top: 210px;
+    padding-top: 220px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;

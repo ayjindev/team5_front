@@ -19,8 +19,8 @@
           {{ goRes.price.toLocaleString() }}
         </div>
         <div class="c_box_04">
-          <datetime class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
-          <datetime class="datetime" format="YYYY-MM-DD H:i"></datetime><span>반납일</span>
+          <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
+          <datetime v-model="res.end" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>반납일</span>
         </div>
       </div>
     </div>
@@ -418,8 +418,10 @@ input {
         font-size: 1em;
         padding-right: 50px;
         span {
+          overflow: hidden;
+          width: 60px;
           position: relative;
-          right: -100px;
+          right: -230px;
           top: -24px;
         }
       }
@@ -518,8 +520,10 @@ input {
         flex-flow: column;
         align-self: flex-end;
         span {
+          overflow: hidden;
+          width: 60px;
           position: relative;
-          right: -100px;
+          right: -200px;
           top: -24px;
         }
       }
