@@ -17,6 +17,7 @@
           </div>
         </div>
       </div>
+      <b-button @click="searchCarList">갱신</b-button>
       <div class="sort">
         <ul>
           <li><a @click="priceLow">낮은 가격순</a></li>
@@ -180,11 +181,11 @@ export default {
     allFuelsCheck() {}
   },
   methods: {
-    // searchCarList() {
-    //   // 검색 기능 설정
-    //   console.log('검색기능', this.searchParams)
-    //   this.$store.dispatch('actCarList', this.searchParams)
-    // },
+    searchCarList() {
+      // 검색 기능 설정
+      this.$store.dispatch('actCarList')
+      console.log('검색기능')
+    },
     selectAllFuels() {
       if (this.allFuels === true) {
         return this.fuels.forEach(element => (element.value = false))

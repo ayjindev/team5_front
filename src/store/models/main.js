@@ -37,23 +37,25 @@ export default {
 
     // 조회
     actCarList(context, payload) {
-      console.log('actCarList', payload) // 적은 정보가 payload를 통해 넘어옴
+      const carList = [{ img: '1', name: '2', fuel: '3', rank: '4', star: '5', price: '6' }]
 
       // 상태(결과)값 초기화
-      context.commit('setCarList', null)
+      context.commit('setCarList', carList)
+
+      console.log('actCarList', carList) // 적은 정보가 payload를 통해 넘어옴
 
       /* RestAPI 호출 */
-      api
-        .get('/serverApi/main')
-        .then(response => {
-          const carList = response && response.data
-          context.commit('setCarList', carList)
-        })
-        .catch(error => {
-          // 에러인 경우 처리
-          console.error('CarList.error', error)
-          context.commit('setCarList', [])
-        })
+      // api
+      //   .get('/serverApi/main')
+      //   .then(response => {
+      //     const carList = response && response.data
+      //     context.commit('setCarList', carList)
+      //   })
+      //   .catch(error => {
+      //     // 에러인 경우 처리
+      //     console.error('CarList.error', error)
+      //     context.commit('setCarList', [])
+      //   })
     }
   }
 }
