@@ -37,42 +37,46 @@ export default {
   actions: {
     // action은 비동기적 사용이 가능하다. (action에서 mutation을 호출하는 방법을 권장함)
 
-    // 아이디 전달
+    // 토큰 전달
     actPostToken(context, payload) {
-      // console.log('토큰 전달 act')
+      console.log('토큰 전달 act', payload)
 
-      /* RestApi 호출 */
-      api.post('/serverApi/my-page', payload)
-      console
-        .log('actToken', payload)
-        // .then(response => {
-        //   console.log('acttoken')
-        // })
-        .catch(error => {
-          console.error('Token.error', error)
-          context.commit('setToken', -1)
-        })
-    },
+      // // 상태값 초기화
+      // context.commit('setToken', null)
 
-    // 조회
-    actMyUserInfo(context, payload) {
-      console.log('actMyUserInfo')
-
-      // 상태(결과)값 초기화
-      context.commit('setMyUser', null)
-
-      /* RestAPI 호출 */
-      api
-        .get('/serverApi/my-page')
-        .then(response => {
-          const myUserInfo = response && response.data
-          context.commit('setMyUser', myUserInfo)
-        })
-        .catch(error => {
-          // 에러인 경우 처리
-          console.error('MyUser.error', error)
-          context.commit('setMyUser', -1)
-        })
+      // /* RestApi 호출 */
+      // api.post('/serverApi/my-page', payload)
+      // console
+      //   .log('actToken', payload)
+      //   .then(response => {
+      //     const req = response && response.data
+      //     console.log('request', req)
+      //   })
+      //   .catch(error => {
+      //     console.error('Token.error', error)
+      //     context.commit('setToken', -1)
+      //   })
     }
+
+    // // 조회
+    // actMyUserInfo(context, payload) {
+    //   console.log('actMyUserInfo')
+
+    //   // 상태(결과)값 초기화
+    //   context.commit('setMyUser', null)
+
+    //   /* RestAPI 호출 */
+    //   api
+    //     .get('/serverApi/my-page')
+    //     .then(response => {
+    //       const myUserInfo = response && response.data
+    //       context.commit('setMyUser', myUserInfo)
+    //     })
+    //     .catch(error => {
+    //       // 에러인 경우 처리
+    //       console.error('MyUser.error', error)
+    //       context.commit('setMyUser', -1)
+    //     })
+    // }
   }
 }
