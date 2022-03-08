@@ -37,16 +37,38 @@ export default {
 
     // 조회
     actCarList(context, payload) {
-      console.log('actCarList') // 적은 정보가 payload를 통해 넘어옴
+      // console.log('actCarList')
+
+      // const carList = [
+      //   {
+      //     img: 'https://img.hankyung.com/photo/202008/AA.23578516.1-1200x.jpg',
+      //     name: '볼보',
+      //     fuel: '휘발유',
+      //     rank: 'SUV',
+      //     star: 4.4,
+      //     price: 123000
+      //   },
+      //   {
+      //     img: 'https://img.hankyung.com/photo/202008/AA.23578516.1-1200x.jpg',
+      //     name: 'volvo',
+      //     fuel: '경유',
+      //     rank: '중형',
+      //     star: 3.5,
+      //     price: 150000
+      //   }
+      // ]
+
+      // context.commit('setCarList', carList)
+      // console.log('setCarList', carList)
 
       // 상태(결과)값 초기화
       context.commit('setCarList', null)
 
       /* RestAPI 호출 */
       api
-        .get('/serverApi/main')
+        .get('/serverApi/main', { payload })
         .then(response => {
-          const carList = response && response.data
+          const carList = response.body
           console.log('actCarList', carList)
           context.commit('setCarList', carList)
         })
@@ -55,6 +77,7 @@ export default {
           console.error('CarList.error', error)
           context.commit('setCarList', [])
         })
+      console.log('setCarList', this.carList) // undefined
     }
   }
 }

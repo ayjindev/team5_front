@@ -189,7 +189,6 @@ export default {
   }
 }
 .my_box {
-  width: 100%;
   color: #fff;
   margin: auto;
   padding: 20px;
@@ -321,6 +320,11 @@ export default {
     }
   }
 }
+.my_box {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
 @media all and(min-width:768px) {
   .reservation {
     background: #fff;
@@ -426,8 +430,11 @@ export default {
     }
   }
   .my_box {
+    width: 700px;
     position: absolute;
     bottom: 0;
+    left: 50%;
+    margin-left: -350px;
   }
 }
 </style>

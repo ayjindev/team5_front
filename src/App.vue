@@ -74,7 +74,6 @@ export default {
   padding: 10px 0;
   font-size: 1em;
   line-height: 30px;
-  bottom: 1px;
   a {
     font-weight: bold;
     text-decoration: none;
