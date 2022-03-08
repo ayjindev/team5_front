@@ -47,6 +47,7 @@ export default {
         .get('/serverApi/main')
         .then(response => {
           const carList = response && response.data
+          console.log('actCarList', carList)
           context.commit('setCarList', carList)
         })
         .catch(error => {
