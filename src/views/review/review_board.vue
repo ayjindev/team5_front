@@ -122,13 +122,8 @@ export default {
         }
         dt {
           font-size: 1.2em;
+          line-height: 1.6em;
           font-weight: bold;
-        }
-        dt,
-        dd:nth-of-type(3),
-        dd:nth-of-type(4) {
-          position: relative;
-          top: -20px;
         }
         #star {
           font-size: 2em;
