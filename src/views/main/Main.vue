@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="contents_list">
+    <div class="contents_list">
       <div v-for="car in dataRows" :key="car.index" class="contents">
         <div class="img_box">
           <img :src="car.img" :alt="car.name" />
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.js"></script>
@@ -119,12 +119,12 @@ export default {
       search: '',
       cars: [
         {
-          key: img,
-          key: name,
-          key: fuel,
-          key: rank,
-          key: star,
-          key: price
+          img: '',
+          name: '',
+          fuel: '',
+          rank: '',
+          star: '',
+          price: ''
         }
       ]
     }
