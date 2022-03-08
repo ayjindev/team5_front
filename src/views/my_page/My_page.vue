@@ -5,7 +5,6 @@
     </div>
     <div class="me">
       <img src="../../assets/images/me.png" alt="나" />
-      <b-button @click="myUserInfoSearch">갱신</b-button>
       <dl>
         <dt>김나나</dt>
         <dd>아이디</dd>
