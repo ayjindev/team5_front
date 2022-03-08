@@ -7,7 +7,7 @@
         <router-link to="/auth/login">로그인</router-link>
       </div>
       <div v-if="isLoggedin">
-        <router-link to="/my-page">마이 페이지</router-link> |
+        <router-link to="/my-page" @click="onClick">마이 페이지</router-link> |
         <router-link to="/auth/logout">로그아웃</router-link>
       </div>
 
@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     onClick(path) {
-      this.$router.push(path)
+      // this.$router.push(path)
+      this.$router.go()
     }
   }
 }

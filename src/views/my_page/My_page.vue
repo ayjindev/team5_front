@@ -54,16 +54,19 @@ export default {
     },
     myUserInfo() {
       return this.$store.getters.myUser
+    },
+    postToken() {
+      return this.$store.getters.Token
     }
   },
+  // watch: {
+  //   postToken() {
+  //     this.$store.dispatch('actPostToken', this.tokenPost)
+  //   }
+  // },
   created() {
-    this.myUserInfoSearch()
-  },
-  methods: {
-    myUserInfoSearch() {
-      console.log('마이페이지')
-      this.$store.dispatch('actMyUserInfo')
-    }
+    this.$store.dispatch('actMyUserInfo')
+    this.$store.dispatch('actPostToken', this.tokenPost)
   }
 }
 </script>
