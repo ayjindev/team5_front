@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('../views/review/review.vue'),
+    component: () => import('../views/review/review_board'),
     meta: { noLogin: true }
   },
   {

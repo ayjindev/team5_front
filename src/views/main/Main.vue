@@ -395,6 +395,7 @@ export default {
       width: 50%;
       justify-content: center;
       line-height: 3em;
+      font-size: 1.1em;
       li {
         a {
           padding: 0 10px;
