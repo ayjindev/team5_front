@@ -1,6 +1,7 @@
 <template>
   <div class="body">
     <div class="top">
+      <!-- carList: {{ carList }} -->
       <div class="filter">
         <div class="rank">
           <h2 class="sub">차량등급</h2>
@@ -34,7 +35,7 @@
       </div>
     </div>
     <div class="contents_list">
-      <div v-for="car in dataRows" :key="car.index" class="contents">
+      <div v-for="car in carList" :key="car.index" class="contents">
         <div class="img_box">
           <img :src="car.img" :alt="car.name" />
         </div>
@@ -49,7 +50,7 @@
             <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
           </div>
           <div class="price c_box_03" :v-model="car.price">
-            {{ car.price.toLocaleString() }}
+            {{ car.price }}
             <button @click="goRes(car)">바로 예약 하기</button>
           </div>
         </div>
@@ -174,6 +175,7 @@ export default {
   },
   created() {
     this.$store.dispatch('actCarList') // 자동차 리스트 불러오기
+    // this.carList
   },
   watch: {
     allRanksCheck() {},
