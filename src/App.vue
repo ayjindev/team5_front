@@ -7,7 +7,7 @@
         <router-link to="/auth/login">로그인</router-link>
       </div>
       <div v-if="isLoggedin">
-        <router-link to="/my-page">마이 페이지</router-link> |
+        <router-link to="/my-page" @click="onClick">마이 페이지</router-link> |
         <router-link to="/auth/logout">로그아웃</router-link>
       </div>
 
@@ -21,6 +21,13 @@
 <script>
 export default {
   computed: {
+    // isLoggedin() {
+    //   let login = false
+    //   if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
+    //     login = true
+    //   }
+    //   return login
+    // }
     isLoggedin() {
       let login = false
       if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id !== null) {
@@ -42,7 +49,8 @@ export default {
   },
   methods: {
     onClick(path) {
-      this.$router.push(path)
+      // this.$router.push(path)
+      this.$router.go()
     }
   }
 }
@@ -66,6 +74,7 @@ export default {
   padding: 10px 0;
   font-size: 1em;
   line-height: 30px;
+  bottom: 1px;
   a {
     font-weight: bold;
     text-decoration: none;

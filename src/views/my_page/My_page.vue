@@ -5,6 +5,7 @@
     </div>
     <div class="me">
       <img src="../../assets/images/me.png" alt="나" />
+      <b-button @click="myUserInfoSearch">갱신</b-button>
       <dl>
         <dt>김나나</dt>
         <dd>아이디</dd>
@@ -31,7 +32,43 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      myUser: {
+        myName: null,
+        myId: null,
+        myBirth: null,
+        myEmail: null,
+        myPhonenumber: null,
+        myZip: null,
+        myAddress1: null,
+        myAddress2: null
+      }
+    }
+  },
+  computed: {
+    tokenPost() {
+      const token = window.localStorage.getItem('accessToken')
+      return token
+    },
+    myUserInfo() {
+      return this.$store.getters.myUser
+    },
+    postToken() {
+      return this.$store.getters.Token
+    }
+  },
+  // watch: {
+  //   postToken() {
+  //     this.$store.dispatch('actPostToken', this.tokenPost)
+  //   }
+  // },
+  created() {
+    this.$store.dispatch('actMyUserInfo')
+    this.$store.dispatch('actPostToken', this.tokenPost)
+  }
+}
 </script>
 
 <style lang="scss" scoped>

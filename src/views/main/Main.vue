@@ -19,21 +19,21 @@
       </div>
       <div class="sort">
         <ul>
-          <li><a @click="priceLow">낮은 가격순</a></li>
+          <li><a @click="priceLow">낮은 가격순 </a></li>
           /
-          <li><a @click="priceHigh">높은 가격순</a></li>
+          <li><a @click="priceHigh"> 높은 가격순</a></li>
         </ul>
         <ul>
-          <li><a @click="starHigh">평점 높은순</a></li>
+          <li><a @click="starHigh">평점 높은순 </a></li>
           /
-          <li><a @click="starLow">평점 낮은순</a></li>
+          <li><a @click="starLow"> 평점 낮은순</a></li>
         </ul>
         <div class="search_box">
           <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
         </div>
       </div>
     </div>
-    <div class="contents_list">
+    <!-- <div class="contents_list">
       <div v-for="car in dataRows" :key="car.index" class="contents">
         <div class="img_box">
           <img :src="car.img" :alt="car.name" />
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.js"></script>
@@ -119,41 +119,21 @@ export default {
       search: '',
       cars: [
         {
-          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
-          name: '르노삼성 SM6 F/L',
-          fuel: '휘발유',
-          rank: '중형',
-          star: 3.8,
-          price: 126000
-        },
-        {
-          img: require('@/assets/images/car/볼보_xc60_2세대.png'),
-          name: '볼보 XC60',
-          fuel: '휘발유',
-          rank: 'SUV',
-          star: 3.7,
-          price: 166000
-        },
-        {
-          img: require('@/assets/images/car/아우디_A0_세단_7세대.png'),
-          name: '아우디 A6 세단 F/L',
-          fuel: '경유',
-          rank: '중형',
-          star: 3.2,
-          price: 112000
-        },
-        {
-          img: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'),
-          name: '제네시스 GV70',
-          fuel: '전기',
-          rank: '중형',
-          star: 3.6,
-          price: 172000
+          key: img,
+          key: name,
+          key: fuel,
+          key: rank,
+          key: star,
+          key: price
         }
       ]
     }
   },
   computed: {
+    carList() {
+      // 자동차 리스트 불러오기
+      return this.$store.getters.CarList
+    },
     allRanksCheck() {
       const result = this.ranks.reduce((count, data) => (data['value'] === true ? count + 1 : count), 0)
       // console.log(result)
@@ -191,6 +171,9 @@ export default {
         return cars.name.toLowerCase().includes(this.search.toLowerCase())
       })
     }
+  },
+  created() {
+    this.$store.dispatch('actCarList') // 자동차 리스트 불러오기
   },
   watch: {
     allRanksCheck() {},
@@ -307,14 +290,7 @@ export default {
       transform: scale(1) translate(-50%, -50%);
     }
   }
-  .date_time {
-    font-size: 0.7em;
-    display: flex;
-    flex-direction: column;
-    button {
-      width: 70px;
-    }
-  }
+
   .sort {
     li {
       margin: 0 5px;
@@ -359,7 +335,7 @@ export default {
     width: 100%;
     padding: 20px;
     padding-top: 60px;
-    height: 260px;
+    height: 280px;
   }
   .filter {
     display: flex;
@@ -381,27 +357,16 @@ export default {
     }
     > div {
       border-right: 1px solid #e4e4e4;
+      font-size: 1.1em;
+      line-height: 12px;
       input {
+        margin-bottom: 10px;
         width: 12px;
         height: 12px;
       }
     }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 10px;
-      font-size: 1em;
-    }
   }
-  .date_time {
-    flex-wrap: wrap;
-    width: 100%;
-    margin: auto;
-    .sub {
-      color: $main;
-      font-size: 1.2em;
-      text-align: center;
-    }
-  }
+
   .sort {
     flex-direction: column;
     font-size: 0.8em;
@@ -413,6 +378,11 @@ export default {
       width: 50%;
       justify-content: center;
       line-height: 3em;
+      li {
+        a {
+          padding: 0 10px;
+        }
+      }
     }
     .search_box {
       padding-top: 5px;
@@ -422,8 +392,9 @@ export default {
       justify-content: center;
       flex-wrap: wrap;
       .stage-search {
-        font-size: 0.8em;
-        width: 50%;
+        width: 70%;
+        font-size: 1em;
+        line-height: 1.4em;
       }
     }
   }
@@ -471,6 +442,7 @@ export default {
         }
         dd {
           font-size: 1em;
+          line-height: 1.4em;
         }
       }
       .c_box_02 {
@@ -537,26 +509,19 @@ export default {
       margin-left: 5px;
       font-size: 1.8em;
       text-align: left;
+      margin-bottom: 10px;
     }
     > div {
+      font-size: 1em;
+      line-height: 16px;
       input {
         width: 16px;
         height: 16px;
+        margin-bottom: 8px;
       }
     }
-    .line_h {
-      margin: 10px 0 5px;
-      line-height: 14px;
-      font-size: 1.2em;
-    }
   }
-  .date_time {
-    .sub {
-      font-size: 1.2em;
-      text-align: left;
-      color: $main;
-    }
-  }
+
   .sort {
     display: flex;
     justify-content: space-between;
@@ -565,6 +530,7 @@ export default {
     flex-direction: row;
     a {
       color: #5e5e5e;
+      padding: 0 7px;
     }
     ul {
       display: flex;
@@ -584,7 +550,8 @@ export default {
       flex-direction: row;
       justify-content: flex-end;
       .stage-search {
-        font-size: 0.8em;
+        font-size: 1em;
+        line-height: 1.4em;
         width: 70%;
         text-align: left;
       }
@@ -602,7 +569,7 @@ export default {
   .contents_list {
     width: 702px;
     margin: auto;
-    padding-top: 210px;
+    padding-top: 220px;
     border: 1px solid #eeeeee;
     background-color: #ffffff;
     border-top: 0;
@@ -645,6 +612,7 @@ export default {
         }
         dd {
           font-size: 1.2em;
+          line-height: 1.6em;
         }
       }
       .c_box_02 {

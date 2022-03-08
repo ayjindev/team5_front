@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: Go,
+    component: () => import('../views/review/review.vue'),
     meta: { noLogin: true }
   },
   {
@@ -64,6 +64,11 @@ const routes = [
         meta: { noLogin: true }
       }
     ]
+  },
+  {
+    path: '/review',
+    component: () => import('../views/review/review.vue'),
+    meta: { noLogin: true }
   },
   // NotFound 페이지 (항상 맨 밑에)
   {
