@@ -51,9 +51,9 @@ export default {
         contents: '어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 '
       },
       imgs: [
-        { imgsrc: require('@/assets/images/car/벤츠.jpg'), name: '벤츠' },
+        { imgsrc: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'), name: '제네시스' },
         { imgsrc: require('@/assets/images/car/볼보_xc60_2세대.png'), name: '벤츠' },
-        { imgsrc: require('@/assets/images/car/벤츠.jpg'), name: '벤츠' },
+        { imgsrc: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'), name: '제네시스' },
         { imgsrc: require('@/assets/images/car/볼보_xc60_2세대.png'), name: '벤츠' }
       ],
       translate: 0
