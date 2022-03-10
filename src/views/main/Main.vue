@@ -50,7 +50,7 @@
             <dd class="star" :v-model="car.car_star">★{{ car.car_star }}</dd>
           </div>
           <div class="price c_box_03" :v-model="car.car_price">
-            {{ car.car_price.toLocaleString() }}
+            {{ car.car_price }}
             <button @click="goRes(car)">바로 예약 하기</button>
           </div>
         </div>
