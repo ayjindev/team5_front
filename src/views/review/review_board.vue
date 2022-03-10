@@ -3,9 +3,9 @@
     <div class="filter">
       <div class="sort">
         <ul>
-          <li><a @click="priceLow">낮은 가격순 </a></li>
+          <li><a @click="starHigh">평점 높은순 </a></li>
           /
-          <li><a @click="priceHigh"> 높은 가격순</a></li>
+          <li><a @click="starLow"> 평점 낮은순</a></li>
         </ul>
         <div class="search_box">
           <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
@@ -42,8 +42,7 @@ export default {
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
           name: '김나나',
-          date: '',
-          star: 5
+          star: 2
         },
         {
           img: require('@/assets/images/car/벤츠.jpg'),
@@ -51,8 +50,7 @@ export default {
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
           name: '김나나',
-          date: '',
-          star: 5
+          star: 3
         },
         {
           img: require('@/assets/images/car/벤츠.jpg'),
@@ -60,8 +58,7 @@ export default {
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
           name: '김나나',
-          date: '',
-          star: 5
+          star: 4
         },
         {
           img: require('@/assets/images/car/벤츠.jpg'),
@@ -69,13 +66,11 @@ export default {
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
           name: '김나나',
-          date: '',
           star: 5
         }
       ]
     }
   }
-  // 게시물번호, 제목, 카테고리(차종), 작성자, 작성 날짜?
 }
 </script>
 <style lang="scss" scoped>
@@ -92,8 +87,6 @@ export default {
   height: auto;
   .review_box {
     border: 1px solid #eeeeee;
-    margin: auto;
-
     height: 291px;
     .img_box {
       width: 100%;
@@ -147,6 +140,7 @@ export default {
     min-width: 300px;
     .review_box {
       width: 70%;
+      margin: auto;
     }
   }
   .sort {
@@ -157,7 +151,7 @@ export default {
     flex-direction: row;
     ul {
       display: flex;
-      width: 100%;
+      margin: auto;
       font-size: 1.1em;
       line-height: 3em;
       li {
@@ -173,6 +167,7 @@ export default {
       flex-direction: row;
       flex-wrap: wrap;
       .stage-search {
+        margin: auto;
         width: 70%;
         font-size: 1em;
         line-height: 1.4em;
