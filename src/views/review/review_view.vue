@@ -51,9 +51,9 @@ export default {
         contents: '어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 '
       },
       imgs: [
-        { imgsrc: require('@/assets/images/car/벤츠.jpg'), name: '벤츠' },
+        { imgsrc: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'), name: '제네시스' },
         { imgsrc: require('@/assets/images/car/볼보_xc60_2세대.png'), name: '벤츠' },
-        { imgsrc: require('@/assets/images/car/벤츠.jpg'), name: '벤츠' },
+        { imgsrc: require('@/assets/images/car/제네시스_일렉트리파이드_GV70_1세대.png'), name: '제네시스' },
         { imgsrc: require('@/assets/images/car/볼보_xc60_2세대.png'), name: '벤츠' }
       ],
       translate: 0
@@ -69,13 +69,13 @@ export default {
   methods: {
     next: function () {
       console.log(this.translate)
-      console.log(this.imgs.length)
-      if (screen.availWidth > 767) {
+      // console.log(this.imgs.length)
+      if (window.innerWidth > 768) {
         this.translate -= 560
         if (this.translate <= -this.imgs.length * 560) {
           this.translate = 0
         }
-      } else if (screen.availWidth < 768) {
+      } else {
         this.translate -= 300
         if (this.translate <= -this.imgs.length * 300) {
           this.translate = 0
@@ -84,12 +84,12 @@ export default {
     },
     Prev: function () {
       console.log(this.translate)
-      if (screen.availWidth > 767) {
+      if (window.innerWidth > 768) {
         this.translate += 560
         if (this.translate >= 560) {
           this.translate = 0
         }
-      } else if (screen.availWidth < 768) {
+      } else {
         this.translate += 300
         if (this.translate >= 300) {
           this.translate = 0
@@ -223,6 +223,7 @@ button {
   .slider {
     .line {
       width: 300px;
+      margin: auto;
       height: 160px;
     }
     .div {

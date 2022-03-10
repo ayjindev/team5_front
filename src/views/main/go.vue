@@ -230,6 +230,7 @@ p {
   transition-duration: 1s;
 }
 .car:hover {
+  cursor: pointer;
   width: 230px;
   height: 230px;
 }

@@ -77,7 +77,7 @@ const routes = [
   },
   {
     path: '/review-view',
-    component: () => import('../views/review/review_board'),
+    component: () => import('../views/review/review_view'),
     meta: { noLogin: true }
   },
   // NotFound 페이지 (항상 맨 밑에)
