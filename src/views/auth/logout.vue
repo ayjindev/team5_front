@@ -16,6 +16,7 @@ export default {
   watch: {
     loading(value) {
       if (value === false) {
+        // this.$router.go() // 새로고침(App.vue를 바꾸기 위해)
         // 로그아웃 처리 후 이동
         this.$router.push('/auth/login')
       }

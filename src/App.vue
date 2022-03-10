@@ -38,6 +38,7 @@ export default {
     isLoggedin() {
       // 이미 토큰을 가지고 있는 경우 처리를 위한 로직
       let login = false
+      const test = this.$store.getters.TokenUser
       const token = window.localStorage.getItem('accessToken')
       if (token) {
         // 로컬스토리지에 토큰 존재 여부 확인

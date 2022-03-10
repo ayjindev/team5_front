@@ -80,7 +80,7 @@ export default {
               car_star,
               car_price
             }))
-          console.log('actCarList', carList)
+          // console.log('actCarList', carList)
           context.commit('setCarList', carList)
         })
         .catch(error => {
