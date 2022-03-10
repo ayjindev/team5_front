@@ -37,7 +37,7 @@ export default {
     return {
       reviews: [
         {
-          img: require('@/assets/images/car/벤츠.jpg'),
+          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
           car: '벤츠',
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
@@ -45,7 +45,7 @@ export default {
           star: 2
         },
         {
-          img: require('@/assets/images/car/벤츠.jpg'),
+          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
           car: '벤츠',
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
@@ -53,7 +53,7 @@ export default {
           star: 3
         },
         {
-          img: require('@/assets/images/car/벤츠.jpg'),
+          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
           car: '벤츠',
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
@@ -61,7 +61,7 @@ export default {
           star: 4
         },
         {
-          img: require('@/assets/images/car/벤츠.jpg'),
+          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
           car: '벤츠',
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
