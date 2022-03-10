@@ -2,7 +2,7 @@
   <div class="body" v-bind="res">
     <div class="contents">
       <div class="img_box">
-        <!-- {{ carList }} -->
+        <!-- {{ cars }} -->
         <img :src="goRes.img" :alt="goRes.name" />
       </div>
       <div class="contents_box">
