@@ -211,23 +211,23 @@ export default {
       })
     },
     priceLow() {
-      this.carList.sort(function (a, b) {
-        return a.car_price - b.car_price
+      this.cars.sort(function (a, b) {
+        return a.price - b.price
       })
     },
     priceHigh() {
-      this.carList.sort(function (a, b) {
-        return b.car_price - a.car_price
+      this.cars.sort(function (a, b) {
+        return b.price - a.price
       })
     },
     starLow() {
-      this.carList.sort(function (a, b) {
-        return a.car_star - b.car_star
+      this.cars.sort(function (a, b) {
+        return a.star - b.star
       })
     },
     starHigh() {
-      this.carList.sort(function (a, b) {
-        return b.car_star - a.car_star
+      this.cars.sort(function (a, b) {
+        return b.star - a.star
       })
     }
   }
