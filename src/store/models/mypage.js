@@ -41,42 +41,41 @@ export default {
     actPostToken(context, payload) {
       console.log('토큰 전달 act', payload)
 
-      // // 상태값 초기화
-      // context.commit('setToken', null)
+      // 상태값 초기화
+      context.commit('setToken', null)
 
-      // /* RestApi 호출 */
-      // api.post('/serverApi/my-page', payload)
-      // console
-      //   .log('actToken', payload)
-      //   .then(response => {
-      //     const req = response && response.data
-      //     console.log('request', req)
-      //   })
-      //   .catch(error => {
-      //     console.error('Token.error', error)
-      //     context.commit('setToken', -1)
-      //   })
+      /* RestApi 호출 */
+      api
+        .post('/serverApi/my-page', payload)
+        .then(response => {
+          const req = response && response.config && response.config.data
+          console.log('request', req)
+        })
+        .catch(error => {
+          console.error('Token.error', error)
+          context.commit('setToken', -1)
+        })
+    },
+
+    // 조회
+    actMyUserInfo(context, payload) {
+      console.log('actMyUserInfo', payload)
+
+      // 상태(결과)값 초기화
+      context.commit('setMyUser', null)
+
+      /* RestAPI 호출 */
+      api
+        .get('/serverApi/my-page')
+        .then(response => {
+          const myUserInfo = response && response.data
+          context.commit('setMyUser', myUserInfo)
+        })
+        .catch(error => {
+          // 에러인 경우 처리
+          console.error('MyUser.error', error)
+          context.commit('setMyUser', -1)
+        })
     }
-
-    // // 조회
-    // actMyUserInfo(context, payload) {
-    //   console.log('actMyUserInfo')
-
-    //   // 상태(결과)값 초기화
-    //   context.commit('setMyUser', null)
-
-    //   /* RestAPI 호출 */
-    //   api
-    //     .get('/serverApi/my-page')
-    //     .then(response => {
-    //       const myUserInfo = response && response.data
-    //       context.commit('setMyUser', myUserInfo)
-    //     })
-    //     .catch(error => {
-    //       // 에러인 경우 처리
-    //       console.error('MyUser.error', error)
-    //       context.commit('setMyUser', -1)
-    //     })
-    // }
   }
 }

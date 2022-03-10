@@ -6,12 +6,16 @@
     <div class="me">
       <img src="../../assets/images/me.png" alt="나" />
       <dl>
-        <dt>김나나</dt>
-        <dd>아이디</dd>
-        <dd>1996.10.23</dd>
-        <dd>이메일@naver.com</dd>
-        <dd>010-0000-0000</dd>
-        <dd><span>(12345)</span> 서울시 주소구 주소로 주소길 102</dd>
+        <dt :v-model="myUser.myName">{{ myUser.myName }}</dt>
+        <dd :v-model="myUser.myId">{{ myUser.myId }}</dd>
+        <dd :v-model="myUser.myBirth">{{ myUser.myBirth }}</dd>
+        <dd :v-model="myUser.myEmail">{{ myUser.myEmail }}</dd>
+        <dd :v-model="myUser.myPhonenumber">{{ myUser.myPhonenumber }}</dd>
+        <dd>
+          <span :v-model="myUser.myZip">{{ myUser.myZip }}</span>
+          <span :v-model="myUser.myAddress1">{{ myUser.myAddress1 }}</span>
+          <span :v-model="myUser.myAddress2">{{ myUser.myAddress2 }}</span>
+        </dd>
       </dl>
     </div>
     <div class="reservation">

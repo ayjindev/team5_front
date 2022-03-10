@@ -85,7 +85,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  console.log('router.beforeEach', to, from)
+  // console.log('router.beforeEach', to, from)
 
   const noLogin = to.meta.noLogin // 이동할 페이지에서 로그인 허용여부 확인
 

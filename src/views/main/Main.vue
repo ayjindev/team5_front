@@ -37,20 +37,20 @@
     <div class="contents_list">
       <div v-for="car in carList" :key="car.index" class="contents">
         <div class="img_box">
-          <img :src="car.img" :alt="car.name" />
+          <img :src="car.car_img" :alt="car.car_name" />
         </div>
         <div class="contents_box">
           <dl class="c_box_01">
-            <dt class="rank_name" :v-model="car.name">{{ car.name }}</dt>
-            <dd class="fuel_name" :v-model="car.fuel">{{ car.fuel }}</dd>
+            <dt class="rank_name" :v-model="car.car_name">{{ car.car_name }}</dt>
+            <dd class="fuel_name" :v-model="car.car_fuel">{{ car.car_fuel }}</dd>
             <dd>유모차/카시트 신청 가능</dd>
           </dl>
           <div class="c_box_02">
-            <span class="car_rank" :v-model="car.rank">{{ car.rank }}</span>
-            <dd class="star" :v-model="car.star">★{{ car.star }}</dd>
+            <span class="car_rank" :v-model="car.car_rank">{{ car.car_rank }}</span>
+            <dd class="star" :v-model="car.car_star">★{{ car.car_star }}</dd>
           </div>
-          <div class="price c_box_03" :v-model="car.price">
-            {{ car.price }}
+          <div class="price c_box_03" :v-model="car.car_price">
+            {{ car.car_price }}
             <button @click="goRes(car)">바로 예약 하기</button>
           </div>
         </div>
@@ -120,12 +120,12 @@ export default {
       search: '',
       cars: [
         {
-          img: '',
-          name: '',
-          fuel: '',
-          rank: '',
-          star: '',
-          price: ''
+          car_img: '',
+          car_name: '',
+          car_fuel: '',
+          car_rank: '',
+          car_star: '',
+          car_price: ''
         }
       ]
     }
@@ -174,14 +174,17 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('actCarList') // 자동차 리스트 불러오기
-    // this.carList
+    // this.carList() // 자동차 리스트 불러오기
+    this.$store.dispatch('actCarList')
   },
   watch: {
     allRanksCheck() {},
     allFuelsCheck() {}
   },
   methods: {
+    // carList() {
+    //   this.$store.dispatch('actCarList') // 자동차 리스트 불러오기
+    // },
     selectAllFuels() {
       if (this.allFuels === true) {
         return this.fuels.forEach(element => (element.value = false))

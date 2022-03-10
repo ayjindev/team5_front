@@ -66,9 +66,20 @@ export default {
 
       /* RestAPI 호출 */
       api
-        .get('/serverApi/main', { payload })
+        .get('/serverApi/main')
         .then(response => {
-          const carList = response.body
+          // const carList = response && response.data && response.data.map
+          const carList =
+            response &&
+            response.data &&
+            response.data.map(({ car_img, car_name, car_fuel, car_rank, car_star, car_price }) => ({
+              car_img,
+              car_name,
+              car_fuel,
+              car_rank,
+              car_star,
+              car_price
+            }))
           console.log('actCarList', carList)
           context.commit('setCarList', carList)
         })
@@ -77,7 +88,6 @@ export default {
           console.error('CarList.error', error)
           context.commit('setCarList', [])
         })
-      console.log('setCarList', this.carList) // undefined
     }
   }
 }
