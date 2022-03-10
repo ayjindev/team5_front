@@ -30,7 +30,7 @@ export default {
     // }
     isLoggedin() {
       let login = false
-      const test = this.$store.getters.TokenUser
+      const test = this.$store.getters.TokenUser // 로그아웃 시 App.vue의 변화 감지를 위한 TokenUser 로딩
       const token = window.localStorage.getItem('accessToken')
       if (token) {
         // 로컬스토리지에 토큰 존재 여부 확인
