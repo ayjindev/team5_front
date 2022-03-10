@@ -7,16 +7,16 @@
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name">{{ goRes.name }}</dt>
-          <dd class="fuel_name">{{ goRes.fuel }}</dd>
+          <dt class="rank_name">{{ goRes.car_name }}</dt>
+          <dd class="fuel_name">{{ goRes.car_fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_rank">{{ goRes.rank }}</span>
-          <dd class="star">★{{ goRes.star }}</dd>
+          <span class="car_rank">{{ goRes.car_rank }}</span>
+          <dd class="star">★{{ goRes.car_star }}</dd>
         </div>
         <div class="price c_box_03" :v-model="res.price">
-          {{ goRes.price }}
+          {{ goRes.car_price }}
         </div>
         <div class="c_box_04">
           <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
@@ -127,12 +127,12 @@ export default {
         driverName: '',
         phoneNumber: '',
         driverBirth: '',
-        name: this.$route.params.name,
-        img: this.$route.params.img,
-        fuel: this.$route.params.fuel,
-        rank: this.$route.params.rank,
-        star: this.$route.params.star,
-        price: this.$route.params.price
+        name: this.$route.params.car_name,
+        img: this.$route.params.car_img,
+        fuel: this.$route.params.car_fuel,
+        rank: this.$route.params.car_rank,
+        star: this.$route.params.car_star,
+        price: this.$route.params.car_price
       }
     }
   },
