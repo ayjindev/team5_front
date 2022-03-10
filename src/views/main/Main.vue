@@ -7,9 +7,7 @@
           <h2 class="sub">차량등급</h2>
           <div><input v-model="allRanks" type="checkbox" @click="selectAllRanks()" /><label>전체</label></div>
           <div v-for="(rank, index) in ranks" :key="index">
-            <input v-model="rank.value" type="checkbox" name="ranks" @click="filterRanks()" /><label>{{
-              rank.name
-            }}</label>
+            <input v-model="rank.value" type="checkbox" name="ranks" /><label>{{ rank.name }}</label>
           </div>
         </div>
         <div class="fuel">
@@ -32,7 +30,7 @@
           <li><a @click="starLow"> 평점 낮은순</a></li>
         </ul>
         <div class="search_box">
-          <input id="dataRows" v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
+          <input v-model="search" class="stage-search" type="text" placeholder="검색어를 입력해 주세요" />
         </div>
       </div>
     </div>
@@ -161,18 +159,17 @@ export default {
     },
     filterRanks() {
       const rankstrueList = this.ranks.filter(v => v.value === true)?.map(v => v.name)
-      // console.log(this.carList.filter)
-      return this.carList.filter(v => rankstrueList.includes(v.rank))
+      return this.cars.filter(v => rankstrueList.includes(v.rank))
     },
     filterFuels() {
       const fuelstrueList = this.fuels.filter(v => v.value === true)?.map(v => v.name)
-      return this.carList.filter(v => fuelstrueList.includes(v.fuel))
+      return this.cars.filter(v => fuelstrueList.includes(v.fuel))
     },
     dataRows() {
-      const merged = this.filterRanks.concat(this.filterFuels) // filterRanks + filterFuels
-      const unique = merged.filter((item, pos) => merged.indexOf(item) === pos) // 합칠 때 중복값 제외
-      return unique.filter(carList => {
-        return carList.car_name.toLowerCase().includes(this.search.toLowerCase())
+      const merged = this.filterRanks.concat(this.filterFuels)
+      const unique = merged.filter((item, pos) => merged.indexOf(item) === pos)
+      return unique.filter(cars => {
+        return cars.name.toLowerCase().includes(this.search.toLowerCase())
       })
     }
   },
@@ -203,9 +200,6 @@ export default {
         return this.ranks.forEach(element => (element.value = true))
       }
     },
-    filterRanks() {
-      return
-    },
     dataRows() {
       return
     },
@@ -217,23 +211,23 @@ export default {
       })
     },
     priceLow() {
-      this.carList.sort(function (a, b) {
-        return a.car_price - b.car_price
+      this.cars.sort(function (a, b) {
+        return a.price - b.price
       })
     },
     priceHigh() {
-      this.carList.sort(function (a, b) {
-        return b.car_price - a.car_price
+      this.cars.sort(function (a, b) {
+        return b.price - a.price
       })
     },
     starLow() {
-      this.carList.sort(function (a, b) {
-        return a.car_star - b.car_star
+      this.cars.sort(function (a, b) {
+        return a.star - b.star
       })
     },
     starHigh() {
-      this.carList.sort(function (a, b) {
-        return b.car_star - a.car_star
+      this.cars.sort(function (a, b) {
+        return b.star - a.star
       })
     }
   }
