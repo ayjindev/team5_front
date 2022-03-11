@@ -2,8 +2,8 @@
   <div class="body" v-bind="res">
     <div class="contents">
       <div class="img_box">
-        <!-- {{ cars }} -->
-        <img :src="goRes.img" :alt="goRes.name" />
+        <!-- {{ this.$route.params }} -->
+        <img :src="goRes.car_img" :alt="goRes.car_name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
@@ -19,8 +19,20 @@
           {{ goRes.car_price }}
         </div>
         <div class="c_box_04">
-          <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
-          <datetime v-model="res.end" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>반납일</span>
+          <datepicker
+            v-model="res.start"
+            class="datetime"
+            format="yyyy-MM-dd"
+            :disabled-dates="disabledStartDates"
+          ></datepicker
+          ><span>픽업일</span>
+          <datepicker
+            v-model="res.end"
+            class="datetime"
+            format="yyyy-MM-dd"
+            :disabled-dates="disabledEndDates"
+          ></datepicker
+          ><span>반납일</span>
         </div>
       </div>
     </div>
@@ -96,6 +108,7 @@
           ></b-form-input>
         </b-form-group>
       </div>
+      <b-button @click="dateCheck()">날짜체크</b-button>
       <div class="payment">
         <h3>무통장 입금</h3>
         <p><span>우리</span>**** *** **** **</p>
@@ -104,7 +117,7 @@
       </div>
       <div class="pay">
         <button @click="goResCheck(res)">
-          <span class="price">{{ goRes.price }}</span
+          <span class="price">{{ goRes.car_price }}</span
           >원 입금 완료
         </button>
       </div>
@@ -113,13 +126,34 @@
 </template>
 
 <script>
-import datetime from 'vuejs-datetimepicker'
+import datepicker from 'vuejs-datepicker'
 export default {
   name: 'GoRes',
-  components: { datetime },
+  components: { datepicker },
   data() {
     return {
-      goRes: this.$route.params,
+      // 달력 날짜 선택 막기
+      disabledStartDates: {
+        to: new Date() // 내일부터 예약 가능
+        // ranges: [
+        //   {
+        //     // 날짜 기간 막기
+        //     from: new Date(2016, 11, 25),
+        //     to: new Date(2016, 11, 30)
+        //   }
+        // ]
+      },
+      disabledEndDates: {
+        to: new Date() // 내일부터 예약 가능
+        // ranges: [
+        //   {
+        //     // 날짜 기간 막기
+        //     from: new Date(2016, 11, 25),
+        //     to: new Date(2016, 11, 30)
+        //   }
+        // ]
+      },
+      goRes: this.$route.params, // 에약 페이지 데이터 넘겨줌
       res: {
         start: '',
         end: '',
@@ -127,12 +161,12 @@ export default {
         driverName: '',
         phoneNumber: '',
         driverBirth: '',
-        name: this.$route.params.car_name,
-        img: this.$route.params.car_img,
-        fuel: this.$route.params.car_fuel,
-        rank: this.$route.params.car_rank,
-        star: this.$route.params.car_star,
-        price: this.$route.params.car_price
+        name: this.$route.params.name,
+        img: this.$route.params.img,
+        fuel: this.$route.params.fuel,
+        rank: this.$route.params.rank,
+        star: this.$route.params.star,
+        price: this.$route.params.price
       }
     }
   },
@@ -146,8 +180,19 @@ export default {
     }
   },
   methods: {
+    dateCheck() {
+      // 시작 날짜 찍어보기 (형식 yyyy-mm-dd)
+      console.log(
+        `${this.res.start.toLocaleDateString().replace(/\./g, 't').split('t')[0]}, ${
+          this.res.start.toLocaleDateString().replace(/\./g, 't').split('t')[1]
+        }, ${this.res.start.toLocaleDateString().replace(/\./g, 't').split('t')[2]}`,
+        `${this.res.end.toLocaleDateString().replace(/\./g, 't').split('t')[0]}, ${
+          this.res.end.toLocaleDateString().replace(/\./g, 't').split('t')[1]
+        }, ${this.res.end.toLocaleDateString().replace(/\./g, 't').split('t')[2]}`
+      )
+    },
     goResCheck(props) {
-      console.log(props)
+      // console.log(props)
       if (this.checkInput() === false) {
         // 유효성/공란 체크
         return false
