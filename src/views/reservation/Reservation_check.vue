@@ -2,20 +2,20 @@
   <div class="body">
     <div class="contents">
       <div class="img_box">
-        <img :src="goResCheck.img" :alt="goResCheck.name" />
+        <img :src="goResCheck.car_img" :alt="goResCheck.car_name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name">{{ goResCheck.name }}</dt>
-          <dd class="fuel_name">{{ goResCheck.fuel }}</dd>
+          <dt class="rank_name">{{ goResCheck.car_name }}</dt>
+          <dd class="fuel_name">{{ goResCheck.car_fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_rank">{{ goResCheck.rank }}</span>
-          <dd class="star">★{{ goResCheck.star }}</dd>
+          <span class="car_rank">{{ goResCheck.car_rank }}</span>
+          <dd class="star">★{{ goResCheck.car_star }}</dd>
         </div>
         <div class="price c_box_03">
-          {{ goResCheck.price }}
+          {{ goResCheck.car_price }}
         </div>
         <div class="c_box_04">
           <p>{{ goResCheck.start }}</p>
