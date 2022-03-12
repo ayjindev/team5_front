@@ -18,18 +18,18 @@
           {{ goResCheck.car_price }}
         </div>
         <div class="c_box_04">
-          <p>{{ goResCheck.start }}</p>
-          <p>{{ goResCheck.end }}</p>
+          <p>{{ goResCheck.resStart }}</p>
+          <p>{{ goResCheck.resEnd }}</p>
         </div>
       </div>
     </div>
     <div class="loop_box">
       <div class="loop"></div>
       <p>예약이 완료되었습니다</p>
-      <p>예약자 이름 : {{ goResCheck.clientName }}</p>
-      <p>운전자 이름 : {{ goResCheck.driverName }}</p>
-      <p>운전자 생년월일 : {{ goResCheck.driverBirth }}</p>
-      <p>연락처 : {{ goResCheck.phoneNumber }}</p>
+      <p>예약자 이름 : {{ goResCheck.resClientName }}</p>
+      <p>운전자 이름 : {{ goResCheck.resDriverName }}</p>
+      <p>운전자 생년월일 : {{ goResCheck.resDriverBirth }}</p>
+      <p>연락처 : {{ goResCheck.resPhoneNumber }}</p>
     </div>
     <div class="my_box">
       <button class="my-page" to="my-page" @click="goMy"><p>마이페이지 확인하기</p></button>
