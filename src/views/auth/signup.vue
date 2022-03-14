@@ -449,12 +449,12 @@ export default {
 #userZip {
   float: right;
   position: relative;
+  margin-bottom: -26px;
   right: -6px;
 }
 #showApi {
   border-radius: 20px;
   padding: 5px 20px;
-  margin-bottom: 26px;
 }
 @media all and(max-width:767px) {
   #b-col {
