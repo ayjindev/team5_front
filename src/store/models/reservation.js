@@ -37,25 +37,25 @@ export default {
       // 상태(결과)값 초기화
       context.commit('setResInsertedResult', null)
 
-      // // 백엔드 호출 (결과값 수신)(watch에서 감지하게 해주기 위해 setTimeout 사용)
-      // setTimeout(() => {
-      //   const insertedResult = 1
-      //   context.commit('setResInsertedResult', insertedResult)
-      // }, 300) // state값의 변화를 감지하기 위하여 일부러 지연 시켰다.
+      // 백엔드 호출 (결과값 수신)(watch에서 감지하게 해주기 위해 setTimeout 사용)
+      setTimeout(() => {
+        const insertedResult = 1
+        context.commit('setResInsertedResult', insertedResult)
+      }, 300) // state값의 변화를 감지하기 위하여 일부러 지연 시켰다.
 
-      /* RestAPI 호출 */
-      api
-        .post('/serverApi/reservation', payload)
-        .then(response => {
-          const insertedResult = response && response.data && response.data.success
-          // console.log('insertedResult', insertedResult)
-          context.commit('setResInsertedResult', insertedResult)
-        })
-        .catch(error => {
-          // 에러인 경우 처리
-          console.error('ResSucessResult.error', error)
-          context.commit('setResInsertedResult', -1)
-        })
+      // /* RestAPI 호출 */
+      // api
+      //   .post('/serverApi/reservation', payload)
+      //   .then(response => {
+      //     const insertedResult = response && response.data && response.data.success
+      //     // console.log('insertedResult', insertedResult)
+      //     context.commit('setResInsertedResult', insertedResult)
+      //   })
+      //   .catch(error => {
+      //     // 에러인 경우 처리
+      //     console.error('ResSucessResult.error', error)
+      //     context.commit('setResInsertedResult', -1)
+      //   })
     },
 
     // 회원가입 데이터 초기화
