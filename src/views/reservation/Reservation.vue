@@ -2,25 +2,37 @@
   <div class="body" v-bind="res">
     <div class="contents">
       <div class="img_box">
-        <!-- {{ cars }} -->
-        <img :src="goRes.img" :alt="goRes.name" />
+        <!-- {{ this.$route.params }} -->
+        <img :src="goRes.car_img" :alt="goRes.car_name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name">{{ goRes.name }}</dt>
-          <dd class="fuel_name">{{ goRes.fuel }}</dd>
+          <dt class="rank_name">{{ goRes.car_name }}</dt>
+          <dd class="fuel_name">{{ goRes.car_fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_rank">{{ goRes.rank }}</span>
-          <dd class="star">★{{ goRes.star }}</dd>
+          <span class="car_rank">{{ goRes.car_rank }}</span>
+          <dd class="star">★{{ goRes.car_star }}</dd>
         </div>
         <div class="price c_box_03" :v-model="res.price">
-          {{ goRes.price }}
+          {{ goRes.car_price }}
         </div>
         <div class="c_box_04">
-          <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
-          <datetime v-model="res.end" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>반납일</span>
+          <datepicker
+            v-model="res.resStart"
+            class="datetime"
+            :format="dateFormat"
+            :disabled-dates="disabledStartDates"
+          ></datepicker
+          ><span>픽업일</span>
+          <datepicker
+            v-model="res.resEnd"
+            class="datetime"
+            :format="dateFormat"
+            :disabled-dates="disabledEndDates"
+          ></datepicker
+          ><span>반납일</span>
         </div>
       </div>
     </div>
@@ -29,8 +41,8 @@
         <b-form-group>
           <label for="clientName">예약자 이름</label>
           <b-form-input
-            ref="clientName"
-            v-model="res.clientName"
+            ref="resClientName"
+            v-model="res.resClientName"
             name="clientName"
             aria-describedby=" 예약자 이름"
             :state="clientNameState"
@@ -40,7 +52,7 @@
           ></b-form-input>
 
           <!-- 조건 미충족 시 -->
-          <b-form-invalid-feedback v-if="res.clientName" id="input-live-feedback">
+          <b-form-invalid-feedback v-if="res.resClientName" id="input-live-feedback">
             이름은 한글 2자리 이상 입력해야 합니다
           </b-form-invalid-feedback>
 
@@ -51,8 +63,8 @@
         <b-form-group>
           <label for="driverName">운전자 이름</label>
           <b-form-input
-            ref="driverName"
-            v-model="res.driverName"
+            ref="resDriverName"
+            v-model="res.resDriverName"
             name="driverName"
             aria-describedby="운전자 이름"
             :state="driverNameState"
@@ -62,7 +74,7 @@
           ></b-form-input>
 
           <!-- 조건 미충족 시 -->
-          <b-form-invalid-feedback v-if="res.driverName" id="input-live-feedback">
+          <b-form-invalid-feedback v-if="res.resDriverName" id="input-live-feedback">
             이름은 한글 2자리 이상 입력해야 합니다
           </b-form-invalid-feedback>
 
@@ -73,8 +85,8 @@
         <b-form-group>
           <label for="driverBirth">운전자 생년월일</label>
           <b-form-input
-            ref="driverBirth"
-            v-model="res.driverBirth"
+            ref="resDriverBirth"
+            v-model="res.resDriverBirth"
             name="driverBirth"
             type="date"
             size="sm"
@@ -83,8 +95,8 @@
           ></b-form-input>
           <label for="phoneNumber">핸드폰 번호</label>
           <b-form-input
-            ref="phoneNumber"
-            v-model="res.phoneNumber"
+            ref="resPhoneNumber"
+            v-model="res.resPhoneNumber"
             name="phoneNumber"
             required
             trim
@@ -92,10 +104,11 @@
             type="text"
             size="sm"
             aria-describedby="핸드폰 번호"
-            @keyup="getPhoneMask(res.phoneNumber)"
+            @keyup="getPhoneMask(res.resPhoneNumber)"
           ></b-form-input>
         </b-form-group>
       </div>
+      <b-button @click="dateCheck()">날짜체크</b-button>
       <div class="payment">
         <h3>무통장 입금</h3>
         <p><span>우리</span>**** *** **** **</p>
@@ -104,7 +117,7 @@
       </div>
       <div class="pay">
         <button @click="goResCheck(res)">
-          <span class="price">{{ goRes.price }}</span
+          <span class="price">{{ goRes.car_price }}</span
           >원 입금 완료
         </button>
       </div>
@@ -113,87 +126,143 @@
 </template>
 
 <script>
-import datetime from 'vuejs-datetimepicker'
+import datepicker from 'vuejs-datepicker'
 export default {
   name: 'GoRes',
-  components: { datetime },
+  components: { datepicker },
   data() {
     return {
-      goRes: this.$route.params,
+      dateFormat: 'yyyy-MM-dd',
+      // 달력 날짜 선택 막기
+      disabledStartDates: {
+        to: new Date() // 내일부터 예약 가능
+        // ranges: [
+        //   {
+        //     // 날짜 기간 막기
+        //     from: new Date(2016, 11, 25),
+        //     to: new Date(2016, 11, 30)
+        //   }
+        // ]
+      },
+      disabledEndDates: {
+        to: new Date() // 내일부터 예약 가능
+        // ranges: [
+        //   {
+        //     // 날짜 기간 막기
+        //     from: new Date(2016, 11, 25),
+        //     to: new Date(2016, 11, 30)
+        //   }
+        // ]
+      },
+      goRes: this.$route.params, // 에약 페이지 데이터 넘겨줌
       res: {
-        start: '',
-        end: '',
-        clientName: '',
-        driverName: '',
-        phoneNumber: '',
-        driverBirth: '',
-        name: this.$route.params.name,
-        img: this.$route.params.img,
-        fuel: this.$route.params.fuel,
-        rank: this.$route.params.rank,
-        star: this.$route.params.star,
-        price: this.$route.params.price
+        resStart: '',
+        resEnd: '',
+        resClientName: '',
+        resDriverName: '',
+        resPhoneNumber: '',
+        resDriverBirth: '',
+        car_name: this.$route.params.car_name,
+        car_img: this.$route.params.car_img,
+        car_fuel: this.$route.params.car_fuel,
+        car_rank: this.$route.params.car_rank,
+        car_star: this.$route.params.car_star,
+        car_price: this.$route.params.car_price
       }
     }
   },
   computed: {
+    // store 호출
+    resResult() {
+      return this.$store.getters.ResInsertedResult
+    },
     // 이름 유효성 검사
     clientNameState() {
-      return this.res.clientName.length > 1 && /^[가-힣]*$/.test(this.res.clientName) // 한글 2자리 이상
+      return this.res.resClientName.length > 1 && /^[가-힣]*$/.test(this.res.resClientName) // 한글 2자리 이상
     },
     driverNameState() {
-      return this.res.driverName.length > 1 && /^[가-힣]*$/.test(this.res.driverName) // 한글 2자리 이상
+      return this.res.resDriverName.length > 1 && /^[가-힣]*$/.test(this.res.resDriverName) // 한글 2자리 이상
+    }
+  },
+  watch: {
+    resResult(value) {
+      console.log('watch.resResult', value)
+
+      // 예약에 성공한 경우
+      if (value == true) {
+        alert('예약 되었습니다')
+        this.$router.push({
+          name: 'goResCheck',
+          params: { ...this.res }
+        })
+      } else if (value == false) {
+        alert('예약 실패하였습니다')
+      }
     }
   },
   methods: {
-    goResCheck(props) {
-      console.log(props)
-      if (this.checkInput() === false) {
-        // 유효성/공란 체크
-        return false
-      } else {
-        this.$router.push({
-          name: 'goResCheck',
-          params: props
-        })
-      }
+    // dateCheck() {
+    //   // 시작 날짜 찍어보기 (형식 yyyy-mm-dd)
+    //   console.log(
+    //     `${this.res.resStart.toLocaleDateString().replace(/\./g, 't').split('t')[0]}, ${
+    //       this.res.resStart.toLocaleDateString().replace(/\./g, 't').split('t')[1]
+    //     }, ${this.res.resStart.toLocaleDateString().replace(/\./g, 't').split('t')[2]}`,
+    //     `${this.res.resEnd.toLocaleDateString().replace(/\./g, 't').split('t')[0]}, ${
+    //       this.res.resEnd.toLocaleDateString().replace(/\./g, 't').split('t')[1]
+    //     }, ${this.res.resEnd.toLocaleDateString().replace(/\./g, 't').split('t')[2]}`
+    //   )
+    // },
+
+    dateCheck() {
+      // 시작 날짜 찍어보기 (형식 yyyy-mm-dd)
+      console.log('날짜', this.res.resStart, this.res.resEnd)
     },
 
     // 공란 및 유효성 여부 체크
     checkInput() {
       const inputForm = this.res
       // console.log(inputForm)
-      if (inputForm.clientName == '') {
+      if (inputForm.resStart == '') {
+        alert('대여 날짜를 입력해 주세요')
+        return false
+      }
+
+      if (inputForm.resEnd == '') {
+        alert('반납 날짜를 입력해 주세요')
+        return false
+      }
+
+      if (inputForm.resClientName == '') {
         alert('예약자 성함을 입력해 주세요')
-        this.$refs.clientName.focus()
+        this.$refs.resClientName.focus()
         return false
       } else if (this.clientNameState === false) {
         this.$refs.clientName.focus()
         return false
       }
 
-      if (inputForm.driverName == '') {
+      if (inputForm.resDriverName == '') {
         alert('운전자 성함을 입력해 주세요')
-        this.$refs.driverName.focus()
+        this.$refs.resDriverName.focus()
         return false
       } else if (this.driverNameState === false) {
         this.$refs.driverName.focus()
         return false
       }
 
-      if (inputForm.phoneNumber == '') {
+      if (inputForm.resPhoneNumber == '') {
         alert('전화번호를 입력해 주세요')
-        this.$refs.phoneNumber.focus()
+        this.$refs.resPhoneNumber.focus()
         return false
       } else if (this.formatNumber === false) {
         alert('전화번호를 확인해 주세요')
-        this.$refs.phoneNumber.focus()
+        this.$refs.resPhoneNumber.focus()
         return false
       }
 
-      if (inputForm.driverBirth == '') {
+      if (inputForm.resDriverBirth == '') {
         alert('생년월일을 입력해 주세요')
-        this.$refs.driverBirth.focus()
+        this.$refs.resDriverBirth.focus()
         return false
       } else {
         return true
@@ -208,7 +277,7 @@ export default {
     // 전화번호 숫자만 입력 시 파이프(-) 자동 입력
     getPhoneMask(val) {
       let res = this.getMask(val)
-      this.res.phoneNumber = res
+      this.res.resPhoneNumber = res
 
       // // 서버 전송 값에는 '-'를 제외하고 숫자만 저장
       // this.$store.getters.User.userPhoneNumber = this.user.userPhoneNumber.replace(/[^0-9]/g, '')
@@ -233,6 +302,20 @@ export default {
       //   }
       // }
       return res
+    },
+
+    goResCheck(props) {
+      console.log(props)
+      if (this.checkInput() === false) {
+        // 유효성/공란 체크
+        return false
+      } else {
+        // 초기화
+        this.$store.dispatch('actResInit')
+
+        // 등록
+        this.$store.dispatch('actResInsert', props)
+      }
     }
   }
 }

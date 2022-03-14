@@ -50,7 +50,9 @@
             <dd class="star" :v-model="car.car_star">★{{ car.car_star }}</dd>
           </div>
           <div class="price c_box_03" :v-model="car.car_price">
+
             {{ car.car_price.toLocaleString() }}
+
             <button @click="goRes(car)">바로 예약 하기</button>
           </div>
         </div>
@@ -211,22 +213,22 @@ export default {
       })
     },
     priceLow() {
-      this.carList.sort(function (a, b) {
+      this.cars.sort(function (a, b) {
         return a.car_price - b.car_price
       })
     },
     priceHigh() {
-      this.carList.sort(function (a, b) {
+      this.cars.sort(function (a, b) {
         return b.car_price - a.car_price
       })
     },
     starLow() {
-      this.carList.sort(function (a, b) {
+      this.cars.sort(function (a, b) {
         return a.car_star - b.car_star
       })
     },
     starHigh() {
-      this.carList.sort(function (a, b) {
+      this.cars.sort(function (a, b) {
         return b.car_star - a.car_star
       })
     }

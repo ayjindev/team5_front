@@ -30,6 +30,7 @@
           <p><span class="end">2022.03.03</span>까지</p>
         </dd>
       </dl>
+      <router-link to="/review">리뷰 작성하기</router-link>
     </div>
   </div>
 </template>
@@ -138,6 +139,18 @@ body {
         font-weight: bold;
       }
     }
+  }
+  a {
+    border: 1px solid $main;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background: $main;
+    color: #fff;
+    position: relative;
+    top: 30px;
+  }
+  a:hover {
+    background: $sub;
   }
 }
 </style>

@@ -2,34 +2,34 @@
   <div class="body">
     <div class="contents">
       <div class="img_box">
-        <img :src="goResCheck.img" :alt="goResCheck.name" />
+        <img :src="goResCheck.car_img" :alt="goResCheck.car_name" />
       </div>
       <div class="contents_box">
         <dl class="c_box_01">
-          <dt class="rank_name">{{ goResCheck.name }}</dt>
-          <dd class="fuel_name">{{ goResCheck.fuel }}</dd>
+          <dt class="rank_name">{{ goResCheck.car_name }}</dt>
+          <dd class="fuel_name">{{ goResCheck.car_fuel }}</dd>
           <dd>유모차/카시트 신청 가능</dd>
         </dl>
         <div class="c_box_02">
-          <span class="car_rank">{{ goResCheck.rank }}</span>
-          <dd class="star">★{{ goResCheck.star }}</dd>
+          <span class="car_rank">{{ goResCheck.car_rank }}</span>
+          <dd class="star">★{{ goResCheck.car_star }}</dd>
         </div>
         <div class="price c_box_03">
-          {{ goResCheck.price.toLocaleString() }}
+          {{ goResCheck.car_price }}
         </div>
         <div class="c_box_04">
-          <p>{{ goResCheck.start }}</p>
-          <p>{{ goResCheck.end }}</p>
+          <p>{{ goResCheck.resStart }}</p>
+          <p>{{ goResCheck.resEnd }}</p>
         </div>
       </div>
     </div>
     <div class="loop_box">
       <div class="loop"></div>
       <p>예약이 완료되었습니다</p>
-      <p>예약자 이름 : {{ goResCheck.clientName }}</p>
-      <p>운전자 이름 : {{ goResCheck.driverName }}</p>
-      <p>운전자 생년월일 : {{ goResCheck.driverBirth }}</p>
-      <p>연락처 : {{ goResCheck.phoneNumber }}</p>
+      <p>예약자 이름 : {{ goResCheck.resClientName }}</p>
+      <p>운전자 이름 : {{ goResCheck.resDriverName }}</p>
+      <p>운전자 생년월일 : {{ goResCheck.resDriverBirth }}</p>
+      <p>연락처 : {{ goResCheck.resPhoneNumber }}</p>
     </div>
     <div class="my_box">
       <button class="my-page" to="my-page" @click="goMy"><p>마이페이지 확인하기</p></button>
