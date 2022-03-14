@@ -15,7 +15,7 @@
           <dd class="star">★{{ goResCheck.car_star }}</dd>
         </div>
         <div class="price c_box_03">
-          {{ goResCheck.car_price }}
+          {{ goResCheck.car_price.toLocaleString() }}
         </div>
         <div class="c_box_04">
           <p>{{ goResCheck.resStart }}</p>

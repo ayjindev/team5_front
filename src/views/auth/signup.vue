@@ -449,6 +449,7 @@ export default {
 #userZip {
   float: right;
   position: relative;
+  margin-bottom: -26px;
   right: -6px;
 }
 #showApi {

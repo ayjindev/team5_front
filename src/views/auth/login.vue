@@ -159,12 +159,12 @@ export default {
   font-size: 0.6em;
   line-height: 1.4em;
 }
-.btn {
+#loginBtn {
   background: $main;
   border: 0px;
   margin-top: 20px;
 }
-.btn:hover {
+#loginBtn:hover {
   background: $sub;
 }
 .btn-primary {
