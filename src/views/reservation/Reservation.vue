@@ -120,7 +120,6 @@
 
 <script>
 // import datepicker from 'vuejs-datepicker'
-import moment from 'moment'
 export default {
   name: 'GoRes',
   // components: { datepicker },
