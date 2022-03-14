@@ -454,6 +454,7 @@ export default {
 #showApi {
   border-radius: 20px;
   padding: 5px 20px;
+  margin-bottom: 26px;
 }
 @media all and(max-width:767px) {
   #b-col {
