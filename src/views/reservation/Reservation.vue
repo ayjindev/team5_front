@@ -16,7 +16,7 @@
           <dd class="star">★{{ goRes.star }}</dd>
         </div>
         <div class="price c_box_03" :v-model="res.price">
-          {{ goRes.price.toLocaleString() }}
+          {{ goRes.price }}
         </div>
         <div class="c_box_04">
           <datetime v-model="res.start" class="datetime" format="YYYY-MM-DD H:i"></datetime><span>픽업일</span>
@@ -104,7 +104,7 @@
       </div>
       <div class="pay">
         <button @click="goResCheck(res)">
-          <span class="price">{{ goRes.price.toLocaleString() }}</span
+          <span class="price">{{ goRes.price }}</span
           >원 입금 완료
         </button>
       </div>
