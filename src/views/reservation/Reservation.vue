@@ -16,7 +16,7 @@
           <dd class="star">★{{ goRes.car_star }}</dd>
         </div>
         <div class="price c_box_03" :v-model="res.price">
-          {{ goRes.car_price }}
+          {{ goRes.car_price.toLocaleString() }}
         </div>
         <div class="c_box_04">
           <datepicker
@@ -117,7 +117,7 @@
       </div>
       <div class="pay">
         <button @click="goResCheck(res)">
-          <span class="price">{{ goRes.car_price }}</span
+          <span class="price">{{ goRes.car_price.toLocaleString() }}</span
           >원 입금 완료
         </button>
       </div>
@@ -606,8 +606,8 @@ input {
           overflow: hidden;
           width: 60px;
           position: relative;
-          right: -200px;
-          top: -24px;
+          right: -170px;
+          top: -20px;
         }
       }
     }

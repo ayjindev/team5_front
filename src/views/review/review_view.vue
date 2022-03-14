@@ -14,7 +14,7 @@
           <button @click="Prev">Prev</button>
           <div class="line">
             <div v-for="img in imgs" :key="img.index" class="div" :style="style">
-              <div class="slide"><img :src="img.imgsrc" :alt="img.name" /></div>
+              <div class="slide"><img :src="img.imgsrc" :alt="img.imgsrc" /></div>
             </div>
           </div>
           <button @click="next">next</button>
