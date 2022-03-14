@@ -6,31 +6,41 @@
     <div class="me">
       <img src="../../assets/images/me.png" alt="나" />
       <dl>
-        <dt :v-model="myUser.myName">{{ myUser.myName }}</dt>
-        <dd :v-model="myUser.myId">{{ myUser.myId }}</dd>
-        <dd :v-model="myUser.myBirth">{{ myUser.myBirth }}</dd>
-        <dd :v-model="myUser.myEmail">{{ myUser.myEmail }}</dd>
-        <dd :v-model="myUser.myPhonenumber">{{ myUser.myPhonenumber }}</dd>
+        {{ myUser[0] }}
+        <dt :v-model="myUser.user_name">{{ myUser.user_name }}</dt>
+        <dd :v-model="myUser.user_id">{{ myUser.user_id }}</dd>
+        <dd :v-model="myUser.user_birth">{{ myUser.user_birth }}</dd>
+        <dd :v-model="myUser.user_email">{{ myUser.user_email }}</dd>
+        <dd :v-model="myUser.user_phonenumber">{{ myUser.user_phonenumber }}</dd>
         <dd>
-          <span :v-model="myUser.myZip">{{ myUser.myZip }}</span>
-          <span :v-model="myUser.myAddress1">{{ myUser.myAddress1 }}</span>
-          <span :v-model="myUser.myAddress2">{{ myUser.myAddress2 }}</span>
+          <span :v-model="myUser.user_zip">{{ myUser.user_zip }}</span>
+          <span :v-model="myUser.user_address1">{{ myUser.user_address1 }}</span>
+          <span :v-model="myUser.user_address2">{{ myUser.user_address2 }}</span>
         </dd>
       </dl>
     </div>
-    <div class="reservation">
-      <dl>
-        <dt>나의 예약 현황</dt>
-        <dd>볼보 XC60 2세대</dd>
-        <dd>20~21년식 휘발유</dd>
-        <dd>수입</dd>
-        <dd>168,000</dd>
-        <dd>
-          <p><span class="start">2022.02.22</span>부터</p>
-          <p><span class="end">2022.03.03</span>까지</p>
-        </dd>
-      </dl>
-      <router-link to="/review">리뷰 작성하기</router-link>
+    <div v-for="res in myRes" :key="res.index">
+      <div class="reservation">
+        {{ myRes }}
+        <dl>
+          <dt>나의 예약 현황</dt>
+          <dd :v-model="res.car_name">{{ res.car_name }}</dd>
+          <dd :v-model="res.car_fuel">{{ res.car_fuel }}</dd>
+          <dd :v-model="res.car_rank">{{ res.car_rank }}</dd>
+          <dd :v-model="res.car_price">{{ res.car_price }}</dd>
+          <dd>
+            <p>
+              <span class="start" :v-model="res.start_date">{{ res.start_date }}</span
+              >부터
+            </p>
+            <p>
+              <span class="end" :v-model="res.end_date">{{ res.end_date }}</span
+              >까지
+            </p>
+          </dd>
+        </dl>
+        <router-link to="/review">리뷰 작성하기</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -39,29 +49,52 @@
 export default {
   data() {
     return {
-      myUser: {
-        myName: null,
-        myId: null,
-        myBirth: null,
-        myEmail: null,
-        myPhonenumber: null,
-        myZip: null,
-        myAddress1: null,
-        myAddress2: null
-      }
+      myUser: [
+        {
+          user_birth: '',
+          user_email: '',
+          user_id: '',
+          user_name: '',
+          user_phonenumber: '',
+          user_pw: '',
+          user_zip: '',
+          user_address1: '',
+          user_address2: ''
+        }
+      ],
+
+      myRes: [
+        {
+          user_id: '',
+          car_name: '',
+          car_rank: '',
+          car_fuel: '',
+          car_price: '',
+          client_name: '',
+          driver_name: '',
+          driver_birth: '',
+          driver_phonenumber: '',
+          start_date: '',
+          end_date: ''
+        }
+      ]
     }
   },
   computed: {
-    tokenPost() {
-      const token = window.localStorage.getItem('accessToken')
-      return token
-    },
     myUserInfo() {
       return this.$store.getters.myUser
     },
-    postToken() {
-      return this.$store.getters.Token
+    myResInfo() {
+      return this.$store.getters.myRes
     }
+    // 토큰 전달
+    // tokenPost() {
+    //   const token = window.localStorage.getItem('accessToken')
+    //   return token
+    // },
+    // postToken() {
+    //   return this.$store.getters.Token
+    // },
   },
   // watch: {
   //   postToken() {
@@ -69,8 +102,9 @@ export default {
   //   }
   // },
   created() {
-    this.$store.dispatch('actMyUserInfo')
-    this.$store.dispatch('actPostToken', this.tokenPost)
+    this.$store.dispatch('actMyUserInfo') //  유저 데이터 불러오기
+    this.$store.dispatch('actMyResInfo') // 예약 데이터 불러오기
+    // this.$store.dispatch('actPostToken', this.tokenPost) // 토큰 전달
   }
 }
 </script>
