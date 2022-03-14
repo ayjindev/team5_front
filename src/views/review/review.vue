@@ -151,18 +151,14 @@ export default {
   position: fixed;
   z-index: 80;
   bottom: 0;
-  width: 100%;
+
   button {
-    width: 100%;
     text-align: center;
     height: 100%;
     border: 0;
     background: 0;
     color: #fff;
   }
-}
-.send:hover {
-  background: $sub;
 }
 
 .rating {
@@ -416,6 +412,12 @@ export default {
     width: 100%;
     height: auto;
   }
+  .send {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
 }
 @media all and(min-width:768px) {
   .star-rating label:hover,
@@ -444,6 +446,19 @@ export default {
     padding-top: 16px;
     width: 190px;
     height: 130px;
+  }
+  .send:hover {
+    background: $sub;
+  }
+  .send {
+    width: 45%;
+    min-width: 700px;
+    margin-left: 50%;
+    left: -350px;
+    button {
+      width: 45%;
+      min-width: 700px;
+    }
   }
 }
 </style>
