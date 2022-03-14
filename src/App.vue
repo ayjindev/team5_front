@@ -7,6 +7,7 @@
         <router-link to="/auth/login">로그인</router-link>
       </div>
       <div v-if="isLoggedin">
+        <router-link to="/review-board">리뷰</router-link> |
         <router-link to="/my-page" @click="onClick">마이 페이지</router-link> |
         <router-link to="/auth/logout">로그아웃</router-link>
       </div>
