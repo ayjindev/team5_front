@@ -466,8 +466,8 @@ input {
           overflow: hidden;
           width: 60px;
           position: relative;
-          right: -230px;
-          top: -24px;
+          right: -235px;
+          top: -20px;
         }
       }
     }
