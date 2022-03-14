@@ -20,12 +20,19 @@
         </div>
         <div class="c_box_04">
           <b-form-datepicker
+            ref="resStart"
             v-model="res.resStart"
             class="datetime"
             :min="min"
             placeholder="픽업일"
           ></b-form-datepicker>
-          <b-form-datepicker v-model="res.resEnd" class="datetime" :min="min" placeholder="반납일"></b-form-datepicker>
+          <b-form-datepicker
+            ref="resEnd"
+            v-model="res.resEnd"
+            class="datetime"
+            :min="min"
+            placeholder="반납일"
+          ></b-form-datepicker>
         </div>
       </div>
     </div>
@@ -185,11 +192,13 @@ export default {
       // console.log(inputForm)
       if (inputForm.resStart == '') {
         alert('대여 날짜를 입력해 주세요')
+        this.$refs.resStart.focus()
         return false
       }
 
       if (inputForm.resEnd == '') {
         alert('반납 날짜를 입력해 주세요')
+        this.$refs.resEnd.focus()
         return false
       }
 
