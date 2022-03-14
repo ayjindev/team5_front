@@ -19,20 +19,13 @@
           {{ goRes.car_price }}
         </div>
         <div class="c_box_04">
-          <datepicker
+          <b-form-datepicker
             v-model="res.resStart"
             class="datetime"
-            :format="dateFormat"
-            :disabled-dates="disabledStartDates"
-          ></datepicker
-          ><span>픽업일</span>
-          <datepicker
-            v-model="res.resEnd"
-            class="datetime"
-            :format="dateFormat"
-            :disabled-dates="disabledEndDates"
-          ></datepicker
-          ><span>반납일</span>
+            :min="min"
+            placeholder="픽업일"
+          ></b-form-datepicker>
+          <b-form-datepicker v-model="res.resEnd" class="datetime" :min="min" placeholder="반납일"></b-form-datepicker>
         </div>
       </div>
     </div>
@@ -108,7 +101,7 @@
           ></b-form-input>
         </b-form-group>
       </div>
-      <b-button @click="dateCheck()">날짜체크</b-button>
+      <!-- <b-button @click="dateCheck()">날짜체크</b-button> -->
       <div class="payment">
         <h3>무통장 입금</h3>
         <p><span>우리</span>**** *** **** **</p>
@@ -126,34 +119,15 @@
 </template>
 
 <script>
-import datepicker from 'vuejs-datepicker'
+// import datepicker from 'vuejs-datepicker'
+import moment from 'moment'
 export default {
   name: 'GoRes',
-  components: { datepicker },
+  // components: { datepicker },
   data() {
     return {
       dateFormat: 'yyyy-MM-dd',
-      // 달력 날짜 선택 막기
-      disabledStartDates: {
-        to: new Date() // 내일부터 예약 가능
-        // ranges: [
-        //   {
-        //     // 날짜 기간 막기
-        //     from: new Date(2016, 11, 25),
-        //     to: new Date(2016, 11, 30)
-        //   }
-        // ]
-      },
-      disabledEndDates: {
-        to: new Date() // 내일부터 예약 가능
-        // ranges: [
-        //   {
-        //     // 날짜 기간 막기
-        //     from: new Date(2016, 11, 25),
-        //     to: new Date(2016, 11, 30)
-        //   }
-        // ]
-      },
+      min: new Date(),
       goRes: this.$route.params, // 에약 페이지 데이터 넘겨줌
       res: {
         resStart: '',
@@ -203,20 +177,8 @@ export default {
   methods: {
     // dateCheck() {
     //   // 시작 날짜 찍어보기 (형식 yyyy-mm-dd)
-    //   console.log(
-    //     `${this.res.resStart.toLocaleDateString().replace(/\./g, 't').split('t')[0]}, ${
-    //       this.res.resStart.toLocaleDateString().replace(/\./g, 't').split('t')[1]
-    //     }, ${this.res.resStart.toLocaleDateString().replace(/\./g, 't').split('t')[2]}`,
-    //     `${this.res.resEnd.toLocaleDateString().replace(/\./g, 't').split('t')[0]}, ${
-    //       this.res.resEnd.toLocaleDateString().replace(/\./g, 't').split('t')[1]
-    //     }, ${this.res.resEnd.toLocaleDateString().replace(/\./g, 't').split('t')[2]}`
-    //   )
+    //   console.log('날짜', moment(this.res.resStart).format('YYYY-MM-DD'))
     // },
-
-    dateCheck() {
-      // 시작 날짜 찍어보기 (형식 yyyy-mm-dd)
-      console.log('날짜', this.res.resStart, this.res.resEnd)
-    },
 
     // 공란 및 유효성 여부 체크
     checkInput() {
@@ -305,7 +267,7 @@ export default {
     },
 
     goResCheck(props) {
-      console.log(props)
+      console.log('props', props)
       if (this.checkInput() === false) {
         // 유효성/공란 체크
         return false
