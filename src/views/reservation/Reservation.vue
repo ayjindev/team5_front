@@ -166,7 +166,7 @@ export default {
   },
   watch: {
     resResult(value) {
-      console.log('watch.resResult', value)
+      // console.log('watch.resResult', value)
 
       // 예약에 성공한 경우
       if (value == true) {
