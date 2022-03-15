@@ -204,7 +204,8 @@ export default {
       return
     },
     goRes(props) {
-      console.log(props)
+      // 다음 페이지로 넘기기
+      // console.log(props)
       this.$router.push({
         name: 'goRes',
         params: props

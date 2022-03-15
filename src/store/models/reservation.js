@@ -32,7 +32,7 @@ export default {
   },
   actions: {
     actResInsert(context, payload) {
-      console.log('actResInsert', payload)
+      // console.log('actResInsert', payload)
 
       // 상태(결과)값 초기화
       context.commit('setResInsertedResult', null)
