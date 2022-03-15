@@ -6,7 +6,47 @@
     <div class="me">
       <img src="../../assets/images/me.png" alt="나" />
       <dl>
-        {{ myUser[0] }}
+        <dt :v-model="myUser.user_name">김이름</dt>
+        <dd :v-model="myUser.user_id">id1234</dd>
+        <dd :v-model="myUser.user_birth">2022-03-24</dd>
+        <dd :v-model="myUser.user_email">email@email.com</dd>
+        <dd :v-model="myUser.user_phonenumber">010-1234-5678</dd>
+        <dd>
+          <span :v-model="myUser.user_zip">63534</span>
+          <span :v-model="myUser.user_address1">제주특별자치도 서귀포시 가가로 14 (상예동)</span>
+          <span :v-model="myUser.user_address2">상세주소</span>
+        </dd>
+      </dl>
+    </div>
+    <div v-for="res in myRes" :key="res.index">
+      <div class="reservation">
+        <dl>
+          <dt>나의 예약 현황</dt>
+          <dd :v-model="res.car_name">볼보</dd>
+          <dd :v-model="res.car_fuel">휘발유</dd>
+          <dd :v-model="res.car_rank">수입</dd>
+          <dd :v-model="res.car_price">200390</dd>
+          <dd>
+            <p><span class="start" :v-model="res.start_date">2022-03-15</span></p>
+            <p><span class="end" :v-model="res.end_date">2022-03-16</span></p>
+          </dd>
+        </dl>
+        <router-link to="/review">리뷰 작성하기</router-link>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!--
+<template>
+  <div class="body">
+    <div>
+      <p>마이 페이지</p>
+    </div>
+    <div class="me">
+      <img src="../../assets/images/me.png" alt="나" />
+      <dl>
+        myUser: {{ myUser }}
         <dt :v-model="myUser.user_name">{{ myUser.user_name }}</dt>
         <dd :v-model="myUser.user_id">{{ myUser.user_id }}</dd>
         <dd :v-model="myUser.user_birth">{{ myUser.user_birth }}</dd>
@@ -19,9 +59,9 @@
         </dd>
       </dl>
     </div>
+    myRes: {{ myRes }}
     <div v-for="res in myRes" :key="res.index">
       <div class="reservation">
-        {{ myRes }}
         <dl>
           <dt>나의 예약 현황</dt>
           <dd :v-model="res.car_name">{{ res.car_name }}</dd>
@@ -44,6 +84,7 @@
     </div>
   </div>
 </template>
+-->
 
 <script>
 export default {
@@ -82,29 +123,15 @@ export default {
   },
   computed: {
     myUserInfo() {
-      return this.$store.getters.myUser
+      return this.$store.getters.MyUser
     },
     myResInfo() {
-      return this.$store.getters.myRes
+      return this.$store.getters.MyRes
     }
-    // 토큰 전달
-    // tokenPost() {
-    //   const token = window.localStorage.getItem('accessToken')
-    //   return token
-    // },
-    // postToken() {
-    //   return this.$store.getters.Token
-    // },
   },
-  // watch: {
-  //   postToken() {
-  //     this.$store.dispatch('actPostToken', this.tokenPost)
-  //   }
-  // },
   created() {
     this.$store.dispatch('actMyUserInfo') //  유저 데이터 불러오기
     this.$store.dispatch('actMyResInfo') // 예약 데이터 불러오기
-    // this.$store.dispatch('actPostToken', this.tokenPost) // 토큰 전달
   }
 }
 </script>

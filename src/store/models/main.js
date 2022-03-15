@@ -68,7 +68,6 @@ export default {
       api
         .get('/serverApi/main')
         .then(response => {
-          // const carList = response && response.data && response.data.map
           const carList =
             response &&
             response.data &&

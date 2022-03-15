@@ -14,7 +14,7 @@
     </div>
     <div class="review_list">
       <div v-for="review in reviews" :key="review.index" class="review_box">
-        <div class="img_box">
+        <div class="img_box" @click="goToReviewView">
           <img :src="review.img" :alt="review.name" />
         </div>
         <div class="text_box">
@@ -23,7 +23,7 @@
             <dd id="star">&#9733; {{ review.star }}</dd>
             <dt>{{ review.title }}</dt>
             <dd>{{ review.contents }}</dd>
-            <dd>▶</dd>
+            <dd @click="goToReviewView">▶</dd>
           </dl>
         </div>
       </div>
@@ -37,12 +37,12 @@ export default {
     return {
       reviews: [
         {
-          img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
-          car: '벤츠',
+          img: require('@/assets/images/car/볼보_xc60_2세대.png'),
+          car: '볼보',
           title: '싸고 좋아요',
           contents: '차 내부가 쾌적하고...',
-          name: '김나나',
-          star: 2
+          name: '김이름',
+          star: 4
         },
         {
           img: require('@/assets/images/car/르노삼성_SM6_1세대.png'),
@@ -69,6 +69,13 @@ export default {
           star: 5
         }
       ]
+    }
+  },
+
+  methods: {
+    // 박스 누르면 링크 이동
+    goToReviewView() {
+      return this.$router.push('/review-view')
     }
   }
 }

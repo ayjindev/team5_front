@@ -275,7 +275,7 @@ export default {
     },
 
     goResCheck(props) {
-      console.log('props', props)
+      // console.log('props', props)
       if (this.checkInput() === false) {
         // 유효성/공란 체크
         return false

@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="go_back">
-      <button>목록으로 돌아가기</button>
+      <button @click="goToReviewBoard">목록으로 돌아가기</button>
     </div>
   </div>
 </template>
@@ -43,15 +43,15 @@ export default {
   data: function () {
     return {
       me: {
-        car: '벤츠',
+        car: '볼보',
         title: '싸고 좋아요',
         image: require('@/assets/images/me.png'),
-        name: '김나나',
-        star: 5,
-        contents: '어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 저쩌고 블라블라어쩌고 '
+        name: '김이름',
+        star: 4,
+        contents: '차 내부가 쾌적하고 좋았습니다. '
       },
       imgs: [
-        { imgsrc: require('@/assets/images/car/르노삼성_SM6_1세대.png'), name: '벤츠' },
+        { imgsrc: require('@/assets/images/car/볼보_xc60_2세대.png'), name: '볼보' },
         { imgsrc: require('@/assets/images/car/볼보_xc60_2세대.png'), name: '벤츠' },
         { imgsrc: require('@/assets/images/car/르노삼성_SM6_1세대.png'), name: '벤츠' },
         { imgsrc: require('@/assets/images/car/볼보_xc60_2세대.png'), name: '벤츠' }
@@ -67,8 +67,13 @@ export default {
     }
   },
   methods: {
+    // 목록으로 돌아가기 누르면 링크 이동
+    goToReviewBoard() {
+      return this.$router.replace('/review-board')
+    },
+
     next: function () {
-      console.log(this.translate)
+      // console.log(this.translate)
       // console.log(this.imgs.length)
       if (window.innerWidth > 768) {
         this.translate -= 560
@@ -83,7 +88,7 @@ export default {
       }
     },
     Prev: function () {
-      console.log(this.translate)
+      // console.log(this.translate)
       if (window.innerWidth > 768) {
         this.translate += 560
         if (this.translate >= 560) {
