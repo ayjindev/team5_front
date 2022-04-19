@@ -96,7 +96,7 @@ npm start // nodemon
 
 <br/>
 
-진아영(Leader)
+진아영
 + [Github](https://github.com/jay0v0)
 + [Blog](https://keepgoinglog.tistory.com/)
 + ayjindev@gmail.com
