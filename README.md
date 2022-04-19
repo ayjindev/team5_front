@@ -85,6 +85,8 @@ npm start // nodemon
 ## :eyes: Members
 
 김희선
++ [Github](https://github.com/legavin1023)
++ legavin1023@gmail.com
 
 <br/>
 
@@ -96,10 +98,13 @@ npm start // nodemon
 <br/>
 
 이보람
++ [Github](https://github.com/bestDevBB)
++ cnn93@naver.com
 
 <br/>
 
 하정욱
++ [Github](https://github.com/Ha-jeongwook)
 
 <br/>
 
